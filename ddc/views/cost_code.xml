@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="cost_code_action">
+            <field name="name">Boq Info</field>
+            <field name="res_model">cost.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+        <menuitem id="menu_cost_code" name="Cost Code" parent="project.menu_project_config" sequence="60"/>
+        <menuitem id="sub_cost_code" name="Cost Code" parent="menu_cost_code" action="cost_code_action" sequence="60"/>
+
+        <!-- Tree view for the menuitem -->
+        <record id="visi_cost_code_tree" model="ir.ui.view">
+            <field name="name">cost.code.tree</field>
+            <field name="model">cost.code</field>
+            <field name="inherit_id" ref="contracting.cost_code_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='code']" position="after">
+					<field name="unit_price"/>
+					<field name="quantity"/>
+				</xpath>
+            </field>
+        </record>
+        <!-- Form view for the menuitem -->
+        <record id="cost_code_form" model="ir.ui.view">
+            <field name="name">cost.code.form</field>
+            <field name="model">cost.code</field>
+            <field name="inherit_id" ref="contracting.cost_code_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form" position="replace">
+					<sheet>
+						<group>
+							<group>
+								<label for="code"/>
+								<h2>
+									<field name="code"/>
+								</h2>
+								<label for="name"/>
+								<h2>
+									<field name="name"/>
+								</h2>
+								<label for="unit_price"/>
+								<h2>
+									<field name="unit_price"/>
+								</h2>
+								<label for="quantity"/>
+								<h2>
+									<field name="quantity"/>
+								</h2>
+							</group>
+
+						</group>
+						<div class="oe_clear"/>
+						<field name="description" class="oe_inline" placeholder="Description....."/>
+					</sheet>
+				</xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

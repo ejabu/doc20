@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- Tree view for the menuitem -->
+        <record id="conf_rec_comment_tree" model="ir.ui.view">
+            <field name="name">conf.rec.comment.tree</field>
+            <field name="model">conf.rec.comment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view for the menuitem -->
+        <record id="conf_rec_comment_form" model="ir.ui.view">
+            <field name="name">conf.rec.comment.form</field>
+            <field name="model">conf.rec.comment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="conf_rec_comment_action">
+            <field name="name">Configuration Comment</field>
+            <field name="res_model">conf.rec.comment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

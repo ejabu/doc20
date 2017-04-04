@@ -21,7 +21,8 @@ class rec_eng_doc(models.Model):
     ref_num = fields.Char(string='Reference Number')
 
     receiving_date = fields.Date(string='Receiving Date', required=True)
-    status_comment = fields.Char(string='Status Comment')
+    # status_comment = fields.Char(string='Status Comment')
+    status_comment = fields.Many2one('conf.rec.comment', 'Status Comment')
 
     sender = fields.Char(string='Sender')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])

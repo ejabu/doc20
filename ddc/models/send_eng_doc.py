@@ -22,7 +22,9 @@ class send_eng_doc(models.Model):
     due_date = fields.Date(string='Due Date',)
     need_to_response = fields.Date(string='Need to Response',)
 
-    message = fields.Char(string='Message')
+    # message = fields.Char(string='Message')
+    message = fields.Many2one('conf.send.message', 'Message')
+
     sender = fields.Char(string='Sender')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
@@ -31,7 +33,7 @@ class send_eng_doc(models.Model):
 
 
     _defaults={
-        'transmittal_date': lambda *a:datetime.now().strftime('%Y-%m-%d'), 
+        'transmittal_date': lambda *a:datetime.now().strftime('%Y-%m-%d'),
         # 'date_end': lambda *a:(datetime.now() + timedelta(days=(6))).strftime('%Y-%m-%d'),
     }
 

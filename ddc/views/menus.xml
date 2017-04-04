@@ -23,6 +23,12 @@
         <menuitem id="ddc_master_deliver" name="Master Deliberable Register"
                   parent="ddc_master_data" sequence="40" action="master_deliver_action"/>
 
+        <menuitem id="ddc_conf" name="Configuration"
+            parent="main_ddc" sequence="90"/>
+
+        <menuitem id="ddc_send_doc_message" name="Sending Document Message"
+                  parent="ddc_master_data" sequence="40" action="conf_send_message_action"/>
+
 
     </data>
 </openerp>

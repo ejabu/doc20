@@ -9,6 +9,7 @@
         'views/master_deliver.xml',
         'views/send_eng_doc.xml',
         'views/rec_eng_doc.xml',
+        'views/conf_send_message.xml',
         'views/menus.xml',
     ],
     'demo':[

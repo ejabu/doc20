@@ -6,8 +6,10 @@
     "category":"Vocabulary Learning",
     "description" : """VISI Module for Construction""",
     'data': [
+        'views/master_deliver.xml',
+        'views/send_eng_doc.xml',
+        'views/rec_eng_doc.xml',
         'views/menus.xml',
-        'views/master_deliver.xml'
     ],
     'demo':[
             #files containing demo data

@@ -5,6 +5,18 @@
         <!-- top level menu: no parent -->
         <menuitem id="main_ddc" name="DDC"/>
 
+        <menuitem id="ddc_sending_doc" name="Sending Documents"
+            parent="main_ddc" sequence="20"/>
+
+        <menuitem id="ddc_send_eng_doc" name="Engineering Documents"
+                  parent="ddc_sending_doc" sequence="40" action="send_eng_doc_action"/>
+
+        <menuitem id="ddc_receiving_doc" name="Receiving Documents"
+            parent="main_ddc" sequence="20"/>
+
+        <menuitem id="ddc_rec_eng_doc" name="Engineering Documents"
+                  parent="ddc_receiving_doc" sequence="40" action="rec_eng_doc_action"/>
+
         <menuitem id="ddc_master_data" name="Master Data"
             parent="main_ddc" sequence="40"/>
 

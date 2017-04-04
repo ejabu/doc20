@@ -24,3 +24,7 @@ class master_deliver(models.Model):
     old_rev = fields.Char(string='Old Revision')
     notes = fields.Text(string='Notes')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
+
+
+    send_eng_id = fields.Many2many('send.eng.doc', 'master_to_send_eng', 'master_deliver_id', 'send_eng_id', string="Master Deliver")
+    rec_eng_id = fields.Many2many('rec.eng.doc', 'master_to_rec_eng', 'master_deliver_id', 'rec_eng_id', string="Master Deliver")

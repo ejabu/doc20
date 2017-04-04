@@ -39,6 +39,8 @@
                 <form string="Bill Of Quantity">
                     <header>
                         <!-- <button name="create_revision" string="New Revision" type="object" class="oe_highlight"/> -->
+                        <field name="state" widget="statusbar"/>
+
                     </header>
                         <group colspan="4" col="4">
                         <group >
@@ -63,8 +65,20 @@
                             <field name="old_rev"/>
                         </group>
                         </group>
-
+                        <h3>Notes</h3>
                         <field name="notes"/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                 </form>
             </field>
         </record>

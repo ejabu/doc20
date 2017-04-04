@@ -48,7 +48,7 @@
                             <field name="transmittal_date"/>
                             <field name="due_date"/>
                             <field name="need_to_response"/>
-                            <field name="message"/>
+                            <field name="message" widget="selection"/>
                             <field name="sender"/>
                         </group>
                     </group>
@@ -58,7 +58,7 @@
                             <field name="doc_title"/>
                             <field name="discipline"/>
                             <field name="doc_type"/>
-                            <field name="state"/>
+                            <field name="status"/>
                             <field name="rev_num"/>
                             <field name="originator"/>
                         </tree>

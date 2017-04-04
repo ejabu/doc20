@@ -17,15 +17,30 @@
 
         <menuitem id="ddc_master_data" name="Master Data"
             parent="main_ddc" sequence="40"/>
-        <menuitem id="ddc_master_deliver" name="Master Deliberable Register"
+        <menuitem id="ddc_master_deliver" name="Master Deliverable Register"
                   parent="ddc_master_data" sequence="40" action="master_deliver_action"/>
 
         <menuitem id="ddc_conf" name="Configuration"
             parent="main_ddc" sequence="90"/>
         <menuitem id="ddc_send_doc_message" name="Sending Document Message"
-                  parent="ddc_master_data" sequence="10" action="conf_send_message_action"/>
+                  parent="ddc_conf" sequence="10" action="conf_send_message_action"/>
         <menuitem id="ddc_rec_doc_comment" name="Receiving Document Comment"
-                  parent="ddc_master_data" sequence="20" action="conf_rec_comment_action"/>
+                  parent="ddc_conf" sequence="20" action="conf_rec_comment_action"/>
+
+        <menuitem id="ddc_conf_master_Data" name="Master Data"
+                  parent="ddc_conf" sequence="30"/>
+        <menuitem id="ddc_conf_discipline" name="Discipline"
+                  parent="ddc_conf_master_Data" sequence="10" action="conf_discipline_action"/>
+        <menuitem id="ddc_conf_doc_categ" name="Document Category"
+                  parent="ddc_conf_master_Data" sequence="20" action="conf_doc_categ_action"/>
+        <menuitem id="ddc_conf_doc_sub" name="Document Subsystem"
+                  parent="ddc_conf_master_Data" sequence="30" action="conf_doc_sub_action"/>
+        <menuitem id="ddc_conf_doc_type" name="Document Type"
+                  parent="ddc_conf_master_Data" sequence="40" action="conf_doc_type_action"/>
+        <menuitem id="ddc_conf_rev_num" name="Revision Number"
+                  parent="ddc_conf_master_Data" sequence="50" action="conf_rev_num_action"/>
+        <menuitem id="ddc_conf_internal_status" name="Internal Status"
+                  parent="ddc_conf_master_Data" sequence="60" action="conf_internal_status_action"/>
 
 
     </data>

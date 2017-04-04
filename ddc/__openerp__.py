@@ -11,6 +11,7 @@
         'views/rec_eng_doc.xml',
         'views/conf_send_message.xml',
         'views/conf_rec_comment.xml',
+        'views/conf_master_data.xml',
         'views/menus.xml',
     ],
     'demo':[

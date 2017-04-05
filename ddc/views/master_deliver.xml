@@ -26,6 +26,8 @@
                     <field name="discipline"/>
                     <field name="originator"/>
                     <field name="doc_type"/>
+                    <field name="doc_status"/>
+                    <field name="doc_status_update" invisible="1"/>
                     <field name="internal_status"/>
                     <field name="state"/>
                 </tree>
@@ -60,6 +62,8 @@
                             <field name="sched_date"/>
                             <field name="doc_type"/>
                             <field name="rev_num"/>
+                            <field name="doc_status"/>
+                            <field name="doc_status_update" invisible="1"/>
                             <field name="internal_status"/>
                             <field name="external_status"/>
                             <field name="old_rev"/>

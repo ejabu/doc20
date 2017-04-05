@@ -13,6 +13,7 @@
         'views/conf_rec_comment.xml',
         'views/conf_master_data.xml',
         'views/menus.xml',
+        'wizard/popup_quiz_view.xml',
     ],
     'demo':[
             #files containing demo data

@@ -31,6 +31,7 @@ class rec_eng_doc(models.Model):
     master_deliver_id = fields.Many2many('master.deliver', 'master_to_send_eng', 'rec_eng_id', 'master_deliver_id', string="Master Deliver")
 
     _defaults={
+        'state': 'new',
         'receiving_date': lambda *a:datetime.now().strftime('%Y-%m-%d'),
         # 'date_end': lambda *a:(datetime.now() + timedelta(days=(6))).strftime('%Y-%m-%d'),
     }

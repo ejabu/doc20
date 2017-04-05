@@ -53,14 +53,19 @@
                         </group>
                     </group>
                     <field name="master_deliver_id">
-                        <tree>
-                            <field name="name"/>
-                            <field name="doc_title"/>
-                            <field name="discipline"/>
-                            <field name="doc_type"/>
-                            <field name="status"/>
-                            <field name="rev_num"/>
-                            <field name="originator"/>
+                        <tree editable="bottom">
+                            <field name="name" readonly="1"/>
+                            <field name="doc_title" readonly="1"/>
+                            <field name="discipline" readonly="1"/>
+                            <field name="doc_type" readonly="1"/>
+
+                            <field name="doc_status_update" options="{'no_create':True , 'no_open':True}"/>
+                            <button name="change_doc_status"
+                                                icon="gtk-apply"
+                                                string="Change Status" type="object"
+                                                 />
+                            <field name="rev_num" readonly="1"/>
+                            <field name="originator" readonly="1"/>
                         </tree>
                     </field>
                     <br/>

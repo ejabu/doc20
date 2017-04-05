@@ -61,6 +61,8 @@ class send_eng_doc(models.Model):
     @api.multi
     def send_doc(self):
         # import ipdb; ipdb.set_trace()
+        for master_deliver_id in self.master_deliver_id:
+            master_deliver_id.doc_status = master_deliver_id.doc_status_update
         self.state='sent'
         # data_copy = super(boq_info, self).copy_data()[0]
         # data_copy.update({

@@ -23,16 +23,17 @@ class send_eng_doc(models.Model):
     need_to_response = fields.Date(string='Need to Response',)
 
     # message = fields.Char(string='Message')
-    message = fields.Many2one('conf.send.message', 'Message')
+    message = fields.Many2one('conf.send.message', 'Message', ondelete='restrict')
 
     sender = fields.Char(string='Sender')
-    state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
+    state = fields.Selection(selection=[('new', 'New'), ('sent', 'Sent'), ('done', 'Done')])
 
     # master_deliver_id = fields.Many2one('master.deliver', 'Related Master Deliverables')
     master_deliver_id = fields.Many2many('master.deliver', 'master_to_send_eng', 'send_eng_id', 'master_deliver_id', string="Master Deliver")
 
 
     _defaults={
+        'state': 'new',
         'transmittal_date': lambda *a:datetime.now().strftime('%Y-%m-%d'),
         # 'date_end': lambda *a:(datetime.now() + timedelta(days=(6))).strftime('%Y-%m-%d'),
     }
@@ -56,3 +57,13 @@ class send_eng_doc(models.Model):
                 self.city = self.to_company.city or ""
                 self.province = self.to_company.state_id.name or ""
                 self.country = self.to_company.country_id.name or ""
+
+    @api.multi
+    def send_doc(self):
+        # import ipdb; ipdb.set_trace()
+        self.state='sent'
+        # data_copy = super(boq_info, self).copy_data()[0]
+        # data_copy.update({
+        #  'revision': data_copy['revision']+1,
+        # })
+        # self.write({'is_active': False})

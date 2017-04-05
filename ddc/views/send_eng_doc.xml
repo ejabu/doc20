@@ -26,7 +26,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <!-- <button name="create_revision" string="New Revision" type="object" class="oe_highlight"/> -->
+                        <button name="send_doc" string="Send" type="object" class="oe_highlight" states='new'/>
                         <field name="state" widget="statusbar"/>
 
                     </header>
@@ -48,7 +48,7 @@
                             <field name="transmittal_date"/>
                             <field name="due_date"/>
                             <field name="need_to_response"/>
-                            <field name="message" widget="selection"/>
+                            <field name="message" options="{'no_create':True , 'no_open':True}"/>
                             <field name="sender"/>
                         </group>
                     </group>

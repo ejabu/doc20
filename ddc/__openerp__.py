@@ -4,7 +4,7 @@
     "depends": "",
     'author': 'VISI',
     "category":"Vocabulary Learning",
-    "description" : """VISI Module for Construction""",
+    "description" : """DDC 2.0""",
     'data': [
         'views/master_deliver.xml',
         'views/send_eng_doc.xml',
@@ -13,6 +13,7 @@
         'views/conf_rec_comment.xml',
         'views/conf_master_data.xml',
         'views/menus.xml',
+        'data/master_deliver.xml',
         'wizard/popup_quiz_view.xml',
     ],
     'demo':[

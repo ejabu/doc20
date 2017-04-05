@@ -20,7 +20,9 @@ class master_deliver(models.Model):
     doc_type = fields.Many2one('conf.doc.type', 'Document Type', required=True)
     doc_status = fields.Many2one('conf.doc.status', 'Status')
     doc_status_update = fields.Many2one('conf.doc.status', 'Status')
-    rev_num = fields.Many2one('conf.rev.num', 'Revision Number')
+    # rev_num = fields.Many2one('conf.rev.num', 'Revision Number')
+    rev_num = fields.Integer('Revision Number')
+    rev_num_update = fields.Integer('Revision Number')
     internal_status = fields.Many2one('conf.internal.status', 'Internal Status', required=True)
     external_status = fields.Many2one('conf.external.status', 'External Status')
     old_rev = fields.Char(string='Old Revision')
@@ -28,16 +30,22 @@ class master_deliver(models.Model):
 
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
+    # history_seq = fields.Char(string='History')
+    history_seq = fields.Char(string='History', required=True, copy=False, default=lambda self: self.env['ir.sequence'].next_by_code('master.deliver'))
 
-    send_eng_id = fields.Many2many('send.eng.doc', 'master_to_send_eng', 'master_deliver_id', 'send_eng_id', string="Master Deliver")
-    rec_eng_id = fields.Many2many('rec.eng.doc', 'master_to_rec_eng', 'master_deliver_id', 'rec_eng_id', string="Master Deliver")
+    send_eng_id = fields.Many2many('send.eng.doc', 'master_to_send_eng', 'master_deliver_id', 'send_eng_id', string="Master Deliver", copy=False)
+    rec_eng_id = fields.Many2many('rec.eng.doc', 'master_to_rec_eng', 'master_deliver_id', 'rec_eng_id', string="Master Deliver", copy=False)
 
-
+    _defaults={
+        'state': 'new',
+        'rev_num': 0,
+        'rev_num_update': 1,
+    }
 
     @api.onchange('doc_status')
     def change_doc_status_update(self):
-        import ipdb; ipdb.set_trace()
         self.doc_status_update = self.doc_status
+
     @api.multi
     def change_doc_status(self):
         pass

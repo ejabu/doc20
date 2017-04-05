@@ -27,6 +27,7 @@
                     <field name="originator"/>
                     <field name="doc_type"/>
                     <field name="doc_status"/>
+                    <field name="rev_num"/>
                     <field name="doc_status_update" invisible="1"/>
                     <field name="internal_status"/>
                     <field name="state"/>
@@ -66,6 +67,7 @@
                             <field name="doc_status_update" invisible="1"/>
                             <field name="internal_status"/>
                             <field name="external_status"/>
+                            <field name="history_seq" invisible="0"/>
                             <field name="old_rev"/>
                         </group>
                         </group>

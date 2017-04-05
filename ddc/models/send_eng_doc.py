@@ -60,10 +60,15 @@ class send_eng_doc(models.Model):
 
     @api.multi
     def send_doc(self):
-        # import ipdb; ipdb.set_trace()
+        import ipdb; ipdb.set_trace()
         for master_deliver_id in self.master_deliver_id:
             master_deliver_id.doc_status = master_deliver_id.doc_status_update
-        self.state='sent'
+            master_deliver_id.state = 'done'
+            new_doc = master_deliver_id.copy()
+            new_doc.history_seq = master_deliver_id.history_seq
+            new_doc.rev_num = master_deliver_id.rev_num + 1
+            new_doc.rev_num_update = master_deliver_id.rev_num_update + 1
+        # self.state='sent'
         # data_copy = super(boq_info, self).copy_data()[0]
         # data_copy.update({
         #  'revision': data_copy['revision']+1,

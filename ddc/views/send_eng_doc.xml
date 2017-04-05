@@ -64,7 +64,8 @@
                                                 icon="gtk-apply"
                                                 string="Change Status" type="object"
                                                  />
-                            <field name="rev_num" readonly="1"/>
+                            <!-- <field name="rev_num" readonly="1"/> -->
+                            <field name="rev_num_update" readonly="1"/>
                             <field name="originator" readonly="1"/>
                         </tree>
                     </field>

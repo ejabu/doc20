@@ -2,19 +2,19 @@
 <openerp>
     <data>
 
-        <!-- <record id="master_deliver_search" model="ir.ui.view">
+        <record id="master_deliver_search" model="ir.ui.view">
             <field name="name">master.deliver.search</field>
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
-                <search string="Boq">
-                    <filter name="active" string="Active" domain="[('is_active','=',True)]"/>
-                    <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/>
+                <search>
+                    <filter name="active" string="Active" domain="[('state','!=','done')]"/>
+                    <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
-                        <filter string="Status" domain="[]" context="{'group_by':'project'}"/>
+                        <!-- <filter string="Type" domain="[]" context="{'group_by':'project'}"/> -->
                     </group>
                 </search>
             </field>
-        </record> -->
+        </record>
 
         <!-- Tree view for the menuitem -->
         <record id="master_deliver_tree" model="ir.ui.view">
@@ -93,11 +93,9 @@
             <field name="name">Master Deliverables</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
-            <!-- <field name="search_view_id" ref="master_deliver_search"/> -->
-            <!-- <field name="context">{'search_default_active':1}</field> -->
-
+            <field name="search_view_id" ref="master_deliver_search"/>
+            <field name="context">{'search_default_active':1}</field>
             <field name="view_mode">tree,form</field>
-            <!-- &lt;&gt; -->
         </record>
 
     </data>

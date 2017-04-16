@@ -37,4 +37,4 @@ class doc_send(models.Model):
             line_id.due_date = self.due_date
             line_id.need_to_response = self.need_to_response
             line_id.antam_date = self.antam_date
-        # self.state='done'
+        self.state='done'

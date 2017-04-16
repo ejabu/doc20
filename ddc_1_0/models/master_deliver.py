@@ -6,7 +6,7 @@ class master_deliver(models.Model):
 
     _name= "master.deliver"
     _order = "create_date"
-    
+
     discipline = fields.Many2one('conf.discipline', 'Discipline', required=True, ondelete='restrict', copy=True)
     doc_categ = fields.Many2one('conf.doc.categ', 'Category', ondelete='restrict', copy=True)
     doc_sub = fields.Many2one('conf.doc.sub', 'Subsystem', ondelete='restrict', copy=True)
@@ -35,8 +35,8 @@ class master_deliver(models.Model):
     rev_num_update = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
 
     idc_number = fields.Char(string='IDC Number', copy=False)
-    send_date = fields.Date(string='Sending Date', copy=False)
-    rece_date = fields.Date(string='Receiving Date', copy=False)
+    send_date = fields.Date(string='IDC Sending Date', copy=False)
+    rece_date = fields.Date(string='IDC Receiving Date', copy=False)
 
     send_id = fields.Many2one('doc.send', 'Related Send', ondelete='restrict', copy=False)
     trans_number = fields.Char(string='Trans Number', copy=False)
@@ -45,6 +45,11 @@ class master_deliver(models.Model):
     need_to_response = fields.Date(string='Need to Response', copy=False)
     antam_date = fields.Date(string='Antam Receive Date', copy=False)
 
+    rece_id = fields.Many2one('doc.rece', 'Related Receiving', ondelete='restrict', copy=False)
+    recv_trans_number = fields.Char(string='Transmittal Number', copy=False)
+    recv_rece_date = fields.Date(string='Receiving Date', required=True, copy=False)
+    recv_comment = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
+    recv_comment_update = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
     # file_name = fields.Char(string='File Name')
 
     # external_status = fields.Many2one('conf.external.status', 'External Status')

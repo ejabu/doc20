@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                 <search>
                     <filter name="active" string="Active" domain="[('state','!=','done')]"/>
-                    <filter name="inactive" string="Inctive" domain="[('state','=','done')]"/>
+                    <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/>
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
                         <filter name="group_by_name" string="Doc Number" domain="[]" context="{'group_by':'name'}"/>
@@ -40,11 +40,16 @@
                     <field name="idc_number"/>
                     <field name="send_date"/>
                     <field name="rece_date"/>
+
                     <field name="trans_number"/>
                     <field name="trans_date"/>
                     <field name="due_date"/>
                     <field name="need_to_response"/>
                     <field name="antam_date"/>
+
+                    <field name="recv_trans_number"/>
+                    <field name="recv_rece_date"/>
+                    <field name="recv_comment_update"/>
 
                     <field name="state"/>
                 </tree>

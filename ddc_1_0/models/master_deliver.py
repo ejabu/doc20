@@ -12,7 +12,7 @@ class master_deliver(models.Model):
     name = fields.Char(string='Document Number', required=True, copy=True)
     doc_title = fields.Char(string='Title', copy=True)
     doc_type = fields.Many2one('conf.doc.type', 'Document Type', required=True, ondelete='restrict', copy=True)
-    doc_type_des = fields.Char(string='Type Description', copy=True)
+    doc_type_desc = fields.Char(string='Type Description', copy=True)
 
     sched_date = fields.Date(string='Schedule Date', copy=True)
     originator = fields.Many2one('res.partner', string='Originator', copy=True)
@@ -57,3 +57,6 @@ class master_deliver(models.Model):
         ('name', 'Check(1=1)', "The system record Can't be duplicate value for this field!")
         # ('name', 'unique(name)', "The system record Can't be duplicate value for this field!")
     ]
+    @api.onchange('doc_type')
+    def change_doc_type(self):
+        self.doc_type_desc = self.doc_type.desc

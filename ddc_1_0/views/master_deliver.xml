@@ -30,7 +30,7 @@
                     <field name="name"/>
                     <field name="doc_title"/>
                     <field name="doc_type"/>
-                    <field name="doc_type_des"/>
+                    <field name="doc_type_desc"/>
                     <field name="sched_date"/>
                     <field name="originator"/>
                     <field name="doc_pred"/>
@@ -62,7 +62,7 @@
                             <field name="name"/>
                             <field name="doc_title"/>
                             <field name="doc_type"/>
-                            <field name="doc_type_des"/>
+                            <field name="doc_type_desc"/>
 
 
                         </group>

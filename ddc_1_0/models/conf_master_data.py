@@ -17,6 +17,7 @@ class conf_doc_sub(models.Model):
 class conf_doc_type(models.Model):
     _name= "conf.doc.type"
     name = fields.Char(string='Document Type', required=True)
+    desc = fields.Char(string='Description', required=True)
 
 class conf_doc_status(models.Model):
     _name= "conf.doc.status"
@@ -25,7 +26,7 @@ class conf_doc_status(models.Model):
 class conf_rev_num(models.Model):
     _name= "conf.rev.num"
     name = fields.Char(string='Document Rev Number', required=True)
-    
+
 class conf_internal_status(models.Model):
     _name= "conf.internal.status"
     name = fields.Char(string='Document Internal Status', required=True)

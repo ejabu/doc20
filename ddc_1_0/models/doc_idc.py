@@ -29,7 +29,7 @@ class doc_idc(models.Model):
 
     @api.multi
     def send_doc(self):
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         for line_id in self.line_ids:
 
             line_id.idc_number = ""
@@ -44,4 +44,4 @@ class doc_idc(models.Model):
             line_id.idc_number = self.name
             line_id.send_date = self.send_date
             line_id.rece_date = self.rece_date
-        # self.state='done'
+        self.state='done'

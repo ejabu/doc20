@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="popup_quiz_form" model="ir.ui.view">
+            <field name="name">popup.quiz.form</field>
+            <field name="model">popup.quiz</field>
+            <field name="arch" type="xml">
+                <form string="Static resource demo">
+                    <fields name="correct"/>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

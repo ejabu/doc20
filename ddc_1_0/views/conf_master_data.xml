@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="conf_discipline_tree" model="ir.ui.view">
+            <field name="name">conf.discipline.tree</field>
+            <field name="model">conf.discipline</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_discipline_form" model="ir.ui.view">
+            <field name="name">conf.discipline.form</field>
+            <field name="model">conf.discipline</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_discipline_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.discipline</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="conf_doc_categ_tree" model="ir.ui.view">
+            <field name="name">conf.doc.categ.tree</field>
+            <field name="model">conf.doc.categ</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_doc_categ_form" model="ir.ui.view">
+            <field name="name">conf.doc.categ.form</field>
+            <field name="model">conf.doc.categ</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_doc_categ_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.doc.categ</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="conf_doc_sub_tree" model="ir.ui.view">
+            <field name="name">conf.doc.sub.tree</field>
+            <field name="model">conf.doc.sub</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_doc_sub_form" model="ir.ui.view">
+            <field name="name">conf.doc.sub.form</field>
+            <field name="model">conf.doc.sub</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_doc_sub_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.doc.sub</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="conf_doc_type_tree" model="ir.ui.view">
+            <field name="name">conf.doc.type.tree</field>
+            <field name="model">conf.doc.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_doc_type_form" model="ir.ui.view">
+            <field name="name">conf.doc.type.form</field>
+            <field name="model">conf.doc.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_doc_type_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.doc.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="conf_doc_status_tree" model="ir.ui.view">
+            <field name="name">conf.doc.status.tree</field>
+            <field name="model">conf.doc.status</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_doc_status_form" model="ir.ui.view">
+            <field name="name">conf.doc.status.form</field>
+            <field name="model">conf.doc.status</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_doc_status_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.doc.status</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <record id="conf_rev_num_tree" model="ir.ui.view">
+            <field name="name">conf.rev.num.tree</field>
+            <field name="model">conf.rev.num</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_rev_num_form" model="ir.ui.view">
+            <field name="name">conf.rev.num.form</field>
+            <field name="model">conf.rev.num</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_rev_num_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.rev.num</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="conf_internal_status_tree" model="ir.ui.view">
+            <field name="name">conf.internal.status.tree</field>
+            <field name="model">conf.internal.status</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_internal_status_form" model="ir.ui.view">
+            <field name="name">conf.internal.status.form</field>
+            <field name="model">conf.internal.status</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_internal_status_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.internal.status</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="conf_external_status_tree" model="ir.ui.view">
+            <field name="name">conf.external.status.tree</field>
+            <field name="model">conf.external.status</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="conf_external_status_form" model="ir.ui.view">
+            <field name="name">conf.external.status.form</field>
+            <field name="model">conf.external.status</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="conf_external_status_action">
+            <field name="name">Configuration</field>
+            <field name="res_model">conf.external.status</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

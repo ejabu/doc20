@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- Tree view for the menuitem -->
+        <record id="send_eng_doc_tree" model="ir.ui.view">
+            <field name="name">send.eng.doc.tree</field>
+            <field name="model">send.eng.doc</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="name"/>
+                    <field name="to_company"/>
+                    <field name="transmittal_date"/>
+                    <field name="due_date"/>
+                    <field name="need_to_response"/>
+                    <field name="message"/>
+                    <field name="sender"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view for the menuitem -->
+        <record id="send_eng_doc_form" model="ir.ui.view">
+            <field name="name">send.eng.doc.form</field>
+            <field name="model">send.eng.doc</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="send_doc" string="Send" type="object" class="oe_highlight" states='new'/>
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+                    <group colspan="4" col="4">
+                        <group >
+
+                            <label for="to_company" string="To Company"/>
+                            <div class="o_address_format">
+                                <field name="to_company" placeholder="Contact" class="o_address_street"/>
+                                <field name="address" placeholder="Address" class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_street"/>
+                                <field name="province" placeholder="State" class="o_address_street"/>
+                                <field name="country" placeholder="Country" class="o_address_street"/>
+                            </div>
+                            <field name="name"/>
+
+                        </group>
+                        <group >
+                            <field name="transmittal_date"/>
+                            <field name="due_date"/>
+                            <field name="need_to_response"/>
+                            <field name="message" options="{'no_create':True , 'no_open':True}"/>
+                            <field name="sender"/>
+                        </group>
+                    </group>
+                    <field name="master_deliver_id">
+                        <tree editable="bottom">
+                            <field name="name" readonly="1"/>
+                            <field name="doc_title" readonly="1"/>
+                            <field name="discipline" readonly="1"/>
+                            <field name="doc_type" readonly="1"/>
+
+                            <field name="doc_status_update" options="{'no_create':True , 'no_open':True}"/>
+                            <button name="change_doc_status"
+                                                icon="gtk-apply"
+                                                string="Change Status" type="object"
+                                                 />
+                            <!-- <field name="rev_num" readonly="1"/> -->
+                            <field name="rev_num_update" readonly="1"/>
+                            <field name="originator" readonly="1"/>
+                        </tree>
+                    </field>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="send_eng_doc_action">
+            <field name="name">Engineering Documents</field>
+            <field name="res_model">send.eng.doc</field>
+            <field name="view_type">form</field>
+            <!-- <field name="search_view_id" ref="send_eng_doc_search"/> -->
+            <!-- <field name="context">{'search_default_active':1}</field> -->
+
+            <field name="view_mode">tree,form</field>
+            <!-- &lt;&gt; -->
+        </record>
+
+    </data>
+</openerp>

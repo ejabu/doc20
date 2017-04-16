@@ -14,7 +14,6 @@ class master_deliver(models.Model):
     doc_type = fields.Many2one('conf.doc.type', 'Document Type', required=True)
     doc_type_des = fields.Char(string='Type Description')
 
-
     sched_date = fields.Date(string='Schedule Date')
     originator = fields.Many2one('res.partner', string='Originator')
     internal_status = fields.Many2one('conf.internal.status', 'Internal Status')
@@ -29,11 +28,9 @@ class master_deliver(models.Model):
     idc_id = fields.Many2one('doc.idc', 'Related IDC')
     rev_num = fields.Many2one('conf.rev.num', 'Revision Number')
 
-    idc_number = fields.Char(string='IDC Number')
-    send_date = fields.Date(string='Sending Date')
-    rece_date = fields.Date(string='Receiving Date')
-
-
+    idc_number = fields.Char(string='IDC Number', related='idc_id.name', store=True)
+    send_date = fields.Date(string='Sending Date', related='idc_id.send_date', store=True)
+    rece_date = fields.Date(string='Receiving Date', related='idc_id.rece_date', store=True)
 
     # file_name = fields.Char(string='File Name')
     # doc_status = fields.Many2one('conf.doc.status', 'Status')
@@ -52,14 +49,4 @@ class master_deliver(models.Model):
 
     _defaults={
         'state': 'new',
-        'rev_num': 0,
-        'rev_num_update': 1,
     }
-
-    @api.onchange('doc_status')
-    def change_doc_status_update(self):
-        self.doc_status_update = self.doc_status
-
-    @api.multi
-    def change_doc_status(self):
-        pass

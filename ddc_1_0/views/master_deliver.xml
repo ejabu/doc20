@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <search>
                     <filter name="active" string="Active" domain="[('state','!=','done')]"/>
+                    <filter name="inactive" string="Inctive" domain="[('state','=','done')]"/>
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
                         <filter name="group_by_name" string="Doc Number" domain="[]" context="{'group_by':'name'}"/>
@@ -33,13 +34,18 @@
                     <field name="doc_type_desc"/>
                     <field name="sched_date"/>
                     <field name="originator"/>
-                    <field name="doc_pred"/>
-                    <field name="alt_doc"/>
-                    <field name="idc_number"/>
+
                     <field name="doc_status"/>
                     <field name="rev_num"/>
+                    <field name="idc_number"/>
                     <field name="send_date"/>
                     <field name="rece_date"/>
+                    <field name="trans_number"/>
+                    <field name="trans_date"/>
+                    <field name="due_date"/>
+                    <field name="need_to_response"/>
+                    <field name="antam_date"/>
+
                     <field name="state"/>
                 </tree>
             </field>
@@ -74,6 +80,7 @@
                             <field name="alt_doc"/>
                             <field name="rev_num"/>
                             <field name="idc_id" readonly="1"/>
+                            <field name="send_id" readonly="1"/>
                         </group>
                     </group>
                     <h3>Notes</h3>
@@ -99,7 +106,8 @@
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
             <field name="search_view_id" ref="master_deliver_search"/>
-            <field name="context">{'search_default_active':1,'search_default_group_by_name':1}</field>
+            <field name="context">{'search_default_active':1}</field>
+            <!-- <field name="context">{'search_default_active':1,'search_default_group_by_name':1}</field> -->
             <field name="view_mode">tree,form</field>
         </record>
 

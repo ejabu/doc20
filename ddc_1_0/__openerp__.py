@@ -12,6 +12,7 @@
         # 'views/conf_send_message.xml',
         # 'views/conf_rec_comment.xml',
         'views/doc_idc.xml',
+        'views/doc_send.xml',
         'views/conf_master_data.xml',
         'views/menus.xml',
         # 'data/master_deliver.xml',

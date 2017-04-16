@@ -5,7 +5,8 @@ from openerp.osv import fields as Fields
 class master_deliver(models.Model):
 
     _name= "master.deliver"
-
+    _order = "create_date"
+    
     discipline = fields.Many2one('conf.discipline', 'Discipline', required=True, ondelete='restrict', copy=True)
     doc_categ = fields.Many2one('conf.doc.categ', 'Category', ondelete='restrict', copy=True)
     doc_sub = fields.Many2one('conf.doc.sub', 'Subsystem', ondelete='restrict', copy=True)
@@ -33,9 +34,16 @@ class master_deliver(models.Model):
     rev_num = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
     rev_num_update = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
 
-    idc_number = fields.Char(string='IDC Number', copy=True)
-    send_date = fields.Date(string='Sending Date', copy=True)
-    rece_date = fields.Date(string='Receiving Date', copy=True)
+    idc_number = fields.Char(string='IDC Number', copy=False)
+    send_date = fields.Date(string='Sending Date', copy=False)
+    rece_date = fields.Date(string='Receiving Date', copy=False)
+
+    send_id = fields.Many2one('doc.send', 'Related Send', ondelete='restrict', copy=False)
+    trans_number = fields.Char(string='Trans Number', copy=False)
+    trans_date = fields.Date(string='Transmittal Date', required=True, copy=False)
+    due_date = fields.Date(string='Due Date', copy=False)
+    need_to_response = fields.Date(string='Need to Response', copy=False)
+    antam_date = fields.Date(string='Antam Receive Date', copy=False)
 
     # file_name = fields.Char(string='File Name')
 

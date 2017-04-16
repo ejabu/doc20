@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- Tree view for the menuitem -->
+        <record id="doc_send_tree" model="ir.ui.view">
+            <field name="name">doc.send.tree</field>
+            <field name="model">doc.send</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="trans_date"/>
+                    <field name="due_date"/>
+                    <field name="need_to_response"/>
+                    <field name="antam_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view for the menuitem -->
+        <record id="doc_send_form" model="ir.ui.view">
+            <field name="name">doc.send.form</field>
+            <field name="model">doc.send</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="send_doc" string="Send" type="object" class="oe_highlight" states='new'/>
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="trans_date"/>
+                            <field name="due_date"/>
+                            <field name="need_to_response"/>
+                            <field name="antam_date"/>
+                        </group>
+                        <field name="line_ids" domain="[('send_id','=',False)]" widget="many2many">
+                            <tree editable="bottom">
+                                <field name="name" readonly="1"/>
+                                <field name="doc_title" readonly="1"/>
+                                <field name="discipline" readonly="1"/>
+                                <field name="doc_type" readonly="1"/>
+                                <field name="doc_status_update"/>
+                                <field name="rev_num_update" />
+                                <field name="originator" readonly="1"/>
+
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="doc_send_action">
+            <field name="name">Doc Send</field>
+            <field name="res_model">doc.send</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

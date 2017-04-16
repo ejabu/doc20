@@ -15,6 +15,9 @@
         <menuitem id="ddc_doc_idc" name="IDC"
             parent="ddc_update_data" sequence="10" action="doc_idc_action"/>
 
+        <menuitem id="ddc_doc_send" name="Sending"
+            parent="ddc_update_data" sequence="20" action="doc_send_action"/>
+
         <menuitem id="ddc_conf" name="Configuration"
             parent="main_ddc" sequence="90"/>
 

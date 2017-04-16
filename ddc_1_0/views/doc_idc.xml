@@ -26,7 +26,7 @@
                             <field name="send_date"/>
                             <field name="rece_date"/>
                         </group>
-                        <field name="line_ids" domain="[('idc_id','=',False)]" widget="many2many">
+                        <field name="line_ids" domain="[('idc_id','=',False)]" widget="one2many_list">
                             <tree editable="bottom">
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>

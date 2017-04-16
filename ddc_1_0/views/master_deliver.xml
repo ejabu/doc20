@@ -9,7 +9,6 @@
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="history_seq"/>
                     <filter name="active" string="Active" domain="[('state','!=','done')]"/>
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
@@ -29,9 +28,7 @@
                     <field name="discipline"/>
                     <field name="originator"/>
                     <field name="doc_type"/>
-                    <field name="doc_status"/>
-                    <field name="rev_num"/>
-                    <field name="doc_status_update" invisible="1"/>
+                    <!-- <field name="doc_status"/> -->
                     <field name="internal_status"/>
                     <field name="state"/>
                 </tree>
@@ -44,48 +41,27 @@
             <field name="arch" type="xml">
                 <form string="Bill Of Quantity">
                     <header>
-                        <!-- <button name="create_revision" string="New Revision" type="object" class="oe_highlight"/> -->
                         <field name="state" widget="statusbar"/>
 
                     </header>
-
-                    <div class="oe_button_box" name="button_box">
-                        <button
-
-                            
-                            name="action_view_invoice"
-                            type="object"
-                            class="oe_stat_button"
-                            string="History"
-                            icon="fa-pencil-square-o">
-                        </button>
-
-
-                    </div>
                     <group colspan="4" col="4">
                         <group >
-
                             <field name="discipline"/>
                             <field name="doc_categ"/>
                             <field name="doc_sub"/>
                             <field name="name"/>
                             <field name="doc_title"/>
-                            <field name="originator"/>
-                            <field name="doc_pred"/>
-                            <field name="file_name"/>
-                            <field name="alt_doc"/>
+                            <field name="doc_type"/>
+                            <field name="doc_type_des"/>
+
 
                         </group>
                         <group >
                             <field name="sched_date"/>
-                            <field name="doc_type"/>
-                            <field name="rev_num"/>
-                            <field name="doc_status"/>
-                            <field name="doc_status_update" invisible="1"/>
+                            <field name="originator"/>
                             <field name="internal_status"/>
-                            <field name="external_status"/>
-                            <field name="history_seq" invisible="0"/>
-                            <field name="old_rev"/>
+                            <field name="doc_pred"/>
+                            <field name="alt_doc"/>
                         </group>
                     </group>
                     <h3>Notes</h3>

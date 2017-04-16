@@ -2,11 +2,14 @@
 <openerp>
     <data>
 
+
+
         <record id="master_deliver_search" model="ir.ui.view">
             <field name="name">master.deliver.search</field>
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
                 <search>
+                    <field name="history_seq"/>
                     <filter name="active" string="Active" domain="[('state','!=','done')]"/>
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
@@ -45,7 +48,21 @@
                         <field name="state" widget="statusbar"/>
 
                     </header>
-                        <group colspan="4" col="4">
+
+                    <div class="oe_button_box" name="button_box">
+                        <button
+
+                            
+                            name="action_view_invoice"
+                            type="object"
+                            class="oe_stat_button"
+                            string="History"
+                            icon="fa-pencil-square-o">
+                        </button>
+
+
+                    </div>
+                    <group colspan="4" col="4">
                         <group >
 
                             <field name="discipline"/>
@@ -70,21 +87,21 @@
                             <field name="history_seq" invisible="0"/>
                             <field name="old_rev"/>
                         </group>
-                        </group>
-                        <h3>Notes</h3>
-                        <field name="notes"/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+                    </group>
+                    <h3>Notes</h3>
+                    <field name="notes"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                 </form>
             </field>
         </record>

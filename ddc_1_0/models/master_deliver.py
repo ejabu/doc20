@@ -26,11 +26,18 @@ class master_deliver(models.Model):
     notes = fields.Text(string='Notes')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
+    idc_id = fields.Many2one('doc.idc', 'Related IDC')
+    rev_num = fields.Many2one('conf.rev.num', 'Revision Number')
+
+    idc_number = fields.Char(string='IDC Number')
+    send_date = fields.Date(string='Sending Date')
+    rece_date = fields.Date(string='Receiving Date')
+
+
 
     # file_name = fields.Char(string='File Name')
     # doc_status = fields.Many2one('conf.doc.status', 'Status')
     # doc_status_update = fields.Many2one('conf.doc.status', 'Status')
-    # # rev_num = fields.Many2one('conf.rev.num', 'Revision Number')
     # rev_num = fields.Integer('Revision Number')
     # rev_num_update = fields.Integer('Revision Number')
     # external_status = fields.Many2one('conf.external.status', 'External Status')

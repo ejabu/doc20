@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- Tree view for the menuitem -->
+        <record id="doc_idc_tree" model="ir.ui.view">
+            <field name="name">doc.idc.tree</field>
+            <field name="model">doc.idc</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="send_date"/>
+                    <field name="rece_date"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view for the menuitem -->
+        <record id="doc_idc_form" model="ir.ui.view">
+            <field name="name">doc.idc.form</field>
+            <field name="model">doc.idc</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="send_date"/>
+                            <field name="rece_date"/>
+                        </group>
+                        <field name="line_ids" widget="many2many">
+                            <tree editable="bottom">
+                                <field name="name" readonly="1"/>
+                                <field name="doc_title" readonly="1"/>
+                                <field name="discipline" readonly="1"/>
+                                <field name="doc_type" readonly="1"/>
+                                <field name="internal_status"/>
+                                <field name="rev_num" />
+                                <field name="originator" readonly="1"/>
+
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="doc_idc_action">
+            <field name="name">Doc IDC</field>
+            <field name="res_model">doc.idc</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

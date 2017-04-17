@@ -27,9 +27,12 @@
 
                     </header>
                         <group>
-                            <field name="name"/>
-                            <field name="send_date"/>
-                            <field name="rece_date"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="send_date"/>
+                                <field name="rece_date"/>
+                            </group>
+                            <group></group>
                         </group>
                         <field name="line_ids" domain="[('idc_id','=',False)]" widget="many2many" options="{'not_delete': True}">
                             <tree editable="bottom">
@@ -48,7 +51,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="doc_idc_action">
-            <field name="name">Doc IDC</field>
+            <field name="name">IDC</field>
             <field name="res_model">doc.idc</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>

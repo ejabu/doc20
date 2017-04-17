@@ -43,10 +43,11 @@
                     <field name="doc_title"/>
                     <field name="doc_type"/>
                     <field name="doc_type_desc"/>
+                    <field name="doc_status"/>
                     <field name="sched_date"/>
                     <field name="originator"/>
 
-                    <field name="doc_status"/>
+                    <field name="external_status"/>
                     <field name="rev_num"/>
                     <field name="idc_number"/>
                     <field name="send_date"/>

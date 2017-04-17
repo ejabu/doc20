@@ -26,6 +26,7 @@ class master_deliver(models.Model):
     rev_num_update = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
 
     # internal_status = fields.Many2one('conf.internal.status', 'Internal Status')
+    external_status = fields.Many2one('conf.external.status', 'External Status')
 
     doc_pred = fields.Char(string='Predecessor', copy=True)
     alt_doc = fields.Char(string='Alternative Document #', copy=True)
@@ -51,18 +52,6 @@ class master_deliver(models.Model):
     recv_trans_number = fields.Char(string='Receiving Transmittal Number', related='rece_id.name', store=True, copy=False)
     recv_rece_date = fields.Date(string='Receiving Date', related='rece_id.recv_rece_date', store=True, copy=False)
     recv_comment = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
-    # recv_comment_update = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
-    # file_name = fields.Char(string='File Name')
-
-    # external_status = fields.Many2one('conf.external.status', 'External Status')
-    # old_rev = fields.Char(string='Old Revision')
-
-
-    # history_seq = fields.Char(string='History')
-    # history_seq = fields.Char(string='History', required=True, copy=False, default=lambda self: self.env['ir.sequence'].next_by_code('master.deliver'))
-
-    # send_eng_id = fields.Many2many('send.eng.doc', 'master_to_send_eng', 'master_deliver_id', 'send_eng_id', string="Master Deliver", copy=False)
-    # rec_eng_id = fields.Many2many('rec.eng.doc', 'master_to_rec_eng', 'master_deliver_id', 'rec_eng_id', string="Master Deliver", copy=False)
 
     _defaults = {
         'state': 'new',
@@ -80,9 +69,8 @@ class master_deliver(models.Model):
     def done(self):
         self.state='done'
 
-    @api.multi
+    @api.one
     def unlink(self):
-        # import ipdb; ipdb.set_trace()
         text = "Please unlink this document from IDC / Sending / Receiving Transmittal"
         if self.idc_id.id != False:
             raise Warning(text)
@@ -93,5 +81,5 @@ class master_deliver(models.Model):
         elif self.rece_id.id != False:
             raise Warning(text)
             return
-
-        return super(master_deliver, self).unlink()
+        else:
+            return super(master_deliver, self).unlink()

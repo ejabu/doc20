@@ -29,11 +29,14 @@
 
                     </header>
                         <group>
-                            <field name="name"/>
-                            <field name="trans_date"/>
-                            <field name="due_date"/>
-                            <field name="need_to_response"/>
-                            <field name="antam_date"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="trans_date"/>
+                                <field name="due_date"/>
+                                <field name="need_to_response"/>
+                                <field name="antam_date"/>
+                            </group>
+                            <group></group>
                         </group>
                         <field name="line_ids" domain="[('send_id','=',False)]" widget="many2many" options="{'not_delete': True}">
                             <tree editable="bottom">
@@ -52,7 +55,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="doc_send_action">
-            <field name="name">Doc Send</field>
+            <field name="name">Sending Transmittal</field>
             <field name="res_model">doc.send</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>

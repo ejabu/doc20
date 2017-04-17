@@ -40,6 +40,8 @@
                   parent="ddc_conf_master_Data" sequence="50" action="conf_rev_num_action"/>
         <menuitem id="ddc_conf_internal_status" name="Internal Status"
                   parent="ddc_conf_master_Data" sequence="60" action="conf_internal_status_action"/>
+        <menuitem id="ddc_conf_external_status" name="External Status"
+                  parent="ddc_conf_master_Data" sequence="70" action="conf_external_status_action"/>
 
     </data>
 </openerp>

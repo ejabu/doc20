@@ -7,9 +7,6 @@
     "description" : """Simple Document Management""",
     'data': [
         'views/master_deliver.xml',
-        # 'views/send_eng_doc.xml',
-        # 'views/rec_eng_doc.xml',
-        # 'views/conf_send_message.xml',
         'views/conf_rec_comment.xml',
         'views/doc_idc.xml',
         'views/doc_send.xml',

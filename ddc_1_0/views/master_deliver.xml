@@ -21,7 +21,8 @@
                     <group expand="0" string="Group By">
                         <filter name="group_by_name" string="Doc Number" domain="[]" context="{'group_by':'name'}"/>
                         <filter name="group_by_disc" string="Discipline" domain="[]" context="{'group_by':'discipline'}"/>
-                        <filter name="group_by_categ" string="Doc Category" domain="[]" context="{'group_by':'doc_categ'}"/>
+                        <filter name="group_by_categ" string="Category" domain="[]" context="{'group_by':'doc_categ'}"/>
+                        <filter name="group_by_sub" string="Subsystem" domain="[]" context="{'group_by':'doc_sub'}"/>
                         <filter name="group_by_idc" string="IDC Number" domain="[]" context="{'group_by':'idc_number'}"/>
                         <filter name="group_by_send" string="Send Transmittal Number" domain="[]" context="{'group_by':'trans_number'}"/>
                         <filter name="group_by_rece" string="Receive Transmittal Number" domain="[]" context="{'group_by':'recv_trans_number'}"/>
@@ -36,9 +37,9 @@
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
                 <tree colors="blue:state == 'done'">
-                    <field name="discipline"/>
-                    <field name="doc_categ"/>
-                    <field name="doc_sub"/>
+                    <field name="discipline" invisible="1"/>
+                    <field name="doc_categ" invisible="1"/>
+                    <field name="doc_sub" invisible="1"/>
                     <field name="name"/>
                     <field name="doc_title"/>
                     <field name="doc_type"/>

@@ -13,7 +13,7 @@ class doc_idc(models.Model):
     send_date = fields.Date(string='Sending Date', required=True)
     rece_date = fields.Date(string='Receiving Date',)
 
-    line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line', ondelete='restrict')
+    line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
     _defaults={

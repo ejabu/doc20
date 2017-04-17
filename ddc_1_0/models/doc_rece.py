@@ -13,7 +13,7 @@ class doc_rece(models.Model):
     recv_rece_date = fields.Date(string='Receiving Date', required=True)
 
 
-    line_ids = fields.One2many('master.deliver', 'rece_id', 'MDR Line', ondelete='restrict')
+    line_ids = fields.One2many('master.deliver', 'rece_id', 'MDR Line')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
     _defaults={

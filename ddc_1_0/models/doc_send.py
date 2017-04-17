@@ -15,7 +15,7 @@ class doc_send(models.Model):
     need_to_response = fields.Date(string='Need to Response',)
     antam_date = fields.Date(string='Antam Receive Date',)
 
-    line_ids = fields.One2many('master.deliver', 'send_id', 'MDR Line', ondelete='restrict')
+    line_ids = fields.One2many('master.deliver', 'send_id', 'MDR Line')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
     _defaults={

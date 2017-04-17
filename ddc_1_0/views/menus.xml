@@ -3,7 +3,7 @@
     <data>
 
         <!-- top level menu: no parent -->
-        <menuitem id="main_ddc" name="DDC-1.0 (FENI)"/>
+        <menuitem id="main_ddc" name="DDC-1.0"/>
 
 
         <menuitem id="ddc_master_deliver" name="MDR"

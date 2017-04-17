@@ -9,6 +9,11 @@
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
                 <search>
+                    <field name="name" string="Doc Number"/>
+                    <field name="discipline" string="Discipline"/>
+                    <field name="trans_number" string="Sending Transmittal Number"/>
+                    <field name="recv_trans_number" string="Receiving Transmittal Number"/>
+
                     <filter name="active" string="Active" domain="[('state','!=','done')]"/>
                     <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/>
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
@@ -49,7 +54,6 @@
 
                     <field name="recv_trans_number"/>
                     <field name="recv_rece_date"/>
-                    <field name="recv_comment_update"/>
 
                     <field name="state"/>
                 </tree>
@@ -60,7 +64,7 @@
             <field name="name">master.deliver.form</field>
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
-                <form string="Bill Of Quantity">
+                <form>
                     <header>
                         <field name="state" widget="statusbar"/>
 
@@ -80,12 +84,13 @@
                         <group >
                             <field name="sched_date"/>
                             <field name="originator"/>
-                            <field name="doc_status"/>
+                            <field name="doc_status" string="Internal Status"/>
                             <field name="doc_pred"/>
                             <field name="alt_doc"/>
-                            <field name="rev_num"/>
-                            <field name="idc_id" readonly="1"/>
+                            <!-- <field name="rev_num"/> -->
+                            <!-- <field name="idc_id" readonly="1"/>
                             <field name="send_id" readonly="1"/>
+                            <field name="rece_id" readonly="1"/> -->
                         </group>
                     </group>
                     <h3>Notes</h3>

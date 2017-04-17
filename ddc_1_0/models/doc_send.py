@@ -25,16 +25,4 @@ class doc_send(models.Model):
 
     @api.multi
     def send_doc(self):
-        for line_id in self.line_ids:
-
-            line_id.doc_status = line_id.doc_status_update
-            line_id.rev_num = line_id.rev_num_update
-            line_id.state = 'done'
-            new_doc = line_id.copy()
-
-            line_id.trans_number = self.name
-            line_id.trans_date = self.trans_date
-            line_id.due_date = self.due_date
-            line_id.need_to_response = self.need_to_response
-            line_id.antam_date = self.antam_date
         self.state='done'

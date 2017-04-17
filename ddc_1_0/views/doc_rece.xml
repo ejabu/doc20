@@ -36,9 +36,9 @@
                                 <field name="doc_title" readonly="1"/>
                                 <field name="discipline" readonly="1"/>
                                 <field name="doc_type" readonly="1"/>
-                                <field name="doc_status_update"/>
-                                <field name="rev_num_update" />
-                                <field name="recv_comment_update" />
+                                <field name="doc_status"/>
+                                <field name="rev_num" />
+                                <field name="recv_comment" />
                                 <field name="originator" readonly="1"/>
 
                             </tree>

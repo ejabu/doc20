@@ -1,6 +1,6 @@
 {
     "name": "DDC 1.0",
-    "version": "0.1",
+    "version": "0.2.0",
     "depends": "",
     'author': 'VISI',
     "category":"Document Management",

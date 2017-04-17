@@ -20,36 +20,36 @@ class master_deliver(models.Model):
 
     doc_status = fields.Many2one('conf.doc.status', 'Status', ondelete='restrict', copy=True)
     doc_status_update = fields.Many2one('conf.doc.status', 'Status', ondelete='restrict', copy=True)
+    rev_num = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
+    rev_num_update = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
 
     # internal_status = fields.Many2one('conf.internal.status', 'Internal Status')
 
-    doc_pred = fields.Char(string='Document Predecessor', copy=True)
+    doc_pred = fields.Char(string='Predecessor', copy=True)
     alt_doc = fields.Char(string='Alternative Document #', copy=True)
 
 
     notes = fields.Text(string='Notes', copy=True)
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
-    idc_id = fields.Many2one('doc.idc', 'Related IDC', ondelete='restrict', copy=False)
-    rev_num = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
-    rev_num_update = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
 
-    idc_number = fields.Char(string='IDC Number', copy=False)
-    send_date = fields.Date(string='IDC Sending Date', copy=False)
-    rece_date = fields.Date(string='IDC Receiving Date', copy=False)
+    idc_id = fields.Many2one('doc.idc', 'Related IDC', ondelete='restrict', copy=False)
+    idc_number = fields.Char(string='IDC Number', related='idc_id.name', store=True, copy=False)
+    send_date = fields.Date(string='IDC Sending Date', related='idc_id.send_date', store=True, copy=False)
+    rece_date = fields.Date(string='IDC Receiving Date', related='idc_id.rece_date', store=True, copy=False)
 
     send_id = fields.Many2one('doc.send', 'Related Send', ondelete='restrict', copy=False)
-    trans_number = fields.Char(string='Trans Number', copy=False)
-    trans_date = fields.Date(string='Transmittal Date', required=True, copy=False)
-    due_date = fields.Date(string='Due Date', copy=False)
-    need_to_response = fields.Date(string='Need to Response', copy=False)
-    antam_date = fields.Date(string='Antam Receive Date', copy=False)
+    trans_number = fields.Char(string='Trans Number', related='send_id.name', store=True, copy=False)
+    trans_date = fields.Date(string='Transmittal Date', related='send_id.trans_date', store=True, copy=False)
+    due_date = fields.Date(string='Due Date', related='send_id.due_date', store=True, copy=False)
+    need_to_response = fields.Date(string='Need to Response', related='send_id.need_to_response', store=True, copy=False)
+    antam_date = fields.Date(string='Antam Receive Date', related='send_id.antam_date', store=True, copy=False)
 
     rece_id = fields.Many2one('doc.rece', 'Related Receiving', ondelete='restrict', copy=False)
-    recv_trans_number = fields.Char(string='Transmittal Number', copy=False)
-    recv_rece_date = fields.Date(string='Receiving Date', required=True, copy=False)
+    recv_trans_number = fields.Char(string='Transmittal Number', related='rece_id.name', store=True, copy=False)
+    recv_rece_date = fields.Date(string='Receiving Date', related='rece_id.recv_rece_date', store=True, copy=False)
     recv_comment = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
-    recv_comment_update = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
+    # recv_comment_update = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
     # file_name = fields.Char(string='File Name')
 
     # external_status = fields.Many2one('conf.external.status', 'External Status')

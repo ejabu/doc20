@@ -23,13 +23,4 @@ class doc_idc(models.Model):
 
     @api.multi
     def send_doc(self):
-        for line_id in self.line_ids:
-            line_id.doc_status = line_id.doc_status_update
-            line_id.rev_num = line_id.rev_num_update
-            line_id.state = 'done'
-            new_doc = line_id.copy()
-
-            line_id.idc_number = self.name
-            line_id.send_date = self.send_date
-            line_id.rece_date = self.rece_date
         self.state='done'

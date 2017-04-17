@@ -11,9 +11,13 @@
                 <search>
                     <field name="name" string="Doc Number"/>
                     <field name="discipline" string="Discipline"/>
+                    <field name="doc_type" string="Doc Type"/>
                     <field name="idc_number" string="IDC"/>
                     <field name="trans_number" string="Sending Transmittal Number"/>
                     <field name="recv_trans_number" string="Receiving Transmittal Number"/>
+                    <field name="doc_status" string="Status"/>
+                    <field name="external_status" string="External Status"/>
+                    <field name="originator" string="Originator"/>
 
                     <filter name="active" string="Active" domain="[('state','!=','done')]"/>
                     <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/>
@@ -42,11 +46,11 @@
                     <field name="doc_sub" invisible="1"/>
                     <field name="name"/>
                     <field name="doc_title"/>
-                    <field name="doc_type"/>
-                    <field name="doc_type_desc"/>
+                    <field name="doc_type" invisible="1"/>
+                    <field name="doc_type_desc" invisible="1"/>
                     <field name="doc_status"/>
                     <field name="sched_date"/>
-                    <field name="originator"/>
+                    <field name="originator" invisible="1"/>
 
                     <field name="external_status"/>
                     <field name="rev_num"/>

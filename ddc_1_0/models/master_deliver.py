@@ -2,6 +2,8 @@ from openerp import api
 from openerp import models, fields
 from openerp.osv import fields as Fields
 
+from openerp.exceptions import Warning
+
 class master_deliver(models.Model):
 
     _name= "master.deliver"
@@ -73,3 +75,23 @@ class master_deliver(models.Model):
     @api.onchange('doc_type')
     def change_doc_type(self):
         self.doc_type_desc = self.doc_type.desc
+
+    @api.multi
+    def done(self):
+        self.state='done'
+
+    @api.multi
+    def unlink(self):
+        # import ipdb; ipdb.set_trace()
+        text = "Please unlink this document from IDC / Sending / Receiving Transmittal"
+        if self.idc_id.id != False:
+            raise Warning(text)
+            return
+        elif self.send_id.id != False:
+            raise Warning(text)
+            return
+        elif self.rece_id.id != False:
+            raise Warning(text)
+            return
+
+        return super(master_deliver, self).unlink()

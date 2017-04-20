@@ -26,6 +26,7 @@ class master_deliver(models.Model):
     rev_num_update = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=True)
 
     # internal_status = fields.Many2one('conf.internal.status', 'Internal Status')
+    #IFA IFI RE-IDC
     external_status = fields.Many2one('conf.external.status', 'External Status')
 
     doc_pred = fields.Char(string='Predecessor', copy=True)

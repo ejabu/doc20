@@ -7,24 +7,112 @@
          <field name="model">mdr.pivot</field>
          <field name="arch" type="xml">
              <pivot disable_linking="True">
-                 <field name="discipline" type="col"/>
-                 <field name="sched_date" interval="month" type="row"/>
-                 <field name="nbr" type="measure"/>
+                 <!-- <field name="discipline" type="col"/> -->
+                 <!-- <field name="sched_date" interval="month" type="row"/>
+                 <field name="sched_date" interval="week" type="row"/> -->
+
+                 <field name="discipline" type="row"/>
+                 <field name="recv_comment" type="row"/>
+                 <!-- <field name="nbr" type="measure"/> -->
              </pivot>
          </field>
     </record>
 
-    <record id="action_mdr_pivot" model="ir.actions.act_window">
-        <field name="name">MDR Analysis</field>
-        <field name="res_model">mdr.pivot</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">pivot,graph</field>
-        <field name="view_id"></field>  <!-- force empty -->
-        <!-- <field name="search_view_id" ref="view_order_product_search"/> -->
-        <field name="context">{}</field>
-        <!-- <field name="context">{'search_default_Sales':1, 'group_by_no_leaf':1,'group_by':[]}</field> -->
-    </record>
 
+
+        <!-- <record id="view_order_product_graph" model="ir.ui.view">
+             <field name="name">mdr.pivot.graph</field>
+             <field name="model">mdr.pivot</field>
+             <field name="arch" type="xml">
+                 <graph >
+                     <field name="date" type="row"/>
+                     <field name="price_subtotal" type="measure"/>
+                 </graph>
+             </field>
+        </record> -->
+
+        <!-- Custom reports (aka filters) -->
+        <!-- <record id="filter_sale_report_sales_funnel" model="ir.filters">
+            <field name="name">Sales Funnel</field>
+            <field name="model_id">mdr.pivot</field>
+            <field name="domain">['&amp;', ('date','&lt;=', time.strftime('%%Y-12-31')), '&amp;', ('date','&gt;=',time.strftime('%%Y-01-01')), ('state','not in',('cancel',))]</field>
+            <field name="user_id" eval="False"/>
+            <field name="context">{'group_by': ['state'], 'measures': ['price_subtotal']}</field>
+        </record>
+        <record id="filter_sale_report_salespersons" model="ir.filters">
+            <field name="name">By Salespersons</field>
+            <field name="model_id">mdr.pivot</field>
+            <field name="user_id" eval="False"/>
+            <field name="context">{'group_by': ['date:month', 'user_id']}</field>
+        </record>
+        <record id="filter_sale_report_salesteam" model="ir.filters">
+            <field name="name">By Salesteam</field>
+            <field name="model_id">mdr.pivot</field>
+            <field name="user_id" eval="False"/>
+            <field name="context">{'group_by': ['date:month', 'team_id']}</field>
+        </record> -->
+        <record id="filter_mdr_discipline_weekly" model="ir.filters">
+            <field name="name">Discipline Weekly Progress</field>
+            <field name="model_id">mdr.pivot</field>
+            <field name="user_id" eval="False"/>
+            <field name="context">{'group_by': ['sched_date:week', 'discipline']}</field>
+        </record>
+        <record id="filter_mdr_doc_status" model="ir.filters">
+            <field name="name">Document Status</field>
+            <field name="model_id">mdr.pivot</field>
+            <field name="user_id" eval="False"/>
+            <field name="context">{'group_by': ['discipline', 'doc_status']}</field>
+        </record>
+        <record id="filter_mdr_recv_comment" model="ir.filters">
+            <field name="name">Status Comment</field>
+            <field name="model_id">mdr.pivot</field>
+            <field name="user_id" eval="False"/>
+            <field name="context">{'group_by': ['discipline', 'recv_comment']}</field>
+        </record>
+
+        <record id="mdr_pivot_search" model="ir.ui.view">
+            <field name="name">mdr.pivot.search</field>
+            <field name="model">mdr.pivot</field>
+            <field name="arch" type="xml">
+                <search >
+                    <field name="discipline"/>
+                    <!-- <filter string="This Year" name="year" invisible="1" domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                    <filter name="Quotations" string="Quotations" domain="[('state','in', ('draft', 'sent'))]"/>
+                    <filter name="Sales" string="Sales" domain="[('state','not in',('draft', 'cancel', 'sent'))]"/>
+                    <separator/>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="user_id"/> -->
+                    <!-- <group expand="0" string="Extended Filters">
+                        <field name="categ_id" filter_domain="[('categ_id', 'child_of', self)]"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group> -->
+                    <group expand="1" string="Group By">
+                        <filter string="Week" context="{'group_by':'sched_date:week'}"/>
+                        <filter string="Discipline" context="{'group_by':'discipline'}"/>
+                        <!-- <filter string="Salesperson" name="User" context="{'group_by':'user_id'}"/>
+                        <filter string="Sales Team" context="{'group_by':'team_id'}"/>
+                        <filter string="Partner's Country" name="country_id" context="{'group_by':'country_id'}"/>
+                        <filter string="Customer" name="Customer" context="{'group_by':'partner_id'}"/>
+                        <filter string="Product Category" name="Category" context="{'group_by':'categ_id'}"/>
+                        <filter name="status" string="Status" context="{'group_by':'state'}"/>
+                        <filter string="Company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+                        <separator/>
+                        <filter string="Order Month" context="{'group_by':'date:month'}" help="Ordered date of the sales order"/> -->
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_mdr_pivot" model="ir.actions.act_window">
+            <field name="name">MDR Analysis</field>
+            <field name="res_model">mdr.pivot</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot,graph</field>
+            <field name="view_id"></field>  <!-- force empty -->
+            <field name="search_view_id" ref="mdr_pivot_search"/>
+            <field name="context">{}</field>
+            <!-- <field name="context">{'search_default_Sales':1, 'group_by_no_leaf':1,'group_by':[]}</field> -->
+        </record>
     <menuitem name="Pivot" action="action_mdr_pivot" id="menu_mdr_pivot" parent="main_ddc" sequence="10"/>
 
 </data>

@@ -10,7 +10,9 @@ class mdr_pivot(osv.osv):
 
     _columns = {
         'discipline' : fields.many2one('conf.discipline', 'Discipline', readonly=True),
+        'doc_status' : fields.many2one('conf.doc.status', 'Status', readonly=True),
         'sched_date' : fields.date(string='Schedule Date', readonly=True),
+        'recv_comment' : fields.many2one('conf.rec.comment', 'Status Comment', readonly=True),
         'nbr': fields.integer('# of Lines', readonly=True),
     }
 
@@ -19,8 +21,10 @@ class mdr_pivot(osv.osv):
         select_str = """
             SELECT
                 min(mdr.id) as id,
-                mdr.sched_date as sched_date,
                 mdr.discipline as discipline,
+                mdr.doc_status as doc_status,
+                mdr.sched_date as sched_date,
+                mdr.recv_comment as recv_comment,
                 count(*) as nbr
 
         """
@@ -36,7 +40,9 @@ class mdr_pivot(osv.osv):
         group_by_str = """
             GROUP BY
                 mdr.discipline,
-                mdr.sched_date
+                mdr.doc_status,
+                mdr.sched_date,
+                mdr.recv_comment
         """
         return group_by_str
 

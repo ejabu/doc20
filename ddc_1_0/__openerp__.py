@@ -12,6 +12,7 @@
         'views/doc_send.xml',
         'views/doc_rece.xml',
         'views/conf_master_data.xml',
+        'pivot/mdr_pivot_view.xml',
         'views/menus.xml',
         # 'data/master_deliver.xml',
         # 'wizard/popup_quiz_view.xml',

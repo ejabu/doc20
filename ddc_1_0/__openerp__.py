@@ -11,6 +11,7 @@
         'views/doc_idc.xml',
         'views/doc_send.xml',
         'views/doc_rece.xml',
+        'views/doc_status_update.xml',
         'views/conf_master_data.xml',
         'pivot/mdr_pivot_view.xml',
         'views/menus.xml',

@@ -44,7 +44,7 @@
                                 <field name="doc_title" readonly="1"/>
                                 <field name="discipline" readonly="1"/>
                                 <field name="doc_type" readonly="1"/>
-                                <field name="doc_status"/>
+                                <field name="external_status" string="Status"/>
                                 <field name="rev_num" />
                                 <field name="originator" readonly="1"/>
 
@@ -55,7 +55,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="doc_send_action">
-            <field name="name">Sending Transmittal</field>
+            <field name="name">Outgoing Transmittal</field>
             <field name="res_model">doc.send</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>

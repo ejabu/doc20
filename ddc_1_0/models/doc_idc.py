@@ -11,7 +11,7 @@ class doc_idc(models.Model):
     name = fields.Char(string='IDC Number', required=True)
 
     send_date = fields.Date(string='Sending Date', required=True)
-    rece_date = fields.Date(string='Receiving Date',)
+    sched_date = fields.Date(string='Schedule Date',)
 
     line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line')
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])

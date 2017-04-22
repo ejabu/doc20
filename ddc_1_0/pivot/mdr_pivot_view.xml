@@ -113,7 +113,6 @@
             <field name="context">{}</field>
             <!-- <field name="context">{'search_default_Sales':1, 'group_by_no_leaf':1,'group_by':[]}</field> -->
         </record>
-    <menuitem name="Pivot" action="action_mdr_pivot" id="menu_mdr_pivot" parent="main_ddc" sequence="10"/>
 
 </data>
 </openerp>

@@ -9,17 +9,25 @@
         <menuitem id="ddc_master_deliver" name="MDR"
                   parent="main_ddc" sequence="10" action="master_deliver_action"/>
 
+        <menuitem id="ddc_doc_status_update" name="Document Status Update"
+          parent="main_ddc" sequence="20" action="doc_status_update_action"/>
+
+        <menuitem id="menu_mdr_pivot" name="Pivot"
+          parent="main_ddc" sequence="30" action="action_mdr_pivot" />
+
         <menuitem id="ddc_update_data" name="Update Data"
-            parent="main_ddc" sequence="20"/>
+            parent="main_ddc" sequence="40"/>
 
         <menuitem id="ddc_doc_idc" name="IDC"
             parent="ddc_update_data" sequence="10" action="doc_idc_action"/>
 
-        <menuitem id="ddc_doc_send" name="Sending"
+        <menuitem id="ddc_doc_send" name="Outgoing Transmittal"
             parent="ddc_update_data" sequence="20" action="doc_send_action"/>
 
-        <menuitem id="ddc_doc_rece" name="Receiving"
-            parent="ddc_update_data" sequence="20" action="doc_rece_action"/>
+        <menuitem id="ddc_doc_rece" name="Incoming Transmittal"
+            parent="ddc_update_data" sequence="30" action="doc_rece_action"/>
+
+
 
         <menuitem id="ddc_conf" name="Configuration"
             parent="main_ddc" sequence="90"/>

@@ -8,7 +8,7 @@ class doc_rece(models.Model):
 
     _name= "doc.rece"
 
-    name = fields.Char(string='Transmittal Number', required=True)
+    name = fields.Char(string='Incoming Transmittal Number', required=True)
 
     recv_rece_date = fields.Date(string='Receiving Date', required=True)
 

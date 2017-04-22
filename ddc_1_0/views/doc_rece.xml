@@ -38,11 +38,9 @@
                                 <field name="doc_title" readonly="1"/>
                                 <field name="discipline" readonly="1"/>
                                 <field name="doc_type" readonly="1"/>
-                                <field name="doc_status"/>
+                                <field name="external_status" string="Status"/>
                                 <field name="rev_num" />
                                 <field name="recv_comment" />
-                                <field name="originator" readonly="1"/>
-
                             </tree>
                         </field>
                 </form>
@@ -50,7 +48,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="doc_rece_action">
-            <field name="name">Receiving Transmittal</field>
+            <field name="name">Incoming Transmittal</field>
             <field name="res_model">doc.rece</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>

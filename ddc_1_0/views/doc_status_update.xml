@@ -143,19 +143,6 @@
         </record>
 
 
-        <record model="ir.actions.act_window.view" id="doc_status_update_action_tree">
-        			<field eval="3" name="sequence"/>
-        			<field name="view_mode">tree</field>
-        			<field name="view_id" ref="master_deliver_tree_2"/>
-                    <field name="act_window_id" ref="doc_status_update_action"/>
-        </record>
-
-		<record model="ir.actions.act_window.view" id="doc_status_update_action_form">
-			<field eval="4" name="sequence"/>
-			<field name="view_mode">form</field>
-			<field name="view_id" ref="master_deliver_form_2"/>
-            <field name="act_window_id" ref="doc_status_update_action"/>
-		</record>
 
 
         <record model="ir.actions.act_window" id="doc_status_update_action">
@@ -170,6 +157,22 @@
             <!-- <field name="context">{'search_default_active':1,'search_default_group_by_name':1}</field> -->
             <field name="view_mode">tree,form</field>
         </record>
+
+
+        <record model="ir.actions.act_window.view" id="doc_status_update_action_tree">
+        			<field eval="3" name="sequence"/>
+        			<field name="view_mode">tree</field>
+        			<field name="view_id" ref="master_deliver_tree_2"/>
+                    <field name="act_window_id" ref="doc_status_update_action"/>
+        </record>
+
+		<record model="ir.actions.act_window.view" id="doc_status_update_action_form">
+			<field eval="4" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="master_deliver_form_2"/>
+            <field name="act_window_id" ref="doc_status_update_action"/>
+		</record>
+
 
     </data>
 </openerp>

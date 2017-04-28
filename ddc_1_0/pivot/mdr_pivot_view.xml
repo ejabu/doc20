@@ -13,7 +13,7 @@
 
                  <field name="discipline" type="row"/>
                  <field name="recv_comment" type="row"/>
-                 <!-- <field name="nbr" type="measure"/> -->
+                 <field name="count" type="measure"/>
              </pivot>
          </field>
     </record>

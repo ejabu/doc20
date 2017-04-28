@@ -6,22 +6,25 @@
         <menuitem id="main_ddc" name="DDC-1.0"/>
 
         <menuitem id="menu_dashboards" name="Dashboards"
-          parent="main_ddc" sequence="20"/>
+            parent="main_ddc" sequence="20"/>
 
         <menuitem id="menu_reports" name="Reports"
-          parent="main_ddc" sequence="20"/>
+            parent="main_ddc" sequence="20"/>
 
         <menuitem id="menu_mdr_pivot" name="Status and Discipline"
-          parent="menu_reports" sequence="10" action="action_mdr_pivot" />
+            parent="menu_reports" sequence="10" action="action_mdr_pivot" />
 
-          <menuitem id="ddc_mdr_report" name="MDR Report"
-              parent="menu_reports" sequence="20" action="master_deliver_report_action"/>
+        <menuitem id="menu_mdr_internal_status" name="Internal Status"
+            parent="menu_reports" sequence="20" action="action_mdr_internal_status" />
+
+        <menuitem id="ddc_mdr_report" name="MDR Report"
+            parent="menu_reports" sequence="20" action="master_deliver_report_action"/>
 
         <menuitem id="ddc_update_data" name="Update Data"
             parent="main_ddc" sequence="40"/>
 
         <menuitem id="ddc_master_deliver" name="MDR"
-                  parent="ddc_update_data" sequence="10" action="master_deliver_action"/>
+            parent="ddc_update_data" sequence="10" action="master_deliver_action"/>
 
         <menuitem id="ddc_doc_idc" name="IDC"
             parent="ddc_update_data" sequence="20" action="doc_idc_action"/>

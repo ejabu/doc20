@@ -4,8 +4,8 @@
 
 
 
-        <record id="master_deliver_search_2" model="ir.ui.view">
-            <field name="name">document.status.update.search</field>
+        <record id="master_deliver_report_search" model="ir.ui.view">
+            <field name="name">master.deliver.search</field>
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
                 <search>
@@ -15,7 +15,7 @@
                     <field name="idc_number" string="IDC"/>
                     <field name="trans_number" string="Outgoing Transmittal Number"/>
                     <field name="recv_trans_number" string="Incoming Transmittal Number"/>
-                    <field name="doc_status" string="Status"/>
+                    <field name="doc_status" string="Internal Status"/>
                     <field name="external_status" string="External Status"/>
                     <field name="originator" string="Originator"/>
 
@@ -33,8 +33,8 @@
         </record>
 
         <!-- Tree view for the menuitem -->
-        <record id="master_deliver_tree_2" model="ir.ui.view">
-            <field name="name">document.status.update.tree</field>
+        <record id="master_deliver_report_tree_2" model="ir.ui.view">
+            <field name="name">master.deliver.tree</field>
             <field name="model">master.deliver</field>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
@@ -69,8 +69,8 @@
             </field>
         </record>
         <!-- Form view for the menuitem -->
-        <record id="master_deliver_form_2" model="ir.ui.view">
-            <field name="name">document.status.update.form</field>
+        <record id="master_deliver_report_form_2" model="ir.ui.view">
+            <field name="name">master.deliver.form</field>
             <field name="model">master.deliver</field>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
@@ -140,29 +140,29 @@
 
 
 
-        <record model="ir.actions.act_window" id="doc_status_update_action">
-            <field name="name">Document Status Update</field>
+        <record model="ir.actions.act_window" id="master_deliver_report_action">
+            <field name="name">Master Deliver Report View</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
-            <field name="search_view_id" ref="master_deliver_search_2"/>
+            <field name="search_view_id" ref="master_deliver_report_search"/>
             <field name="context">{}</field>
             <field name="view_id" eval="False"/>
             <field name="view_mode">tree,form</field>
         </record>
 
 
-        <record model="ir.actions.act_window.view" id="doc_status_update_action_tree">
+        <record model="ir.actions.act_window.view" id="master_deliver_report_action_tree">
         			<field eval="3" name="sequence"/>
         			<field name="view_mode">tree</field>
-        			<field name="view_id" ref="master_deliver_tree_2"/>
-                    <field name="act_window_id" ref="doc_status_update_action"/>
+        			<field name="view_id" ref="master_deliver_report_tree_2"/>
+                    <field name="act_window_id" ref="master_deliver_report_action"/>
         </record>
 
-		<record model="ir.actions.act_window.view" id="doc_status_update_action_form">
+		<record model="ir.actions.act_window.view" id="master_deliver_report_action_form">
 			<field eval="4" name="sequence"/>
 			<field name="view_mode">form</field>
-			<field name="view_id" ref="master_deliver_form_2"/>
-            <field name="act_window_id" ref="doc_status_update_action"/>
+			<field name="view_id" ref="master_deliver_report_form_2"/>
+            <field name="act_window_id" ref="master_deliver_report_action"/>
 		</record>
 
 

@@ -14,6 +14,8 @@ class mdr_pivot(osv.osv):
         'external_status' : fields.many2one('conf.external.status', 'External Status', readonly=True),
         'sched_date' : fields.date(string='Schedule Date', readonly=True),
         'recv_comment' : fields.many2one('conf.rec.comment', 'Status Comment', readonly=True),
+        'delay_validation': fields.integer('Due Date to Receive Date'),
+
         'count': fields.integer('Count', readonly=True),
     }
 
@@ -28,6 +30,8 @@ class mdr_pivot(osv.osv):
                 mdr.external_status as external_status,
                 mdr.sched_date as sched_date,
                 mdr.recv_comment as recv_comment,
+                sum(cast(to_char(date_trunc('day',mdr.due_date) - date_trunc('day',mdr.rece_date),'DD') as int)) as delay_validation,
+
                 count(*) as count
 
         """

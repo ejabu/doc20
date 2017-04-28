@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <search >
                     <field name="discipline"/>
+                    <filter name="active" string="Active" domain="[('external_status','&lt;&gt;',False)]"/>
                     <group expand="1" string="Group By">
                         <filter string="Discipline" context="{'group_by': ['external_status', 'discipline']}"/>
                     </group>
@@ -34,7 +35,7 @@
             <field name="view_mode">pivot,graph</field>
             <field name="search_view_id" ref="mdr_internal_status_search"/>
             <field name="view_id"></field>
-            <field name="context">{}</field>
+            <field name="context">{'search_default_active':1}</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="action_mdr_internal_status_pivot">
@@ -42,6 +43,7 @@
             <field name="view_mode">pivot</field>
             <field name="view_id" ref="mdr_internal_status_pivot"/>
             <field name="act_window_id" ref="action_mdr_internal_status"/>
+
         </record>
 
         <!-- <record id="mdr_internal_status_tree" model="ir.ui.view">

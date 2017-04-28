@@ -15,12 +15,12 @@
                     <field name="idc_number" string="IDC"/>
                     <field name="trans_number" string="Outgoing Transmittal Number"/>
                     <field name="recv_trans_number" string="Incoming Transmittal Number"/>
-                    <field name="doc_status" string="Status"/>
+                    <field name="doc_status" string="Internal Status"/>
                     <field name="external_status" string="External Status"/>
                     <field name="originator" string="Originator"/>
 
-                    <filter name="active" string="Active" domain="[('state','!=','done')]"/>
-                    <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/>
+                    <!-- <filter name="active" string="Active" domain="[('state','!=','done')]"/>
+                    <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/> -->
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
                         <filter name="group_by_name" string="Doc Number" domain="[]" context="{'group_by':'name'}"/>
@@ -40,24 +40,27 @@
             <field name="name">master.deliver.tree</field>
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
-                <tree colors="blue:state == 'done'">
-                    <field name="discipline" invisible="1"/>
-                    <field name="doc_categ" invisible="1"/>
-                    <field name="doc_sub" invisible="1"/>
+                <tree>
+                    <field name="discipline"/>
+                    <field name="doc_categ"/>
+                    <field name="doc_sub"/>
                     <field name="name"/>
                     <field name="doc_title"/>
-                    <field name="doc_type" invisible="1"/>
-                    <field name="doc_type_desc" invisible="1"/>
-                    <field name="doc_status"/>
-                    <field name="sched_date"/>
+                    <field name="doc_pred"/>
+                    <field name="alt_doc"/>
+                    <field name="doc_type"/>
+                    <field name="doc_type_desc"/>
+
+                    <field name="doc_status" invisible="1"/>
+                    <field name="sched_date" invisible="1"/>
                     <field name="originator" invisible="1"/>
 
-                    <field name="external_status"/>
-                    <field name="rev_num"/>
-                    <field name="idc_number"/>
-                    <field name="send_date"/>
-                    <field name="rece_date"/>
-
+                    <field name="external_status" invisible="1"/>
+                    <field name="rev_num" invisible="1"/>
+                    <field name="idc_number" invisible="1"/>
+                    <field name="send_date" invisible="1"/>
+                    <field name="rece_date" invisible="1"/>
+<!--
                     <field name="trans_number"/>
                     <field name="trans_date"/>
                     <field name="due_date"/>
@@ -65,9 +68,8 @@
                     <field name="antam_date"/>
 
                     <field name="recv_trans_number"/>
-                    <field name="recv_rece_date"/>
+                    <field name="recv_rece_date"/> -->
 
-                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -78,8 +80,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="done" string="Done" type="object" class="oe_highlight" states='new'/>
-                        <field name="state" widget="statusbar"  clickable="True"/>
+
                     </header>
 
                     <group colspan="4" col="4">
@@ -97,7 +98,7 @@
                             <field name="doc_type_desc"/>
                         </group>
                     </group>
-                    
+
                     <h3>Notes</h3>
                     <field name="notes"/>
                     <br/>
@@ -121,7 +122,8 @@
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
             <field name="search_view_id" ref="master_deliver_search"/>
-            <field name="context">{'search_default_active':1}</field>
+            <field name="context">{}</field>
+            <!-- <field name="context">{'search_default_active':1}</field> -->
             <!-- <field name="context">{'search_default_active':1,'search_default_group_by_name':1}</field> -->
             <field name="view_mode">tree,form</field>
         </record>

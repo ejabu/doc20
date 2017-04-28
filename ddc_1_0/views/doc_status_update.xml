@@ -19,8 +19,7 @@
                     <field name="external_status" string="External Status"/>
                     <field name="originator" string="Originator"/>
 
-                    <filter name="active" string="Active" domain="[('state','!=','done')]"/>
-                    <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/>
+
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
                         <filter name="group_by_name" string="Doc Number" domain="[]" context="{'group_by':'name'}"/>
@@ -41,7 +40,7 @@
             <field name="model">master.deliver</field>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
-                <tree colors="blue:state == 'done'">
+                <tree>
                     <field name="discipline" invisible="1"/>
                     <field name="doc_categ" invisible="1"/>
                     <field name="doc_sub" invisible="1"/>
@@ -68,7 +67,6 @@
                     <field name="recv_trans_number"/>
                     <field name="recv_rece_date"/>
 
-                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -80,8 +78,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="done" string="Done" type="object" class="oe_highlight" states='new'/>
-                        <field name="state" widget="statusbar"  clickable="True"/>
+
                     </header>
 
                     <group colspan="4" col="4">

@@ -72,7 +72,7 @@ class master_deliver(models.Model):
 
 
     _defaults = {
-        'state': 'new',
+        # 'state': 'new',
     }
     #
     _sql_constraints = [

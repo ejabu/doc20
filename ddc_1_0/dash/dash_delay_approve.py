@@ -31,7 +31,7 @@ class dash_delay_approve(models.Model):
                              select 36, 42, 1, '> 5 W'
                          ),
                     mdr AS (
-                        SELECT cast((EXTRACT(epoch FROM age(now(), create_date))/86400) as integer) as haha FROM master_deliver
+                        SELECT cast((EXTRACT(epoch FROM age(now(), create_date))/86400) as smallint) as haha FROM master_deliver
 
                     )
                     SELECT r.range as label, r.sortIndex as "sortIndex", count(mdr.*) as value
@@ -44,76 +44,8 @@ class dash_delay_approve(models.Model):
         '''
         self.env.cr.execute(query)
         query_fetch = self.env.cr.dictfetchall()
-        # import ipdb; ipdb.set_trace()
-
-
+        for elem in query_fetch:
+            elem.pop('sortIndex', None)
+            elem['type'] = "past"
         query_res = [{'values': query_fetch}]
-        # self.dash_json = json.dumps(query_res)
-
-        asal = '''
-            [{
-    "values": [{
-        "type" : "past",
-        "value": 15749.99,
-        "label": "Past"
-    }, {
-        "type" : "past",
-        "value": 0.0,
-        "label": "23-29 Apr"
-    }, {
-        "type" : "past",
-        "value": 0.0,
-        "label": "This Week"
-    }, {
-        "type" : "past",
-        "value": 0.0,
-        "label": "7-13 May"
-    }, {
-        "type" : "past",
-        "value": 0.0,
-        "label": "14-20 May"
-    }, {
-        "type" : "past",
-        "value": 0.0,
-        "label": "Future"
-    }]
-}]
-
-        '''
-
-
-        asal = '''
-        [{
-        "type": "past",
-        "value": 15749.99,
-        "label": "Past"
-    }, {
-        "type": "past",
-        "value": 0.0,
-        "label": "23-29 Apssssssssssr"
-    }, {
-        "type": "past",
-        "value": 0.0,
-        "label": "This Week"
-    }, {
-        "type": "past",
-        "value": 0.0,
-        "label": "7-13 May"
-    }, {
-        "type": "past",
-        "value": 0.0,
-        "label": "14-20 May"
-    }, {
-        "type": "past",
-        "value": 0.0,
-        "label": "Future"
-    }]
-'''
-
-        hasil = json.loads(asal)
-        mai = [{'values': hasil}]
-        self.dash_json = json.dumps(mai)
-        # if (self.type in ['sale', 'purchase']):
-        #     self.kanban_dashboard_graph = json.dumps(self.get_bar_graph_datas())
-        # elif (self.type in ['cash', 'bank']):
-        #     self.kanban_dashboard_graph = json.dumps(self.get_line_graph_datas())
+        self.dash_json = json.dumps(query_res)

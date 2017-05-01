@@ -2,38 +2,22 @@
 from openerp import tools
 from openerp.osv import fields, osv
 
-class mdr_pivot(osv.osv):
-    _name = "mdr.pivot"
-    _description = "Docment Statistics"
+class dash_exstat(osv.osv):
+    _name = "dash.exstat"
+    _description = "Dashboard exstat"
     _auto = False
-    # _rec_name = 'date'
 
     _columns = {
-        'discipline' : fields.many2one('conf.discipline', 'Discipline', readonly=True),
-        'doc_status' : fields.many2one('conf.doc.status', 'Status', readonly=True),
         'external_status' : fields.many2one('conf.external.status', 'External Status', readonly=True),
-        'sched_date' : fields.date(string='Schedule Date', readonly=True),
-        'recv_comment' : fields.many2one('conf.rec.comment', 'Status Comment', readonly=True),
-        'delay_validation': fields.integer('Due Date to Receive Date'),
-
         'count': fields.integer('Amount of Document', readonly=True),
     }
-
-
 
     def _select(self):
         select_str = """
             SELECT
                 min(mdr.id) as id,
-                mdr.discipline as discipline,
-                mdr.doc_status as doc_status,
                 mdr.external_status as external_status,
-                mdr.sched_date as sched_date,
-                mdr.recv_comment as recv_comment,
-                sum(cast(to_char(date_trunc('day',mdr.due_date) - date_trunc('day',mdr.rece_date),'DD') as int)) as delay_validation,
-
                 count(*) as count
-
         """
         return select_str
 
@@ -46,11 +30,7 @@ class mdr_pivot(osv.osv):
     def _group_by(self):
         group_by_str = """
             GROUP BY
-                mdr.discipline,
-                mdr.doc_status,
-                mdr.external_status,
-                mdr.sched_date,
-                mdr.recv_comment
+                mdr.external_status
         """
         return group_by_str
 

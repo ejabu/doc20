@@ -6,6 +6,8 @@
     "category":"Document Management",
     "description" : """Simple Document Management""",
     'data': [
+        'dash/dash_discipline.xml',
+        'dash/dash_exstat.xml',
         'views/master_deliver.xml',
         'views/master_deliver_report.xml',
         'views/conf_rec_comment.xml',

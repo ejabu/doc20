@@ -109,14 +109,14 @@
                         </group>
                         <group string="Transmittal">
                             <field name="recv_trans_number"/>
-                            <field name="recv_rece_date"/>
+                            <field name="recv_rece_date" readonly="1"/>
                             <br/>
                             <br/>
                             <field name="trans_number"/>
-                            <field name="trans_date"/>
-                            <field name="due_date"/>
-                            <field name="need_to_response"/>
-                            <field name="antam_date"/>
+                            <field name="trans_date" readonly="1"/>
+                            <field name="due_date" readonly="1"/>
+                            <field name="need_to_response" readonly="1"/>
+                            <field name="antam_date" readonly="1"/>
                         </group>
                     </group>
                     <h3>Notes</h3>

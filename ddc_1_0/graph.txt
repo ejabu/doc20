@@ -1,0 +1,157 @@
+[{
+    "values": [{
+        "y": 8998.2,
+        "x": "30 Mar",
+        "name": "30 March 2017"
+    }, {
+        "y": 8998.2,
+        "x": "31 Mar",
+        "name": "31 March 2017"
+    }, {
+        "y": 8998.2,
+        "x": "1 Apr",
+        "name": "1 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "2 Apr",
+        "name": "2 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "3 Apr",
+        "name": "3 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "4 Apr",
+        "name": "4 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "5 Apr",
+        "name": "5 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "6 Apr",
+        "name": "6 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "7 Apr",
+        "name": "7 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "8 Apr",
+        "name": "8 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "9 Apr",
+        "name": "9 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "10 Apr",
+        "name": "10 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "11 Apr",
+        "name": "11 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "12 Apr",
+        "name": "12 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "13 Apr",
+        "name": "13 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "14 Apr",
+        "name": "14 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "15 Apr",
+        "name": "15 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "16 Apr",
+        "name": "16 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "17 Apr",
+        "name": "17 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "18 Apr",
+        "name": "18 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "19 Apr",
+        "name": "19 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "20 Apr",
+        "name": "20 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "21 Apr",
+        "name": "21 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "22 Apr",
+        "name": "22 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "23 Apr",
+        "name": "23 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "24 Apr",
+        "name": "24 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "25 Apr",
+        "name": "25 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "26 Apr",
+        "name": "26 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "27 Apr",
+        "name": "27 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "28 Apr",
+        "name": "28 April 2017"
+    }, {
+        "y": 8998.2,
+        "x": "29 Apr",
+        "name": "29 April 2017"
+    }],
+    "area": true
+}]
+
+
+[{
+    "values": [{
+        "type": "past",
+        "value": 15749.99,
+        "label": "Past"
+    }, {
+        "type": "past",
+        "value": 0.0,
+        "label": "23-29 Apr"
+    }, {
+        "type": "future",
+        "value": 0.0,
+        "label": "This Week"
+    }, {
+        "type": "future",
+        "value": 0.0,
+        "label": "7-13 May"
+    }, {
+        "type": "future",
+        "value": 0.0,
+        "label": "14-20 May"
+    }, {
+        "type": "future",
+        "value": 0.0,
+        "label": "Future"
+    }]
+}]

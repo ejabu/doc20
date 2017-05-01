@@ -48,7 +48,8 @@
 
                         <t t-name="JournalBodyGraph">
                             <div class="o_kanban_graph_section">
-                                <field name="query_result" t-att-graph_type="'bar'" widget="dashboard_graph"/>
+                                <!-- <field name="query_result" t-att-graph_type="'bar'" widget="dashboard_graph"/> -->
+                                <field name="dash_json" t-att-graph_type="'bar'" widget="dashboard_graph"/>
                                 <!-- <field name="kanban_dashboard_graph" t-att-graph_type="bar" widget="dashboard_graph"/> -->
                             </div>
                         </t>

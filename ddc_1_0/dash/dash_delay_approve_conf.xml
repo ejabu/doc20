@@ -20,6 +20,7 @@
                         <group>
                             <field name="name"/>
                             <field name="query_result"/>
+                            <field name="dash_json"/>
                         </group>
                     </sheet>
                 </form>

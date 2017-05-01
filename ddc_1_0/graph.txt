@@ -155,3 +155,8 @@
         "label": "Future"
     }]
 }]
+
+
+
+
+[{"values": [{"sortIndex": 1, "value": 0, "label": "> 5 W"}, {"sortIndex": 1, "value": 0, "label": "3 W"}, {"sortIndex": 1, "value": 0, "label": "4 W"}, {"sortIndex": 1, "value": 0, "label": "5 W"}, {"sortIndex": 2, "value": 13, "label": "2 W"}, {"sortIndex": 3, "value": 0, "label": "1 W"}]}]

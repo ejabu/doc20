@@ -154,3 +154,38 @@ SELECT r.range as label, r.sortIndex as "sortIndex", count(mdr.*) as value
 
 GROUP BY r.range, r.sortIndex
 ORDER BY r.sortIndex
+
+----- Filter IFA Only
+
+WITH ranges AS (
+    select 1 minRange, 7 maxRange, 6 sortIndex, '1 W' "range"
+         union all
+         select 8, 14, 5, '2 W'
+         union all
+         select 15, 21, 4, '3 W'
+         union all
+         select 22, 28, 3, '4 W'
+         union all
+         select 29, 35, 2, '5 W'
+         union all
+         select 36, 42, 1, '> 5 W'
+     ),
+mdr AS (
+
+SELECT cast((EXTRACT(epoch FROM age(now(), mdr.create_date))/86400) as smallint) as haha
+    FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id) WHERE ext.name = 'IFA'
+
+)
+SELECT r.range as label, r.sortIndex as "sortIndex", count(mdr.*) as value
+  FROM ranges r
+  LEFT JOIN mdr ON mdr.haha BETWEEN r.minRange AND r.maxRange
+
+GROUP BY r.range, r.sortIndex
+ORDER BY r.sortIndex
+
+
+BAB 4
+------- filter
+
+SELECT ext.name
+    FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id) WHERE ext.name = 'IFA'

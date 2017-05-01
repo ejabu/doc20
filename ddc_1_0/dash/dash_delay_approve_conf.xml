@@ -19,6 +19,8 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="discipline"/>
+                            <field name="external_status"/>
                             <field name="query_result"/>
                             <field name="dash_json"/>
                         </group>

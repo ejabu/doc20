@@ -110,6 +110,7 @@
                         <group string="Transmittal">
                             <field name="recv_trans_number"/>
                             <field name="recv_rece_date" readonly="1"/>
+                            <field name="create_date"/>
                             <br/>
                             <br/>
                             <field name="trans_number"/>

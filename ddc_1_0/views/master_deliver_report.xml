@@ -38,7 +38,7 @@
             <field name="model">master.deliver</field>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="false" delete="false">
                     <field name="discipline" invisible="1"/>
                     <field name="doc_categ" invisible="1"/>
                     <field name="doc_sub" invisible="1"/>

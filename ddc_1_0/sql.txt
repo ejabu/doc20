@@ -1,3 +1,6 @@
+--REF
+-- http://stackoverflow.com/questions/10605762/sql-group-by-in-ranges-to-include-ranges-without-values
+
 SELECT age(recv_rece_date, now())/86400 as haha FROM master_deliver
 SELECT EXTRACT(epoch FROM age(recv_rece_date, now()))/86400 as haha FROM master_deliver
 

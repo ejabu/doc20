@@ -20,6 +20,13 @@
         <menuitem id="menu_dash_exstat" name="Status"
             parent="menu_current_status" sequence="10" action="dash_exstat_action" />
 
+        <menuitem id="menu_performance" name="Performance"
+            parent="menu_reports" sequence="10"/>
+
+        <menuitem id="menu_dash_delay_approve" name="Delays in Approval"
+            parent="menu_performance" sequence="10" action="dash_delay_approve_conf_action" />
+
+
         <menuitem id="menu_mdr_pivot" name="Status and Discipline"
             parent="menu_reports" sequence="50" action="action_mdr_pivot" />
 

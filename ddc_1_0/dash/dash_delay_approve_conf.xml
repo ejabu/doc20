@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="dash_delay_approve_conf_tree" model="ir.ui.view">
+            <field name="name">dash.delay.approve.tree</field>
+            <field name="model">dash.delay.approve</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="dash_delay_approve_conf_form" model="ir.ui.view">
+            <field name="name">dash.delay.approve.form</field>
+            <field name="model">dash.delay.approve</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="query_result"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="dash_delay_approve_conf_action">
+            <field name="name">Delays in Approval</field>
+            <field name="res_model">dash.delay.approve</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+    </data>
+</openerp>

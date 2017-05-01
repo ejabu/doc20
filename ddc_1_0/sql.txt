@@ -1,0 +1,102 @@
+SELECT age(recv_rece_date, now())/86400 as haha FROM master_deliver
+SELECT EXTRACT(epoch FROM age(recv_rece_date, now()))/86400 as haha FROM master_deliver
+
+
+SELECT cast((EXTRACT(epoch FROM age(recv_rece_date, now()))/86400) as integer) as haha FROM master_deliver
+
+
+
+-- Untuk bikin Series
+SELECT (ten*10)::text||'-'||(ten*10+9)::text AS range,
+           ten*10 AS r_min, ten*10+9 AS r_max
+      FROM generate_series(0,9) AS t(ten)
+-- Gabungin Series tahap 1
+
+WITH ranges AS (
+    SELECT (ten*10)::text||'-'||(ten*10+9)::text AS range,
+           ten*10 AS r_min, ten*10+9 AS r_max
+      FROM generate_series(0,9) AS t(ten))
+      SELECT r.range
+        FROM ranges r
+
+
+-- Gabungin Series tahap 2
+-- Ten nya diganti jadi 30 hari
+
+WITH ranges AS (
+    SELECT (ten*30)::text||'-'||(ten*30+29)::text AS range,
+           ten*30 AS r_min, ten*30+29 AS r_max
+      FROM generate_series(-4,-1) AS t(ten)),
+
+mdr AS (
+    SELECT cast((EXTRACT(epoch FROM age(recv_rece_date, now()))/86400) as integer) as haha FROM master_deliver
+
+)
+SELECT r.range, count(mdr.*)
+  FROM ranges r
+  LEFT JOIN mdr ON mdr.haha BETWEEN r.r_min AND r.r_max
+
+GROUP BY r.range
+ORDER BY r.range
+
+
+
+
+
+
+
+-- BAB 2
+-- ___________________
+-- Pembuatan range
+select 0 minRange, 9 maxRange, '0-9' "range"
+     union all
+     select 10, 19, '10-19'
+     union all
+     select 20, 29, '20-29'
+
+
+ -- Ten nya diganti jadi 30 hari
+
+ WITH ranges AS (
+     select 0 minRange, 9 maxRange, '0-9' "range"
+          union all
+          select 10, 19, '10-19'
+          union all
+          select 20, 69, '20-29'
+      ),
+ mdr AS (
+     SELECT cast((EXTRACT(epoch FROM age(now(), recv_rece_date))/86400) as integer) as haha FROM master_deliver
+
+ )
+ SELECT r.range, count(mdr.*)
+   FROM ranges r
+   LEFT JOIN mdr ON mdr.haha BETWEEN r.minRange AND r.maxRange
+
+ GROUP BY r.range
+ ORDER BY r.range
+
+
+
+
+--BAB 3
+-- mdr, filter dulu yang tidak ada rece_date
+
+-- Ten nya diganti jadi 30 hari
+
+WITH ranges AS (
+    select 0 minRange, 9 maxRange, '0-9' "range"
+         union all
+         select 10, 19, '10-19'
+         union all
+         select 20, 69, '20-29'
+     ),
+mdr AS (
+    SELECT cast((EXTRACT(epoch FROM age(now(), create_date))/86400) as integer) as haha FROM master_deliver
+
+)
+SELECT r.range, count(mdr.*)
+  FROM ranges r
+  LEFT JOIN mdr ON mdr.haha BETWEEN r.minRange AND r.maxRange
+
+GROUP BY r.range
+ORDER BY r.range

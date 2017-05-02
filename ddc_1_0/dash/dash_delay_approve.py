@@ -32,11 +32,14 @@ class dash_delay_approve(models.Model):
                                             ('now()', 'Now'),
                                             ])
 
+    def _generate_where(self):
+        where_clause = ""
+        if self.external_status.name:
+            where_clause =  "WHERE ext.name = '%s'" % (self.external_status.name)
+        return where_clause
+
     @api.one
     def _kanban_json(self):
-
-        # import ipdb; ipdb.set_trace()
-
         par_external_status = self.external_status.name if self.external_status.name else "IFA"
         par_date_field_start = self.date_field_start if self.date_field_start else "mdr.create_date"
         par_date_field_end = self.date_field_end if self.date_field_end else "now()"
@@ -57,7 +60,8 @@ class dash_delay_approve(models.Model):
 mdr AS (
 
 SELECT cast((EXTRACT(epoch FROM age(%s, %s ))/86400) as smallint) as haha
-    FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id) WHERE ext.name = '%s'
+    FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id)
+    %s
 
 )
 SELECT r.range as label, r.sortIndex as "sortIndex", count(mdr.*) as value
@@ -67,8 +71,7 @@ SELECT r.range as label, r.sortIndex as "sortIndex", count(mdr.*) as value
 GROUP BY r.range, r.sortIndex
 ORDER BY r.sortIndex
 
-        ''' % (par_date_field_end,par_date_field_start, par_external_status)
-
+        ''' % (par_date_field_end,par_date_field_start, self._generate_where())
         self.env.cr.execute(query)
         query_fetch = self.env.cr.dictfetchall()
         for elem in query_fetch:

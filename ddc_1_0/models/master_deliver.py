@@ -17,7 +17,6 @@ class master_deliver(models.Model):
     doc_type = fields.Many2one('conf.doc.type', 'Document Type', required=True, ondelete='restrict', copy=True)
     doc_type_desc = fields.Char(string='Type Description', related='doc_type.desc', store=True)
 
-    sched_date = fields.Date(string='Schedule Date')
     originator = fields.Many2one('res.partner', string='Originator', copy=False)
 
     doc_status = fields.Many2one('conf.doc.status', 'Status', ondelete='restrict', copy=False)
@@ -34,9 +33,10 @@ class master_deliver(models.Model):
     notes = fields.Text(string='Notes', copy=True)
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
-
-    idc_id = fields.Many2one('doc.idc', 'Related IDC', ondelete='restrict', copy=False)
+    # idc_id = fields.Many2one('doc.idc', 'Related IDC', ondelete='restrict', copy=False)
+    idc_id = fields.Many2many('doc.idc', 'master_to_idc', 'line_ids', 'idc_id', string="Related IDC", copy=False)
     idc_number = fields.Char(string='IDC Number', related='idc_id.name', store=True, copy=False)
+    sched_date = fields.Date(string='Schedule Date')
     send_date = fields.Date(string='IDC Sending Date', copy=False)
     rece_date = fields.Date(string='IDC Receiving Date', copy=False)
 

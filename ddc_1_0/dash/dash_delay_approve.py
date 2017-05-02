@@ -15,9 +15,31 @@ class dash_delay_approve(models.Model):
     external_status = fields.Many2one('conf.external.status', 'External Status')
     query_result= fields.Text(string='Query Result',)
     dash_json = fields.Text(compute='_kanban_json')
+    date_field_start = fields.Selection(selection=[
+                                            ('mdr.create_date', 'Date Creation'),
+                                            ('mdr.recv_rece_date', 'Receving Date'),
+                                            ('mdr.due_date', 'Due Date'),
+                                            ('mdr.send_date', 'IDC Sending Date'),
+                                            ('mdr.rece_date', 'IDC Receiving Date'),
+                                            ('now()', 'Now'),
+                                            ])
+    date_field_end = fields.Selection(selection=[
+                                            ('mdr.create_date', 'Date Creation'),
+                                            ('mdr.recv_rece_date', 'Receving Date'),
+                                            ('mdr.due_date', 'Due Date'),
+                                            ('mdr.send_date', 'IDC Sending Date'),
+                                            ('mdr.rece_date', 'IDC Receiving Date'),
+                                            ('now()', 'Now'),
+                                            ])
 
     @api.one
     def _kanban_json(self):
+
+        # import ipdb; ipdb.set_trace()
+
+        par_external_status = self.external_status.name if self.external_status.name else "IFA"
+        par_date_field_start = self.date_field_start if self.date_field_start else "mdr.create_date"
+        par_date_field_end = self.date_field_end if self.date_field_end else "now()"
         query= '''
                     WITH ranges AS (
     select 1 minRange, 7 maxRange, 6 sortIndex, '1 W' "range"
@@ -34,8 +56,8 @@ class dash_delay_approve(models.Model):
      ),
 mdr AS (
 
-SELECT cast((EXTRACT(epoch FROM age(mdr.recv_rece_date, mdr.%s ))/86400) as smallint) as haha
-    FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id) WHERE ext.name = 'IFA'
+SELECT cast((EXTRACT(epoch FROM age(%s, %s ))/86400) as smallint) as haha
+    FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id) WHERE ext.name = '%s'
 
 )
 SELECT r.range as label, r.sortIndex as "sortIndex", count(mdr.*) as value
@@ -45,8 +67,8 @@ SELECT r.range as label, r.sortIndex as "sortIndex", count(mdr.*) as value
 GROUP BY r.range, r.sortIndex
 ORDER BY r.sortIndex
 
-        ''' % ("create_date")
-        import ipdb; ipdb.set_trace()
+        ''' % (par_date_field_end,par_date_field_start, par_external_status)
+
         self.env.cr.execute(query)
         query_fetch = self.env.cr.dictfetchall()
         for elem in query_fetch:

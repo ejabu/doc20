@@ -21,8 +21,6 @@
         'pivot/mdr_internal_status.xml',
         'pivot/mdr_pivot_view.xml',
         'views/menus.xml',
-        # 'data/master_deliver.xml',
-        # 'wizard/popup_quiz_view.xml',
     ],
     'demo':[
             #files containing demo data

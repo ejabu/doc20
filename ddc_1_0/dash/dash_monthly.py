@@ -12,6 +12,7 @@ class dash_monthly(models.Model):
     _name= "dash.monthly"
 
     name = fields.Char(string='Report Name', required=True)
+    description = fields.Char(string='Description', required=True)
     discipline = fields.Many2one('conf.discipline', 'Discipline')
     external_status = fields.Many2one('conf.external.status', 'External Status')
     dash_json = fields.Text(compute='_kanban_json')

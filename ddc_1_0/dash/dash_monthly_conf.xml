@@ -18,14 +18,31 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="discipline"/>
-                            <field name="external_status"/>
-                            <field name="date_field_start"/>
-                            <field name="month_start"/>
-                            <field name="year_start"/>
-                            <field name="month_end"/>
-                            <field name="year_end"/>
+                            <group string="Report Properties">
+                                <field name="name"/>
+                                <field name="description"/>
+                            </group>
+                            <group string="Report Filter">
+                                <field name="date_field_start"/>
+                            </group>
+                            <group string="Date Configuration">
+                                <label for="month_start" string="Starting Month"/>
+                                <div class="o_address_format">
+                                    <field name="month_start" placeholder="Month" class="o_address_city"/>
+                                    <field name="year_start" placeholder="Year" class="o_address_city"/>
+                                </div>
+                                <label for="month_end" string="Ending Month"/>
+                                <div class="o_address_format">
+                                    <field name="month_end" placeholder="Month" class="o_address_city"/>
+                                    <field name="year_end" placeholder="Year" class="o_address_city"/>
+                                </div>
+                                <!-- <field name="month_start"/>
+                                <field name="year_start"/>
+                                <field name="month_end"/>
+                                <field name="year_end"/> -->
+                            </group>
+
+
 
                         </group>
                     </sheet>

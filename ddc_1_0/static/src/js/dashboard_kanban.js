@@ -57,7 +57,6 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                     break;
                 case "bar_x_axis_full_date":
                     self.$svg.addClass('o_graph_barchart');
-                    console.log(self.data);
                     var myRange = d3.time.month.range(
                         new Date(self.data[0].range_start),
                         new Date(self.data[0].range_end),

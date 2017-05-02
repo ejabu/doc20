@@ -26,6 +26,11 @@ class doc_rece(models.Model):
     def send_doc(self):
         self.state='done'
 
+    @api.onchange('line_ids','name')
+    def oc_name(self):
+        for rec in self.line_ids:
+            rec.write({'recv_trans_number': self.name})
+
     @api.onchange('recv_rece_date', 'line_ids')
     def oc_recv_rece_date(self):
         for rec in self.line_ids:

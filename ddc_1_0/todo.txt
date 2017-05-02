@@ -1,3 +1,3 @@
-- relasi MDR ke dokumen supporting mesti diganti
+- relasi MDR ke dokumen supporting mesti diganti DONE
 
-- date dll gak boleh related, tapi on change
+- date dll gak boleh related, tapi on change DONE

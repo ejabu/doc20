@@ -27,6 +27,11 @@ class doc_idc(models.Model):
     def send_doc(self):
         self.state='done'
 
+    @api.onchange('line_ids','name')
+    def oc_name(self):
+        for rec in self.line_ids:
+            rec.write({'idc_number': self.name})
+
     @api.onchange('line_ids','sched_date')
     def oc_sched_date(self):
         for rec in self.line_ids:

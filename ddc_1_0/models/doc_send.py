@@ -15,7 +15,8 @@ class doc_send(models.Model):
     need_to_response = fields.Date(string='Need to Response',)
     antam_date = fields.Date(string='Antam Receive Date',)
 
-    line_ids = fields.One2many('master.deliver', 'send_id', 'MDR Line')
+    # line_ids = fields.One2many('master.deliver', 'send_id', 'MDR Line')
+    line_ids = fields.Many2many('master.deliver', 'master_to_send', 'send_id', 'line_ids', string="Related MDR", copy=False)
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
     _defaults={
@@ -26,3 +27,28 @@ class doc_send(models.Model):
     @api.multi
     def send_doc(self):
         self.state='done'
+
+
+    @api.onchange('line_ids','name')
+    def oc_name(self):
+        for rec in self.line_ids:
+            rec.write({'trans_number': self.name})
+
+    @api.onchange('line_ids','trans_date')
+    def oc_trans_date(self):
+        for rec in self.line_ids:
+            rec.write({'trans_date': self.trans_date})
+
+    @api.onchange('line_ids','due_date')
+    def oc_due_date(self):
+        for rec in self.line_ids:
+            rec.write({'due_date': self.due_date})
+
+    @api.onchange('line_ids','need_to_response')
+    def oc_need_to_response(self):
+        for rec in self.line_ids:
+            rec.write({'need_to_response': self.need_to_response})
+    @api.onchange('line_ids','antam_date')
+    def oc_antam_date(self):
+        for rec in self.line_ids:
+            rec.write({'antam_date': self.antam_date})

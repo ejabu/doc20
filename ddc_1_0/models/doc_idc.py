@@ -27,12 +27,12 @@ class doc_idc(models.Model):
     def send_doc(self):
         self.state='done'
 
-    @api.onchange('sched_date')
+    @api.onchange('line_ids','sched_date')
     def oc_sched_date(self):
         for rec in self.line_ids:
             rec.write({'sched_date': self.sched_date})
 
-    @api.onchange('send_date')
+    @api.onchange('line_ids','send_date')
     def oc_send_date(self):
         for rec in self.line_ids:
             rec.write({'send_date': self.send_date})

@@ -47,7 +47,7 @@ class master_deliver(models.Model):
     need_to_response = fields.Date(string='Need to Response', copy=False)
     antam_date = fields.Date(string='Antam Receive Date', copy=False)
 
-    rece_id = fields.Many2one('doc.rece', 'Related Receiving', ondelete='restrict', copy=False)
+    rece_id = fields.Many2many('doc.rece', 'master_to_rece', 'line_ids', 'rece_id', string="Related Receiving", copy=False)
     recv_trans_number = fields.Char(string='Incoming Transmittal Number', related='rece_id.name', store=True, copy=False)
     recv_rece_date = fields.Date(string='Receiving Date', store=True, copy=False)
     recv_comment = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)

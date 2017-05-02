@@ -20,6 +20,9 @@
         <menuitem id="menu_dash_exstat" name="Status"
             parent="menu_current_status" sequence="10" action="dash_exstat_action" />
 
+        <menuitem id="menu_dash_pivot_monthly" name="Monthly Docs"
+            parent="menu_current_status" sequence="10" action="dash_pivot_monthly_action" />
+
         <menuitem id="menu_performance" name="Performance"
             parent="menu_reports" sequence="10"/>
 

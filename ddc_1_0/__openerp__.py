@@ -13,6 +13,7 @@
         'dash/dash_delay_approve_conf.xml',
         'dash/dash_monthly.xml',
         'dash/dash_monthly_conf.xml',
+        'dash/dash_pivot_monthly.xml',
         'views/master_deliver.xml',
         'views/master_deliver_report.xml',
         'views/conf_rec_comment.xml',

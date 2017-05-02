@@ -17,7 +17,6 @@
                                     <t t-call="JournalTop"/>
                                     <!-- <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/> -->
                                 </div>
-
                                 <div class="container o_kanban_card_content o_visible">
                                     <div class="row">
                                         <t t-value="record.name"/>
@@ -28,9 +27,7 @@
                             <!-- <div class="container o_kanban_card_manage_pane o_invisible">
                                 <t t-call="JournalManage"/>
                             </div> -->
-
                         </t>
-
                         <t t-name="JournalTop">
                             <div class="o_kanban_card_header">
                                 <div class="o_kanban_card_header_title">
@@ -48,9 +45,7 @@
 
                         <t t-name="JournalBodyGraph">
                             <div class="o_kanban_graph_section">
-                                <!-- <field name="query_result" t-att-graph_type="'bar'" widget="dashboard_graph"/> -->
                                 <field name="dash_json" t-att-graph_type="'bar'" widget="dashboard_graph"/>
-                                <!-- <field name="kanban_dashboard_graph" t-att-graph_type="bar" widget="dashboard_graph"/> -->
                             </div>
                         </t>
                     </templates>

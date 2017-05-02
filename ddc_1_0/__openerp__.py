@@ -1,7 +1,7 @@
 {
     "name": "DDC 1.0",
     "version": "0.2.0",
-    "depends": "",
+    "depends": ["web_export_view"],
     'author': 'VISI',
     "category":"Document Management",
     "description" : """Simple Document Management""",

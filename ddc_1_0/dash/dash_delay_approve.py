@@ -17,7 +17,7 @@ class dash_delay_approve(models.Model):
     dash_json = fields.Text(compute='_kanban_json')
     date_field_start = fields.Selection(selection=[
                                             ('mdr.create_date', 'Date Creation'),
-                                            ('mdr.recv_rece_date', 'Receving Date'),
+                                            ('mdr.recv_rece_date', 'Receiving Date'),
                                             ('mdr.due_date', 'Due Date'),
                                             ('mdr.send_date', 'IDC Sending Date'),
                                             ('mdr.rece_date', 'IDC Receiving Date'),
@@ -25,7 +25,7 @@ class dash_delay_approve(models.Model):
                                             ])
     date_field_end = fields.Selection(selection=[
                                             ('mdr.create_date', 'Date Creation'),
-                                            ('mdr.recv_rece_date', 'Receving Date'),
+                                            ('mdr.recv_rece_date', 'Receiving Date'),
                                             ('mdr.due_date', 'Due Date'),
                                             ('mdr.send_date', 'IDC Sending Date'),
                                             ('mdr.rece_date', 'IDC Receiving Date'),

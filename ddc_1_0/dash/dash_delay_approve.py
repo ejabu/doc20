@@ -13,7 +13,6 @@ class dash_delay_approve(models.Model):
     name = fields.Char(string='Report Name', required=True)
     discipline = fields.Many2one('conf.discipline', 'Discipline')
     external_status = fields.Many2one('conf.external.status', 'External Status')
-    query_result= fields.Text(string='Query Result',)
     dash_json = fields.Text(compute='_kanban_json')
     date_field_start = fields.Selection(selection=[
                                             ('mdr.create_date', 'Date Creation'),

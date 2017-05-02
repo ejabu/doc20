@@ -2,18 +2,18 @@
 <openerp>
     <data>
 
-        <record id="dash_delay_approve_conf_tree" model="ir.ui.view">
-            <field name="name">dash.delay.approve.tree</field>
-            <field name="model">dash.delay.approve</field>
+        <record id="dash_monthly_conf_tree" model="ir.ui.view">
+            <field name="name">dash.monthly.tree</field>
+            <field name="model">dash.monthly</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
                 </tree>
             </field>
         </record>
-        <record id="dash_delay_approve_conf_form" model="ir.ui.view">
-            <field name="name">dash.delay.approve.form</field>
-            <field name="model">dash.delay.approve</field>
+        <record id="dash_monthly_conf_form" model="ir.ui.view">
+            <field name="name">dash.monthly.form</field>
+            <field name="model">dash.monthly</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -22,17 +22,21 @@
                             <field name="discipline"/>
                             <field name="external_status"/>
                             <field name="date_field_start"/>
-                            <field name="date_field_end"/>
-                            
+                            <field name="month_start"/>
+                            <field name="year_start"/>
+                            <field name="month_end"/>
+                            <field name="year_end"/>
+
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="dash_delay_approve_conf_action">
-            <field name="name">Delays in Approval</field>
-            <field name="res_model">dash.delay.approve</field>
+        <record model="ir.actions.act_window" id="dash_monthly_conf_action">
+            <field name="name">Monthly Performance</field>
+            <field name="res_model">dash.monthly</field>
             <field name="view_type">form</field>
+            <!-- <field name="view_mode">tree,form</field> -->
             <field name="view_mode">kanban,tree,form</field>
         </record>
 

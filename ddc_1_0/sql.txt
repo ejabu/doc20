@@ -189,3 +189,14 @@ BAB 4
 
 SELECT ext.name
     FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id) WHERE ext.name = 'IFA'
+
+
+Bab 5
+------ date
+
+--GROUP BY MONTH
+
+SELECT date_trunc('month', mdr.create_date) AS x_month, count(mdr.*)
+     FROM master_deliver mdr
+ GROUP BY x_month
+ORDER BY x_month DESC

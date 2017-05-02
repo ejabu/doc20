@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="dash_monthly_kanban" model="ir.ui.view">
+            <field name="name">dash.monthly.kanban</field>
+            <field name="model">dash.monthly</field>
+            <field name="arch" type="xml">
+                <kanban create="false" class="oe_background_grey o_kanban_dashboard o_account_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div>
+                                <div>
+                                    <t t-call="JournalTop"/>
+                                    <!-- <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/> -->
+                                </div>
+                                <div class="container o_kanban_card_content o_visible">
+                                    <div class="row">
+                                        <t t-value="record.name"/>
+                                    </div>
+                                    <t t-call="JournalBodyGraph"/>
+                                </div>
+                            </div>
+                            <!-- <div class="container o_kanban_card_manage_pane o_invisible">
+                                <t t-call="JournalManage"/>
+                            </div> -->
+                        </t>
+                        <t t-name="JournalTop">
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <field name="name"/>
+                                    </div>
+
+                                </div>
+                                <div class="o_kanban_manage_button_section">
+                                    <a class="o_kanban_manage_toggle_button" href="#">More
+                                        <i class="fa fa-caret-down"/></a>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-name="JournalBodyGraph">
+                            <div class="o_kanban_graph_section">
+                                <field name="dash_json" t-att-graph_type="'bar_x_axis_full_date'" widget="dashboard_graph"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</openerp>

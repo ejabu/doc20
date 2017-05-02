@@ -42,6 +42,7 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                         .tickFormat(d3.format(',.2f'));
 
                     break;
+
                 case "bar":
                     self.$svg.addClass('o_graph_barchart');
 
@@ -52,56 +53,22 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                         .showYAxis(false)
                         .margin({'left': 0, 'right': 0, 'top': 0, 'bottom': 40});
 
-                    self.chart.xAxis.axisLabel(self.data[0].title);
-                    self.chart.yAxis.tickFormat(d3.format(',.2f'));
-                    break;
-                case "bar_x_axis_full_date":
-                    self.$svg.addClass('o_graph_barchart');
-                    console.log(self.data);
-                    var myRange = d3.time.month.range(
-                        new Date(self.data[0].range_start),
-                        new Date(self.data[0].range_end),
-                        1)
+                    // self.chart.xAxis.axisLabel(self.data[0].title);
 
-                    var mygoods2 = myRange.map(function(d) {
-                        return d3.time.format("%Y-%m-%d")(new Date(d));
-                    })
-                    var mg3 = mygoods2.map(function(d) {
-                        var xdict={}
-                        var avMon = self.data[0].values.map(function(x) {
-                           return x.label;
-                        });
-                        xdict={}
-                        var adaGak = avMon.indexOf(d)
-                        if (adaGak > -1) {
-                            xdict=self.data[0].values[adaGak]
-                        }
-                        else {
-                            xdict= {
-                                'value':0,
-                                'label':d,
-                                'type':'past'
-                            }
-                        }
-                        return xdict
-
-                    })
-                    var huhu = [{'values': mg3}]
-                    self.data = huhu
-                    self.chart = nv.models.discreteBarChart()
-                        .x(function(d) {
-                            return d.label
-                        })
-                        .y(function(d) { return d.value })
-                        .showValues(true)
-                        .showYAxis(false)
-                        .margin({'left': 0, 'right': 0, 'top': 0, 'bottom': 40});
-
+                    var x = d3.time.scale()
+                                .domain([new Date(2017, 0, 1), new Date(2018, 11, 31)])
+                                .range([0, 10000])
+                    
                     self.chart.xAxis
                         .orient("bottom")
+                        // .ticks(d3.time.months, 1)
+                        .tickValues(d3.time.month.range(
+                            new Date("2017 01"),
+                            new Date("2018 01"),
+                            1))
+                        .tickSize(16, 0)
                         .tickFormat(function(d) {
                            return d3.time.format("%b-%y")(new Date(d)); })
-
 
                     self.chart.yAxis.tickFormat(d3.format(',.2f'));
 
@@ -111,6 +78,7 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                 .datum(self.data)
                 .transition().duration(1200)
                 .call(self.chart);
+
             self.customize_chart();
 
             nv.utils.windowResize(self.on_resize);
@@ -123,7 +91,7 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
     },
 
     customize_chart: function(){
-        if (this.graph_type === 'bar' || this.graph_type === "bar_x_axis_full_date") {
+        if (this.graph_type === 'bar') {
             // Add classes related to time on each bar of the bar chart
             var bar_classes = _.map(this.data[0].values, function (v, k) {return v.type});
 
@@ -132,7 +100,6 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                 $(v).attr('class', $(v).attr('class') + ' ' + bar_classes[k]);
             });
         }
-
     },
 
     destroy: function(){

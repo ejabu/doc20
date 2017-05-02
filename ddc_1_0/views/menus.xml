@@ -26,6 +26,9 @@
         <menuitem id="menu_dash_delay_approve" name="Delays in Approval"
             parent="menu_performance" sequence="10" action="dash_delay_approve_conf_action" />
 
+        <menuitem id="menu_dash_monthly" name="Monthly Performance"
+            parent="menu_performance" sequence="10" action="dash_monthly_conf_action" />
+
 
         <menuitem id="menu_mdr_pivot" name="Status and Discipline"
             parent="menu_reports" sequence="50" action="action_mdr_pivot" />

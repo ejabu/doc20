@@ -42,6 +42,7 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                         .tickFormat(d3.format(',.2f'));
 
                     break;
+
                 case "bar":
                     self.$svg.addClass('o_graph_barchart');
 
@@ -52,58 +53,41 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                         .showYAxis(false)
                         .margin({'left': 0, 'right': 0, 'top': 0, 'bottom': 40});
 
-                    self.chart.xAxis.axisLabel(self.data[0].title);
+
+                        self.chart.xAxis
+                                    .axisLabel('Month')
+                                    // .tickFormat(function(d) {
+                                    //
+                                    //    return d3.time.format("%b-%y")(new Date(d)); })
+
+                    // self.chart.xAxis.axisLabel(self.data[0].title);
                     self.chart.yAxis.tickFormat(d3.format(',.2f'));
-                    break;
-                case "bar_x_axis_full_date":
-                    self.$svg.addClass('o_graph_barchart');
-                    console.log(self.data);
-                    var myRange = d3.time.month.range(
-                        new Date(self.data[0].range_start),
-                        new Date(self.data[0].range_end),
-                        1)
 
-                    var mygoods2 = myRange.map(function(d) {
-                        return d3.time.format("%Y-%m-%d")(new Date(d));
-                    })
-                    var mg3 = mygoods2.map(function(d) {
-                        var xdict={}
-                        var avMon = self.data[0].values.map(function(x) {
-                           return x.label;
-                        });
-                        xdict={}
-                        var adaGak = avMon.indexOf(d)
-                        if (adaGak > -1) {
-                            xdict=self.data[0].values[adaGak]
-                        }
-                        else {
-                            xdict= {
-                                'value':0,
-                                'label':d,
-                                'type':'past'
-                            }
-                        }
-                        return xdict
+                    var vis = d3.select("body").
+            append("svg:svg")
+                console.log('visadasd');
+                console.log(vis);
 
-                    })
-                    var huhu = [{'values': mg3}]
-                    self.data = huhu
-                    self.chart = nv.models.discreteBarChart()
-                        .x(function(d) {
-                            return d.label
-                        })
-                        .y(function(d) { return d.value })
-                        .showValues(true)
-                        .showYAxis(false)
-                        .margin({'left': 0, 'right': 0, 'top': 0, 'bottom': 40});
+                var mindate = new Date(2012,0,1),
+                            maxdate = new Date(2012,0,31);
 
-                    self.chart.xAxis
-                        .orient("bottom")
-                        .tickFormat(function(d) {
-                           return d3.time.format("%b-%y")(new Date(d)); })
+                            var xScale = d3.time.scale()
+            	        .domain([mindate, maxdate])    // values between for month of january
 
 
-                    self.chart.yAxis.tickFormat(d3.format(',.2f'));
+                        // define the x axis
+                        var xAxis = d3.svg.axis()
+                            .orient("bottom")
+                            .scale(xScale)
+                            .tickFormat(function(d) {
+                               return d3.time.format("%b-%y")(new Date(d)); })
+
+                        self.chart.xAxis = xAxis
+                        // draw x axis with labels and move to the bottom of the chart area
+                        // vis.append("g")
+                        //     .attr("class", "xaxis axis")  // two classes, one for css formatting, one for selection below
+                        //     .call(xAxis);
+
 
                     break;
             }
@@ -111,6 +95,7 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                 .datum(self.data)
                 .transition().duration(1200)
                 .call(self.chart);
+
             self.customize_chart();
 
             nv.utils.windowResize(self.on_resize);
@@ -123,7 +108,7 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
     },
 
     customize_chart: function(){
-        if (this.graph_type === 'bar' || this.graph_type === "bar_x_axis_full_date") {
+        if (this.graph_type === 'bar') {
             // Add classes related to time on each bar of the bar chart
             var bar_classes = _.map(this.data[0].values, function (v, k) {return v.type});
 
@@ -132,7 +117,6 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                 $(v).attr('class', $(v).attr('class') + ' ' + bar_classes[k]);
             });
         }
-
     },
 
     destroy: function(){

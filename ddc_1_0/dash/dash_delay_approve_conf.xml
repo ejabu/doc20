@@ -23,8 +23,8 @@
                             <field name="external_status"/>
                             <field name="date_field_start"/>
                             <field name="date_field_end"/>
-                            <field name="query_result"/>
-                            <field name="dash_json"/>
+                            <!-- <field name="query_result"/>
+                            <field name="dash_json"/> -->
                         </group>
                     </sheet>
                 </form>

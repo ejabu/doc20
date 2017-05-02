@@ -40,7 +40,6 @@ class dash_delay_approve(models.Model):
 
     @api.one
     def _kanban_json(self):
-        par_external_status = self.external_status.name if self.external_status.name else "IFA"
         par_date_field_start = self.date_field_start if self.date_field_start else "mdr.create_date"
         par_date_field_end = self.date_field_end if self.date_field_end else "now()"
         query= '''
@@ -60,7 +59,7 @@ class dash_delay_approve(models.Model):
 mdr AS (
 
 SELECT cast((EXTRACT(epoch FROM age(%s, %s ))/86400) as smallint) as haha
-    FROM master_deliver mdr INNER JOIN conf_external_status ext ON (mdr.external_status = ext.id)
+    FROM master_deliver mdr LEFT JOIN conf_external_status ext ON (mdr.external_status = ext.id)
     %s
 
 )

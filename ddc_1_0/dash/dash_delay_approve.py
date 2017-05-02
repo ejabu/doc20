@@ -11,6 +11,7 @@ class dash_delay_approve(models.Model):
     _name= "dash.delay.approve"
 
     name = fields.Char(string='Report Name', required=True)
+    description = fields.Char(string='Description', required=True)
     discipline = fields.Many2one('conf.discipline', 'Discipline')
     external_status = fields.Many2one('conf.external.status', 'External Status')
     dash_json = fields.Text(compute='_kanban_json')
@@ -54,7 +55,7 @@ class dash_delay_approve(models.Model):
          union all
          select 29, 35, 2, '5 W'
          union all
-         select 36, 42, 1, '> 5 W'
+         select 36, 1000, 1, '> 5 W'
      ),
 mdr AS (
 

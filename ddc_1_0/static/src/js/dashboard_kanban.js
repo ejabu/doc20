@@ -48,7 +48,7 @@ var JournalDashboardGraph = kanban_widgets.AbstractField.extend({
                     self.chart = nv.models.discreteBarChart()
                         .x(function(d) { return d.label })
                         .y(function(d) { return d.value })
-                        .showValues(false)
+                        .showValues(true)
                         .showYAxis(false)
                         .margin({'left': 0, 'right': 0, 'top': 0, 'bottom': 40});
 

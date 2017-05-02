@@ -6,6 +6,7 @@
     "category":"Document Management",
     "description" : """Simple Document Management""",
     'data': [
+        'static_lib.xml',
         'dash/dash_discipline.xml',
         'dash/dash_exstat.xml',
         'dash/dash_delay_approve.xml',

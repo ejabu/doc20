@@ -168,7 +168,7 @@ WITH ranges AS (
          union all
          select 29, 35, 2, '5 W'
          union all
-         select 36, 42, 1, '> 5 W'
+         select 36, 20000, 1, '> 5 W'
      ),
 mdr AS (
 

@@ -2,7 +2,6 @@
 <openerp>
     <data>
 
-        <!-- top level menu: no parent -->
         <menuitem id="main_ddc" name="DDC-1.0"/>
 
         <menuitem id="menu_dashboards" name="Dashboards"
@@ -14,77 +13,77 @@
         <menuitem id="menu_current_status" name="Current Status"
             parent="menu_reports" sequence="10"/>
 
-        <menuitem id="menu_dash_discipline" name="Discipline"
-            parent="menu_current_status" sequence="10" action="dash_discipline_action" />
+            <menuitem id="menu_dash_discipline" name="Discipline"
+                parent="menu_current_status" sequence="10" action="dash_discipline_action" />
 
-        <menuitem id="menu_dash_exstat" name="Status"
-            parent="menu_current_status" sequence="10" action="dash_exstat_action" />
+            <menuitem id="menu_dash_exstat" name="Status"
+                parent="menu_current_status" sequence="10" action="dash_exstat_action" />
 
-        <menuitem id="menu_dash_pivot_monthly" name="Monthly Docs"
-            parent="menu_current_status" sequence="10" action="dash_pivot_monthly_action" />
+            <menuitem id="menu_dash_pivot_monthly" name="Monthly Docs"
+                parent="menu_current_status" sequence="10" action="dash_pivot_monthly_action" />
 
         <menuitem id="menu_performance" name="Performance"
             parent="menu_reports" sequence="10"/>
 
-        <menuitem id="menu_dash_delay_approve" name="Delays in Approval"
-            parent="menu_performance" sequence="10" action="dash_delay_approve_conf_action" />
+            <menuitem id="menu_dash_delay_approve" name="Delays in Approval"
+                parent="menu_performance" sequence="10" action="dash_delay_approve_conf_action" />
 
-        <menuitem id="menu_dash_monthly" name="Monthly Performance"
-            parent="menu_performance" sequence="10" action="dash_monthly_conf_action" />
-
-
+            <menuitem id="menu_dash_monthly" name="Monthly Performance"
+                parent="menu_performance" sequence="10" action="dash_monthly_conf_action" />
 
 
         <menuitem id="ddc_mdr_report" name="MDR Report"
             parent="menu_reports" sequence="70" action="master_deliver_report_action"/>
 
         <menuitem id="submenu_master_doc" name="Master Document"
-            parent="main_ddc" sequence="40"/>
+            parent="main_ddc" sequence="30"/>
 
-        <menuitem id="ddc_master_deliver" name="MDR"
-            parent="submenu_master_doc" sequence="10" action="master_deliver_action"/>
+            <menuitem id="ddc_master_deliver" name="MDR"
+                parent="submenu_master_doc" sequence="10" action="master_deliver_action"/>
 
-        <menuitem id="submenu_master_update" name="Update"
-            parent="submenu_master_doc" sequence="20"/>
+            <menuitem id="submenu_master_update2" name="Update"
+                parent="submenu_master_doc"/>
 
-        <menuitem id="ddc_doc_status_update" name="Document Status"
-            parent="submenu_master_update" sequence="10" action="doc_status_update_action"/>
+            <menuitem id="ddc_doc_status_update" name="Document Status"
+                parent="submenu_master_update2" sequence="10" action="doc_status_update_action"/>
+            <menuitem id="ddc_doc_status_update2" name="Document Status2"
+                parent="submenu_master_update2" sequence="10" action="doc_status_update_action"/>
 
         <menuitem id="submenu_update" name="Update"
-            parent="main_ddc" sequence="50"/>
+            parent="main_ddc" sequence="30"/>
 
-        <menuitem id="ddc_doc_idc" name="IDC"
-            parent="submenu_update" sequence="20" action="doc_idc_action"/>
+            <menuitem id="ddc_doc_idc" name="IDC"
+                parent="submenu_update" sequence="20" action="doc_idc_action"/>
 
-        <menuitem id="ddc_doc_send" name="Outgoing Transmittal"
-            parent="submenu_update" sequence="30" action="doc_send_action"/>
+            <menuitem id="ddc_doc_send" name="Outgoing Transmittal"
+                parent="submenu_update" sequence="30" action="doc_send_action"/>
 
-        <menuitem id="ddc_doc_rece" name="Incoming Transmittal"
-            parent="submenu_update" sequence="40" action="doc_rece_action"/>
+            <menuitem id="ddc_doc_rece" name="Incoming Transmittal"
+                parent="submenu_update" sequence="40" action="doc_rece_action"/>
 
 
 
         <menuitem id="ddc_conf" name="Configuration"
             parent="main_ddc" sequence="90"/>
 
-        <menuitem id="ddc_conf_master_Data" name="Master Data"
-                  parent="ddc_conf" sequence="30"/>
-        <menuitem id="ddc_conf_discipline" name="Discipline"
-                  parent="ddc_conf_master_Data" sequence="10" action="conf_discipline_action"/>
-        <menuitem id="ddc_conf_doc_categ" name="Document Category"
-                  parent="ddc_conf_master_Data" sequence="20" action="conf_doc_categ_action"/>
-        <menuitem id="ddc_conf_doc_sub" name="Document Subsystem"
-                  parent="ddc_conf_master_Data" sequence="30" action="conf_doc_sub_action"/>
-        <menuitem id="ddc_conf_doc_type" name="Document Type"
-                  parent="ddc_conf_master_Data" sequence="40" action="conf_doc_type_action"/>
-        <menuitem id="ddc_conf_doc_status" name="Document Status"
-                  parent="ddc_conf_master_Data" sequence="40" action="conf_doc_status_action"/>
-        <menuitem id="ddc_conf_rev_num" name="Revision Number"
-                  parent="ddc_conf_master_Data" sequence="50" action="conf_rev_num_action"/>
-        <menuitem id="ddc_conf_internal_status" name="Internal Status"
-                  parent="ddc_conf_master_Data" sequence="60" action="conf_internal_status_action"/>
-        <menuitem id="ddc_conf_external_status" name="External Status"
-                  parent="ddc_conf_master_Data" sequence="70" action="conf_external_status_action"/>
+            <menuitem id="ddc_conf_master_Data" name="Master Data"
+                      parent="ddc_conf" sequence="30"/>
+                <menuitem id="ddc_conf_discipline" name="Discipline"
+                          parent="ddc_conf_master_Data" sequence="10" action="conf_discipline_action"/>
+                <menuitem id="ddc_conf_doc_categ" name="Document Category"
+                          parent="ddc_conf_master_Data" sequence="20" action="conf_doc_categ_action"/>
+                <menuitem id="ddc_conf_doc_sub" name="Document Subsystem"
+                          parent="ddc_conf_master_Data" sequence="30" action="conf_doc_sub_action"/>
+                <menuitem id="ddc_conf_doc_type" name="Document Type"
+                          parent="ddc_conf_master_Data" sequence="40" action="conf_doc_type_action"/>
+                <menuitem id="ddc_conf_doc_status" name="Document Status"
+                          parent="ddc_conf_master_Data" sequence="40" action="conf_doc_status_action"/>
+                <menuitem id="ddc_conf_rev_num" name="Revision Number"
+                          parent="ddc_conf_master_Data" sequence="50" action="conf_rev_num_action"/>
+                <menuitem id="ddc_conf_internal_status" name="Internal Status"
+                          parent="ddc_conf_master_Data" sequence="60" action="conf_internal_status_action"/>
+                <menuitem id="ddc_conf_external_status" name="External Status"
+                          parent="ddc_conf_master_Data" sequence="70" action="conf_external_status_action"/>
 
     </data>
 </openerp>

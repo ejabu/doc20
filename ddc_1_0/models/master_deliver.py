@@ -36,6 +36,7 @@ class master_deliver(models.Model):
     # idc_id = fields.Many2one('doc.idc', 'Related IDC', ondelete='restrict', copy=False)
     idc_id = fields.Many2many('doc.idc', 'master_to_idc', 'line_ids', 'idc_id', string="Related IDC", copy=False)
     idc_number = fields.Char(string='IDC Number', copy=False)
+    created_date = fields.Date(string='Created Date', default=lambda self: self._context.get('date', fields.Date.context_today(self)))
     sched_plan = fields.Date(string='Schedule Plan')
     sched_date = fields.Date(string='Schedule Date')
     send_date = fields.Date(string='IDC Sending Date', copy=False)
@@ -67,6 +68,7 @@ class master_deliver(models.Model):
     # @api.onchange('doc_type')
     # def change_doc_type(self):
     #     self.doc_type_desc = self.doc_type.desc
+
 
     @api.multi
     def done(self):

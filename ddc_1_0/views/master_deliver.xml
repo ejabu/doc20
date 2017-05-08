@@ -84,6 +84,7 @@
 
                     <group colspan="4" col="4">
                         <group >
+                            <field name="created_date" invisible="1"/>
                             <field name="discipline" required="1"/>
                             <field name="doc_categ" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
                             <field name="doc_sub" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>

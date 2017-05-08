@@ -36,6 +36,7 @@ class master_deliver(models.Model):
     # idc_id = fields.Many2one('doc.idc', 'Related IDC', ondelete='restrict', copy=False)
     idc_id = fields.Many2many('doc.idc', 'master_to_idc', 'line_ids', 'idc_id', string="Related IDC", copy=False)
     idc_number = fields.Char(string='IDC Number', copy=False)
+    sched_plan = fields.Date(string='Schedule Plan')
     sched_date = fields.Date(string='Schedule Date')
     send_date = fields.Date(string='IDC Sending Date', copy=False)
     rece_date = fields.Date(string='IDC Receiving Date', copy=False)

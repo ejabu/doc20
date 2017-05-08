@@ -23,7 +23,6 @@
                     <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/> -->
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
-                        <filter name="group_by_name" string="Doc Number" domain="[]" context="{'group_by':'name'}"/>
                         <filter name="group_by_disc" string="Discipline" domain="[]" context="{'group_by':'discipline'}"/>
                         <filter name="group_by_categ" string="Category" domain="[]" context="{'group_by':'doc_categ'}"/>
                         <filter name="group_by_sub" string="Subsystem" domain="[]" context="{'group_by':'doc_sub'}"/>
@@ -41,14 +40,14 @@
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="discipline"/>
-                    <field name="doc_categ"/>
-                    <field name="doc_sub"/>
+                    <field name="discipline" invisible="1"/>
+                    <field name="doc_categ" invisible="1"/>
+                    <field name="doc_sub" invisible="1"/>
+                    <field name="doc_type"/>
                     <field name="name"/>
                     <field name="doc_title"/>
                     <field name="doc_pred"/>
                     <field name="alt_doc"/>
-                    <field name="doc_type"/>
                     <field name="doc_type_desc"/>
 
                     <field name="doc_status" invisible="1"/>
@@ -86,16 +85,17 @@
                     <group colspan="4" col="4">
                         <group >
                             <field name="discipline" required="1"/>
-                            <field name="doc_categ"/>
-                            <field name="doc_sub"/>
+                            <field name="doc_categ" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="doc_sub" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
                             <field name="name" required="1"/>
                             <field name="doc_title"/>
                         </group>
                         <group >
                             <field name="doc_pred"/>
                             <field name="alt_doc"/>
-                            <field name="doc_type" required="1"/>
+                            <field name="doc_type" required="1" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
                             <field name="doc_type_desc"/>
+                            <field name="sched_plan"/>
                         </group>
                     </group>
 

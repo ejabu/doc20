@@ -90,6 +90,8 @@
                             <field name="alt_doc" readonly="1"/>
                             <field name="doc_type" readonly="1"/>
                             <field name="doc_type_desc" readonly="1"/>
+                            <field name="sched_plan" readonly="1"/>
+
                         </group>
                     </group>
                     <group colspan="4" col="4">

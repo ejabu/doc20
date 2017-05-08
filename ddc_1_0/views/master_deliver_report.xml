@@ -38,7 +38,7 @@
             <field name="model">master.deliver</field>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
-                <tree create="false" delete="false">
+                <tree create="false" delete="false" edit="false">
                     <field name="discipline" invisible="1"/>
                     <field name="doc_categ" invisible="1"/>
                     <field name="doc_sub" invisible="1"/>
@@ -74,7 +74,7 @@
             <field name="model">master.deliver</field>
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
-                <form>
+                <form create="false" delete="false" edit="false">
                     <header>
 
                     </header>
@@ -148,6 +148,7 @@
             <field name="view_type">form</field>
             <field name="search_view_id" ref="master_deliver_report_search"/>
             <field name="context">{}</field>
+            <field name="domain">[('is_history','=',True)]</field>
             <field name="view_id" eval="False"/>
             <field name="view_mode">tree,form</field>
         </record>

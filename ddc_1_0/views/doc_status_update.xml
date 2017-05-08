@@ -47,9 +47,7 @@
                     <field name="doc_type"/>
                     <field name="external_status" string="Status"/>
                     <field name="created_date"/>
-
-                    <field name="sched_date" invisible="1"/>
-                    <field name="originator" invisible="1"/>
+                    <field name="sched_plan"/>
 
                 </tree>
             </field>
@@ -86,7 +84,7 @@
 
 
                     <field name="history_ids" context="{'this_doc': active_id, 'default_is_history': 'True', 'default_status_date': context_today().strftime('%Y-%m-%d')}">
-                        <tree editable="bottom" default_order="status_date asc">
+                        <tree editable="bottom" default_order="status_date">
                             <field name="rev_num" readonly="1"/>
                             <field name="revision_date" readonly="1"/>
                             <field name="external_status"/>

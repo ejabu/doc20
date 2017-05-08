@@ -9,14 +9,17 @@ class master_deliver(models.Model):
     _name= "master.deliver"
     _order = "create_date"
 
-    @api.one
+    # @api.one
     def _set_external(self):
-        return True
+        # return self.external_status = 2
+        pass
+        # return True
 
 
     @api.one
     @api.depends('history_ids')
     def _get_external(self):
+        # self.external_status = 3
         for record in self:
             if record.is_history is False :
                 tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True)
@@ -25,6 +28,9 @@ class master_deliver(models.Model):
                     record.rev_num = tes[0].rev_num
                     record.rev_num = tes[0].revision_date
                     record.rev_num = tes[0].status_date
+            else:
+                record.external_status = self._context.get('external_status')
+                record.status_date = self._context.get('status_date')
 
 
     discipline = fields.Many2one('conf.discipline', 'Discipline', ondelete='restrict', copy=True)
@@ -107,7 +113,13 @@ class master_deliver(models.Model):
                 vals['sched_plan'] = parent_obj.sched_plan
                 vals['notes'] = parent_obj.notes
                 vals['is_history'] = True
-        res = super(master_deliver, self).create(vals)
+        # res = super(master_deliver, self).create(vals)
+        context_to_pass={
+            'external_status': vals['external_status'],
+            'status_date': vals['status_date'],
+            'parent_id': vals['version_id']
+        }
+        res = super(master_deliver, self.with_context(context_to_pass)).create(vals)
         return res
 
     @api.one

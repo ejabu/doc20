@@ -12,19 +12,19 @@ class master_deliver(models.Model):
     @api.one
     def _set_external(self):
         return True
-        # self.external_status = self.external_status.id
-        # for record in self:
-        #     if not record.external_status: continue
+
 
     @api.one
     @api.depends('history_ids')
     def _get_external(self):
         for record in self:
             if record.is_history is False :
-                # import ipdb; ipdb.set_trace()
                 tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True)
                 if len(tes) > 0:
                     record.external_status = tes[0].external_status
+                    record.rev_num = tes[0].rev_num
+                    record.rev_num = tes[0].revision_date
+                    record.rev_num = tes[0].status_date
 
 
     discipline = fields.Many2one('conf.discipline', 'Discipline', ondelete='restrict', copy=True)
@@ -48,7 +48,6 @@ class master_deliver(models.Model):
     doc_status = fields.Many2one('conf.doc.status', 'Status', ondelete='restrict', copy=False)
     rev_num = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=False)
 
-    # internal_status = fields.Many2one('conf.internal.status', 'Internal Status')
     #IFA IFI RE-IDC
     external_status = fields.Many2one('conf.external.status', 'External Status', compute='_get_external', inverse='_set_external', store=True)
 
@@ -111,15 +110,6 @@ class master_deliver(models.Model):
         res = super(master_deliver, self).create(vals)
         return res
 
-
-    @api.multi
-    def done(self):
-        self.state='done'
-
-    @api.multi
-    def done(self):
-        self.state='done'
-
     @api.one
     def unlink(self):
         text = "Please unlink this document from IDC / Sending / Incoming Transmittal"
@@ -137,23 +127,3 @@ class master_deliver(models.Model):
         #     return
         else:
             return super(master_deliver, self).unlink()
-
-
-    # @api.depends('history_ids')
-    # def _get_latest_history(self):
-    #     import ipdb; ipdb.set_trace()
-
-    # @api.onchange('history_ids')
-    # def history_change(self):
-    #     dict_to_copy = {}
-    #     dict_to_copy['discipline'] = self.discipline.id
-    #     dict_to_copy['doc_categ'] = self.doc_categ.id
-    #     dict_to_copy['doc_sub'] = self.doc_sub.id
-    #     dict_to_copy['name'] = self.name
-    #     dict_to_copy['doc_title'] = self.doc_title
-    #     dict_to_copy['doc_pred'] = self.doc_pred
-    #     dict_to_copy['alt_doc'] = self.alt_doc
-    #     dict_to_copy['doc_type'] = self.doc_type.id
-    #     dict_to_copy['sched_plan'] = self.sched_plan
-    #     dict_to_copy['is_history'] = True
-    #     self.history_ids.write(dict_to_copy)

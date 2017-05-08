@@ -87,12 +87,11 @@
 
                     <field name="history_ids" context="{'this_doc': active_id, 'default_is_history': 'True', 'default_status_date': context_today().strftime('%Y-%m-%d')}">
                         <tree editable="bottom" default_order="status_date asc">
-                            <field name="name" readonly="1"/>
                             <field name="rev_num" readonly="1"/>
                             <field name="revision_date" readonly="1"/>
                             <field name="external_status"/>
                             <field name="status_date"/>
-                            <field name="is_history"/>
+                            <field name="is_history" invisible="1"/>
                         </tree>
                     </field>
                     <h3>Notes</h3>
@@ -122,6 +121,7 @@
             <field name="view_type">form</field>
             <field name="search_view_id" ref="master_deliver_search_2"/>
             <field name="context">{}</field>
+            <field name="domain">[('is_history','=',False)]</field>
             <field name="view_id" eval="False"/>
             <field name="view_mode">tree,form</field>
         </record>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="dash_monthly_conf_tree" model="ir.ui.view">
+            <field name="name">dash.monthly.tree</field>
+            <field name="model">dash.monthly</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record id="dash_monthly_conf_form" model="ir.ui.view">
+            <field name="name">dash.monthly.form</field>
+            <field name="model">dash.monthly</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Report Properties">
+                                <field name="name"/>
+                                <field name="description"/>
+                            </group>
+                            <group string="Report Filter">
+                                <field name="date_field_start"/>
+                            </group>
+                            <group string="Date Configuration">
+                                <label for="month_start" string="Starting Month"/>
+                                <div class="o_address_format">
+                                    <field name="month_start" placeholder="Month" class="o_address_city"/>
+                                    <field name="year_start" placeholder="Year" class="o_address_city"/>
+                                </div>
+                                <label for="month_end" string="Ending Month"/>
+                                <div class="o_address_format">
+                                    <field name="month_end" placeholder="Month" class="o_address_city"/>
+                                    <field name="year_end" placeholder="Year" class="o_address_city"/>
+                                </div>
+                                <!-- <field name="month_start"/>
+                                <field name="year_start"/>
+                                <field name="month_end"/>
+                                <field name="year_end"/> -->
+                            </group>
+
+
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="dash_monthly_conf_action">
+            <field name="name">Monthly Performance</field>
+            <field name="res_model">dash.monthly</field>
+            <field name="view_type">form</field>
+            <!-- <field name="view_mode">tree,form</field> -->
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+    </data>
+</openerp>

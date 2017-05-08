@@ -8,12 +8,13 @@ class doc_rece(models.Model):
 
     _name= "doc.rece"
 
-    name = fields.Char(string='Transmittal Number', required=True)
+    name = fields.Char(string='Incoming Transmittal Number', required=True)
 
     recv_rece_date = fields.Date(string='Receiving Date', required=True)
 
 
-    line_ids = fields.One2many('master.deliver', 'rece_id', 'MDR Line', ondelete='restrict')
+    # line_ids = fields.One2many('master.deliver', 'rece_id', 'MDR Line')
+    line_ids = fields.Many2many('master.deliver', 'master_to_rece', 'rece_id', 'line_ids', string="Related MDR", copy=False)
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
     _defaults={
@@ -23,14 +24,14 @@ class doc_rece(models.Model):
 
     @api.multi
     def send_doc(self):
-        for line_id in self.line_ids:
-
-            line_id.doc_status = line_id.doc_status_update
-            line_id.rev_num = line_id.rev_num_update
-            line_id.recv_comment = line_id.recv_comment_update
-            line_id.state = 'done'
-            new_doc = line_id.copy()
-
-            line_id.recv_trans_number = self.name
-            line_id.recv_rece_date = self.recv_rece_date
         self.state='done'
+
+    @api.onchange('line_ids','name')
+    def oc_name(self):
+        for rec in self.line_ids:
+            rec.write({'recv_trans_number': self.name})
+
+    @api.onchange('recv_rece_date', 'line_ids')
+    def oc_recv_rece_date(self):
+        for rec in self.line_ids:
+            rec.write({'recv_rece_date': self.recv_rece_date})

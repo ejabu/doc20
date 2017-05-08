@@ -4,7 +4,7 @@
 
 
 
-        <record id="master_deliver_search" model="ir.ui.view">
+        <record id="master_deliver_report_search" model="ir.ui.view">
             <field name="name">master.deliver.search</field>
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
@@ -19,10 +19,8 @@
                     <field name="external_status" string="External Status"/>
                     <field name="originator" string="Originator"/>
 
-                    <!-- <filter name="active" string="Active" domain="[('state','!=','done')]"/>
-                    <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/> -->
-                    <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
+                        <filter name="group_by_name" string="Doc Number" domain="[]" context="{'group_by':'name'}"/>
                         <filter name="group_by_disc" string="Discipline" domain="[]" context="{'group_by':'discipline'}"/>
                         <filter name="group_by_categ" string="Category" domain="[]" context="{'group_by':'doc_categ'}"/>
                         <filter name="group_by_sub" string="Subsystem" domain="[]" context="{'group_by':'doc_sub'}"/>
@@ -35,31 +33,29 @@
         </record>
 
         <!-- Tree view for the menuitem -->
-        <record id="master_deliver_tree" model="ir.ui.view">
+        <record id="master_deliver_report_tree_2" model="ir.ui.view">
             <field name="name">master.deliver.tree</field>
             <field name="model">master.deliver</field>
+            <field name="priority" eval="20"/>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="false" delete="false">
                     <field name="discipline" invisible="1"/>
                     <field name="doc_categ" invisible="1"/>
                     <field name="doc_sub" invisible="1"/>
-                    <field name="doc_type"/>
                     <field name="name"/>
                     <field name="doc_title"/>
-                    <field name="doc_pred"/>
-                    <field name="alt_doc"/>
-                    <field name="doc_type_desc"/>
-
-                    <field name="doc_status" invisible="1"/>
-                    <field name="sched_date" invisible="1"/>
+                    <field name="doc_type" invisible="1"/>
+                    <field name="doc_type_desc" invisible="1"/>
+                    <field name="doc_status"/>
+                    <field name="sched_date"/>
                     <field name="originator" invisible="1"/>
 
-                    <field name="external_status" invisible="1"/>
-                    <field name="rev_num" invisible="1"/>
-                    <field name="idc_number" invisible="1"/>
-                    <field name="send_date" invisible="1"/>
-                    <field name="rece_date" invisible="1"/>
-<!--
+                    <field name="external_status"/>
+                    <field name="rev_num"/>
+                    <field name="idc_number"/>
+                    <field name="send_date"/>
+                    <field name="rece_date"/>
+
                     <field name="trans_number"/>
                     <field name="trans_date"/>
                     <field name="due_date"/>
@@ -67,15 +63,16 @@
                     <field name="antam_date"/>
 
                     <field name="recv_trans_number"/>
-                    <field name="recv_rece_date"/> -->
+                    <field name="recv_rece_date"/>
 
                 </tree>
             </field>
         </record>
         <!-- Form view for the menuitem -->
-        <record id="master_deliver_form" model="ir.ui.view">
+        <record id="master_deliver_report_form_2" model="ir.ui.view">
             <field name="name">master.deliver.form</field>
             <field name="model">master.deliver</field>
+            <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -84,22 +81,46 @@
 
                     <group colspan="4" col="4">
                         <group >
-                            <field name="created_date" invisible="1"/>
-                            <field name="discipline" required="1"/>
-                            <field name="doc_categ" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
-                            <field name="doc_sub" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
-                            <field name="name" required="1"/>
-                            <field name="doc_title"/>
+                            <field name="discipline" readonly="1"/>
+                            <field name="doc_categ" readonly="1"/>
+                            <field name="doc_sub" readonly="1"/>
                         </group>
                         <group >
-                            <field name="doc_pred"/>
-                            <field name="alt_doc"/>
-                            <field name="doc_type" required="1" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
-                            <field name="doc_type_desc"/>
-                            <field name="sched_plan"/>
+                            <field name="doc_pred" readonly="1"/>
+                            <field name="alt_doc" readonly="1"/>
+                            <field name="doc_type" readonly="1"/>
+                            <field name="doc_type_desc" readonly="1"/>
+                            <field name="sched_plan" readonly="1"/>
+
                         </group>
                     </group>
-
+                    <group colspan="4" col="4">
+                        <group >
+                            <field name="name" readonly="1"/>
+                            <field name="doc_title" readonly="1"/>
+                        </group>
+                        <group >
+                        </group>
+                    </group>
+                    <group colspan="4" col="4">
+                        <group string="IDC">
+                            <field name="idc_number"/>
+                            <field name="send_date"/>
+                            <field name="sched_date"/>
+                            <field name="rece_date"/>
+                        </group>
+                        <group string="Transmittal">
+                            <field name="recv_trans_number"/>
+                            <field name="recv_rece_date"/>
+                            <br/>
+                            <br/>
+                            <field name="trans_number"/>
+                            <field name="trans_date"/>
+                            <field name="due_date"/>
+                            <field name="need_to_response"/>
+                            <field name="antam_date"/>
+                        </group>
+                    </group>
                     <h3>Notes</h3>
                     <field name="notes"/>
                     <br/>
@@ -118,16 +139,34 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="master_deliver_action">
-            <field name="name">Master Deliverables</field>
+
+
+
+        <record model="ir.actions.act_window" id="master_deliver_report_action">
+            <field name="name">Master Deliver Report View</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
-            <field name="search_view_id" ref="master_deliver_search"/>
+            <field name="search_view_id" ref="master_deliver_report_search"/>
             <field name="context">{}</field>
-            <!-- <field name="context">{'search_default_active':1}</field> -->
-            <!-- <field name="context">{'search_default_active':1,'search_default_group_by_name':1}</field> -->
+            <field name="view_id" eval="False"/>
             <field name="view_mode">tree,form</field>
         </record>
+
+
+        <record model="ir.actions.act_window.view" id="master_deliver_report_action_tree">
+        			<field eval="3" name="sequence"/>
+        			<field name="view_mode">tree</field>
+        			<field name="view_id" ref="master_deliver_report_tree_2"/>
+                    <field name="act_window_id" ref="master_deliver_report_action"/>
+        </record>
+
+		<record model="ir.actions.act_window.view" id="master_deliver_report_action_form">
+			<field eval="4" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="master_deliver_report_form_2"/>
+            <field name="act_window_id" ref="master_deliver_report_action"/>
+		</record>
+
 
     </data>
 </openerp>

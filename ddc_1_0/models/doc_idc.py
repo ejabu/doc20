@@ -11,9 +11,11 @@ class doc_idc(models.Model):
     name = fields.Char(string='IDC Number', required=True)
 
     send_date = fields.Date(string='Sending Date', required=True)
-    rece_date = fields.Date(string='Receiving Date',)
+    sched_date = fields.Date(string='Schedule Date',)
 
-    line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line', ondelete='restrict')
+    # line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line')
+    line_ids = fields.Many2many('master.deliver', 'master_to_idc', 'idc_id', 'line_ids', string="Related MDR", copy=False)
+
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
     _defaults={
@@ -23,13 +25,19 @@ class doc_idc(models.Model):
 
     @api.multi
     def send_doc(self):
-        for line_id in self.line_ids:
-            line_id.doc_status = line_id.doc_status_update
-            line_id.rev_num = line_id.rev_num_update
-            line_id.state = 'done'
-            new_doc = line_id.copy()
-
-            line_id.idc_number = self.name
-            line_id.send_date = self.send_date
-            line_id.rece_date = self.rece_date
         self.state='done'
+
+    @api.onchange('line_ids','name')
+    def oc_name(self):
+        for rec in self.line_ids:
+            rec.write({'idc_number': self.name})
+
+    @api.onchange('line_ids','sched_date')
+    def oc_sched_date(self):
+        for rec in self.line_ids:
+            rec.write({'sched_date': self.sched_date})
+
+    @api.onchange('line_ids','send_date')
+    def oc_send_date(self):
+        for rec in self.line_ids:
+            rec.write({'send_date': self.send_date})

@@ -33,11 +33,7 @@
             parent="menu_performance" sequence="10" action="dash_monthly_conf_action" />
 
 
-        <menuitem id="menu_mdr_pivot" name="Status and Discipline"
-            parent="menu_reports" sequence="50" action="action_mdr_pivot" />
 
-        <menuitem id="menu_mdr_internal_status" name="Internal Status"
-            parent="menu_reports" sequence="60" action="action_mdr_internal_status" />
 
         <menuitem id="ddc_mdr_report" name="MDR Report"
             parent="menu_reports" sequence="70" action="master_deliver_report_action"/>

@@ -22,8 +22,6 @@
         'views/doc_rece.xml',
         'views/doc_status_update.xml',
         'views/conf_master_data.xml',
-        'pivot/mdr_internal_status.xml',
-        'pivot/mdr_pivot_view.xml',
         'views/menus.xml',
     ],
     'demo':[

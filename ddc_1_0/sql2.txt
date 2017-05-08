@@ -1,0 +1,1 @@
+sum(cast(to_char(date_trunc('day',mdr.due_date) - date_trunc('day',mdr.rece_date),'DD') as int)) as delay_validation,

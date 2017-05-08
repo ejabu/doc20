@@ -50,8 +50,8 @@
                     <field name="sched_date"/>
                     <field name="originator" invisible="1"/>
 
-                    <field name="external_status"/>
                     <field name="rev_num"/>
+                    <field name="external_status"/>
                     <field name="idc_number"/>
                     <field name="send_date"/>
                     <field name="rece_date"/>

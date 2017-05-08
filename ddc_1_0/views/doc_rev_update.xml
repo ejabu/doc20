@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <!-- Form view for the menuitem -->
+        <record id="doc_rev_update_form" model="ir.ui.view">
+            <field name="name">document.rev.update.form</field>
+            <field name="model">master.deliver</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+
+                    </header>
+
+                    <group colspan="4" col="4">
+                        <group >
+                            <field name="discipline" readonly="1"/>
+                            <field name="doc_categ" readonly="1"/>
+                            <field name="doc_sub" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="doc_title" readonly="1"/>
+                        </group>
+                        <group >
+                            <field name="doc_pred" readonly="1"/>
+                            <field name="alt_doc" readonly="1"/>
+                            <field name="doc_type" readonly="1"/>
+                            <field name="doc_type_desc" readonly="1"/>
+                            <field name="sched_plan" readonly="1"/>
+                            <field name="external_status" invisible="1"/>
+                            <field name="rev_num" invisible="1"/>
+                        </group>
+
+                    </group>
+
+
+                    <field name="history_ids"
+                        context="{'this_doc': active_id, 'default_is_history': 'True',
+                        'default_revision_date': context_today().strftime('%Y-%m-%d')
+                        }">
+                        <tree editable="bottom" default_order="status_date">
+                            <field name="rev_num"/>
+                            <field name="revision_date"/>
+                            <field name="external_status" readonly="1"/>
+                            <field name="status_date" readonly="1"/>
+                            <field name="is_history" invisible="1"/>
+                        </tree>
+                    </field>
+                    <h3>Notes</h3>
+                    <field name="notes"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record model="ir.actions.act_window" id="doc_rev_update_action">
+            <field name="name">Document Revision Update</field>
+            <field name="res_model">master.deliver</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="master_deliver_search_2"/>
+            <field name="context">{"update": "rev"}</field>
+            <field name="domain">[('is_history','=',False)]</field>
+            <field name="view_id" eval="False"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="doc_rev_update_action_tree">
+        			<field eval="3" name="sequence"/>
+        			<field name="view_mode">tree</field>
+        			<field name="view_id" ref="master_deliver_tree_2"/>
+                    <field name="act_window_id" ref="doc_rev_update_action"/>
+        </record>
+
+		<record model="ir.actions.act_window.view" id="doc_rev_update_action_form">
+			<field eval="4" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="doc_rev_update_form"/>
+            <field name="act_window_id" ref="doc_rev_update_action"/>
+		</record>
+
+
+    </data>
+</openerp>

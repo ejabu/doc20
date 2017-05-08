@@ -44,10 +44,10 @@
             <menuitem id="submenu_master_update2" name="Update"
                 parent="submenu_master_doc"/>
 
+            <menuitem id="ddc_doc_status_update2" name="Document Revision"
+                parent="submenu_master_update2" sequence="10" action="doc_rev_update_action"/>
             <menuitem id="ddc_doc_status_update" name="Document Status"
                 parent="submenu_master_update2" sequence="20" action="doc_status_update_action"/>
-            <menuitem id="ddc_doc_status_update2" name="Document Revision"
-                parent="submenu_master_update2" sequence="10" action="doc_status_update_action"/>
 
         <menuitem id="submenu_update" name="Update"
             parent="main_ddc" sequence="30"/>

@@ -11,26 +11,25 @@ class master_deliver(models.Model):
 
     # @api.one
     def _set_external(self):
-        # return self.external_status = 2
         pass
-        # return True
-
 
     @api.one
     @api.depends('history_ids')
     def _get_external(self):
-        # self.external_status = 3
         for record in self:
             if record.is_history is False :
                 tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True)
                 if len(tes) > 0:
                     record.external_status = tes[0].external_status
+                    record.status_date = tes[0].status_date
                     record.rev_num = tes[0].rev_num
-                    record.rev_num = tes[0].revision_date
-                    record.rev_num = tes[0].status_date
-            else:
+                    record.revision_date = tes[0].revision_date
+            elif self._context.get('external_status') is not None:
                 record.external_status = self._context.get('external_status')
                 record.status_date = self._context.get('status_date')
+            elif self._context.get('rev_num') is not None:
+                record.rev_num = self._context.get('rev_num')
+                record.revision_date = self._context.get('revision_date')
 
 
     discipline = fields.Many2one('conf.discipline', 'Discipline', ondelete='restrict', copy=True)
@@ -73,12 +72,12 @@ class master_deliver(models.Model):
     send_date = fields.Date(string='IDC Sending Date', copy=False)
     rece_date = fields.Date(string='IDC Receiving Date', copy=False)
 
-    # send_id = fields.Many2one('doc.send', 'Related Send', ondelete='restrict', copy=False)
     send_id = fields.Many2many('doc.rece', 'master_to_send', 'line_ids', 'send_id', string="Related Sending", copy=False)
     trans_number = fields.Char(string='Outgoing Transmittal Number', copy=False)
     trans_date = fields.Date(string='Transmittal Date', copy=False)
     due_date = fields.Date(string='Due Date', copy=False)
-    need_to_response = fields.Date(string='Need to Response', copy=False)
+    need_to_response = fields.Date(string='Need to Response', copy=False);
+
     antam_date = fields.Date(string='Antam Receive Date', copy=False)
 
     rece_id = fields.Many2many('doc.rece', 'master_to_rece', 'line_ids', 'rece_id', string="Related Receiving", copy=False)
@@ -99,28 +98,38 @@ class master_deliver(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals['is_history']:
-            if vals['version_id']:
-                parent_obj = self.browse(vals['version_id'])
-                vals['discipline'] = parent_obj.discipline.id
-                vals['doc_categ'] = parent_obj.doc_categ.id
-                vals['doc_sub'] = parent_obj.doc_sub.id
-                vals['name'] = parent_obj.name
-                vals['doc_title'] = parent_obj.doc_title
-                vals['doc_pred'] = parent_obj.doc_pred
-                vals['alt_doc'] = parent_obj.alt_doc
-                vals['doc_type'] = parent_obj.doc_type.id
-                vals['sched_plan'] = parent_obj.sched_plan
-                vals['notes'] = parent_obj.notes
-                vals['is_history'] = True
-        # res = super(master_deliver, self).create(vals)
-        context_to_pass={
-            'external_status': vals['external_status'],
-            'status_date': vals['status_date'],
-            'parent_id': vals['version_id']
-        }
-        res = super(master_deliver, self.with_context(context_to_pass)).create(vals)
-        return res
+        if self._context.get("update") is not None:
+            if vals['is_history']:
+                if vals['version_id']:
+                    parent_obj = self.browse(vals['version_id'])
+                    vals['discipline'] = parent_obj.discipline.id
+                    vals['doc_categ'] = parent_obj.doc_categ.id
+                    vals['doc_sub'] = parent_obj.doc_sub.id
+                    vals['name'] = parent_obj.name
+                    vals['doc_title'] = parent_obj.doc_title
+                    vals['doc_pred'] = parent_obj.doc_pred
+                    vals['alt_doc'] = parent_obj.alt_doc
+                    vals['doc_type'] = parent_obj.doc_type.id
+                    vals['sched_plan'] = parent_obj.sched_plan
+                    vals['notes'] = parent_obj.notes
+                    vals['is_history'] = True
+            if self._context.get("update") == "status":
+                context_to_pass={
+                    'external_status': vals['external_status'],
+                    'status_date': vals['status_date'],
+                    'parent_id': vals['version_id']
+                }
+            elif self._context.get("update") == "rev":
+                context_to_pass={
+                    'rev_num': vals['rev_num'],
+                    'revision_date': vals['revision_date'],
+                    'parent_id': vals['version_id']
+                }
+            res = super(master_deliver, self.with_context(context_to_pass)).create(vals)
+            return res
+        else:
+            res = super(master_deliver, self).create(vals)
+            return res
 
     @api.one
     def unlink(self):
@@ -134,8 +143,5 @@ class master_deliver(models.Model):
         elif self.rece_id.id != False:
             raise Warning(text)
             return
-        # elif self.version_id.id != False:
-        #     raise Warning("This is historical Document. You cannot delete this")
-        #     return
         else:
             return super(master_deliver, self).unlink()

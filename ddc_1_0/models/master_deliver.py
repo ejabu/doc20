@@ -9,22 +9,48 @@ class master_deliver(models.Model):
     _name= "master.deliver"
     _order = "create_date"
 
-    discipline = fields.Many2one('conf.discipline', 'Discipline', required=True, ondelete='restrict', copy=True)
+    @api.one
+    def _set_external(self):
+        return True
+        # self.external_status = self.external_status.id
+        # for record in self:
+        #     if not record.external_status: continue
+
+    @api.one
+    @api.depends('history_ids')
+    def _get_external(self):
+        for record in self:
+            if record.is_history is False :
+                # import ipdb; ipdb.set_trace()
+                tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True)
+                if len(tes) > 0:
+                    record.external_status = tes[0].external_status
+
+
+    discipline = fields.Many2one('conf.discipline', 'Discipline', ondelete='restrict', copy=True)
     doc_categ = fields.Many2one('conf.doc.categ', 'Category', ondelete='restrict', copy=True)
     doc_sub = fields.Many2one('conf.doc.sub', 'Subsystem', ondelete='restrict', copy=True)
-    name = fields.Char(string='Document Number', required=True, copy=True)
+    name = fields.Char(string='Document Number', copy=True)
     doc_title = fields.Char(string='Document Title', copy=True)
-    doc_type = fields.Many2one('conf.doc.type', 'Document Type', required=True, ondelete='restrict', copy=True)
+    doc_type = fields.Many2one('conf.doc.type', 'Document Type', ondelete='restrict', copy=True)
     doc_type_desc = fields.Char(string='Type Description', related='doc_type.desc', store=True)
 
     originator = fields.Many2one('res.partner', string='Originator', copy=False)
+
+    version_id = fields.Many2one('master.deliver', string='Versions', copy=False)
+    history_ids = fields.One2many('master.deliver', 'version_id', 'History', copy=False)
+
+    revision_date = fields.Date(string='Revision Date')
+    status_date = fields.Date(string='Status Date')
+    is_history = fields.Boolean(string='Is History')
+
 
     doc_status = fields.Many2one('conf.doc.status', 'Status', ondelete='restrict', copy=False)
     rev_num = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=False)
 
     # internal_status = fields.Many2one('conf.internal.status', 'Internal Status')
     #IFA IFI RE-IDC
-    external_status = fields.Many2one('conf.external.status', 'External Status')
+    external_status = fields.Many2one('conf.external.status', 'External Status', compute='_get_external', inverse='_set_external', store=True)
 
     doc_pred = fields.Char(string='Predecessor', copy=True)
     alt_doc = fields.Char(string='Alternative Document #', copy=True)
@@ -59,16 +85,36 @@ class master_deliver(models.Model):
     _defaults = {
         # 'state': 'new',
     }
-    #
+
     _sql_constraints = [
         ('name', 'Check(1=1)', "The system record Can't be duplicate value for this field!")
         # ('name', 'unique(name)', "The system record Can't be duplicate value for this field!")
     ]
 
-    # @api.onchange('doc_type')
-    # def change_doc_type(self):
-    #     self.doc_type_desc = self.doc_type.desc
 
+    @api.model
+    def create(self, vals):
+        if vals['is_history']:
+            if vals['version_id']:
+                parent_obj = self.browse(vals['version_id'])
+                vals['discipline'] = parent_obj.discipline.id
+                vals['doc_categ'] = parent_obj.doc_categ.id
+                vals['doc_sub'] = parent_obj.doc_sub.id
+                vals['name'] = parent_obj.name
+                vals['doc_title'] = parent_obj.doc_title
+                vals['doc_pred'] = parent_obj.doc_pred
+                vals['alt_doc'] = parent_obj.alt_doc
+                vals['doc_type'] = parent_obj.doc_type.id
+                vals['sched_plan'] = parent_obj.sched_plan
+                vals['notes'] = parent_obj.notes
+                vals['is_history'] = True
+        res = super(master_deliver, self).create(vals)
+        return res
+
+
+    @api.multi
+    def done(self):
+        self.state='done'
 
     @api.multi
     def done(self):
@@ -86,5 +132,28 @@ class master_deliver(models.Model):
         elif self.rece_id.id != False:
             raise Warning(text)
             return
+        # elif self.version_id.id != False:
+        #     raise Warning("This is historical Document. You cannot delete this")
+        #     return
         else:
             return super(master_deliver, self).unlink()
+
+
+    # @api.depends('history_ids')
+    # def _get_latest_history(self):
+    #     import ipdb; ipdb.set_trace()
+
+    # @api.onchange('history_ids')
+    # def history_change(self):
+    #     dict_to_copy = {}
+    #     dict_to_copy['discipline'] = self.discipline.id
+    #     dict_to_copy['doc_categ'] = self.doc_categ.id
+    #     dict_to_copy['doc_sub'] = self.doc_sub.id
+    #     dict_to_copy['name'] = self.name
+    #     dict_to_copy['doc_title'] = self.doc_title
+    #     dict_to_copy['doc_pred'] = self.doc_pred
+    #     dict_to_copy['alt_doc'] = self.alt_doc
+    #     dict_to_copy['doc_type'] = self.doc_type.id
+    #     dict_to_copy['sched_plan'] = self.sched_plan
+    #     dict_to_copy['is_history'] = True
+    #     self.history_ids.write(dict_to_copy)

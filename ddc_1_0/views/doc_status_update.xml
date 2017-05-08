@@ -45,8 +45,7 @@
                     <field name="name"/>
                     <field name="doc_title"/>
                     <field name="doc_type"/>
-                    <field name="doc_type_desc" invisible="1"/>
-                    <field name="doc_status"/>
+                    <field name="external_status" string="Status"/>
                     <field name="created_date"/>
 
                     <field name="sched_date" invisible="1"/>
@@ -59,7 +58,6 @@
         <record id="master_deliver_form_2" model="ir.ui.view">
             <field name="name">document.status.update.form</field>
             <field name="model">master.deliver</field>
-            <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -71,6 +69,8 @@
                             <field name="discipline" readonly="1"/>
                             <field name="doc_categ" readonly="1"/>
                             <field name="doc_sub" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="doc_title" readonly="1"/>
                         </group>
                         <group >
                             <field name="doc_pred" readonly="1"/>
@@ -78,36 +78,23 @@
                             <field name="doc_type" readonly="1"/>
                             <field name="doc_type_desc" readonly="1"/>
                             <field name="sched_plan" readonly="1"/>
+                            <field name="external_status" invisible="1"/>
+                            <field name="rev_num" invisible="1"/>
+                        </group>
 
-                        </group>
                     </group>
-                    <group colspan="4" col="4">
-                        <group >
+
+
+                    <field name="history_ids" context="{'this_doc': active_id, 'default_is_history': 'True', 'default_status_date': context_today().strftime('%Y-%m-%d')}">
+                        <tree editable="bottom" default_order="status_date asc">
                             <field name="name" readonly="1"/>
-                            <field name="doc_title" readonly="1"/>
-                        </group>
-                        <group >
-                        </group>
-                    </group>
-                    <group colspan="4" col="4">
-                        <group string="IDC">
-                            <field name="idc_number"/>
-                            <field name="send_date"/>
-                            <field name="sched_date"/>
-                            <field name="rece_date"/>
-                        </group>
-                        <group string="Transmittal">
-                            <field name="recv_trans_number"/>
-                            <field name="recv_rece_date"/>
-                            <br/>
-                            <br/>
-                            <field name="trans_number"/>
-                            <field name="trans_date"/>
-                            <field name="due_date"/>
-                            <field name="need_to_response"/>
-                            <field name="antam_date"/>
-                        </group>
-                    </group>
+                            <field name="rev_num" readonly="1"/>
+                            <field name="revision_date" readonly="1"/>
+                            <field name="external_status"/>
+                            <field name="status_date"/>
+                            <field name="is_history"/>
+                        </tree>
+                    </field>
                     <h3>Notes</h3>
                     <field name="notes"/>
                     <br/>

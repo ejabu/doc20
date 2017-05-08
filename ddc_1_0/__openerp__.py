@@ -17,7 +17,7 @@
         'views/master_deliver.xml',
         'views/master_deliver_report.xml',
         'views/conf_rec_comment.xml',
-        'views/doc_idc.xml',
+        'views/idc_in.xml',
         'views/doc_send.xml',
         'views/doc_rece.xml',
         'views/doc_status_update.xml',

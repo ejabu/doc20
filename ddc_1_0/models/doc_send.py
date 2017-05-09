@@ -11,7 +11,7 @@ class doc_send(models.Model):
     name = fields.Char(string='Transmittal Number', required=True)
 
     trans_date = fields.Date(string='Transmittal Date', required=True)
-    due_date = fields.Date(string='Due Date',)
+    trans_due_date = fields.Date(string='Due Date',)
     need_to_response = fields.Date(string='Need to Response',)
     antam_date = fields.Date(string='Antam Receive Date',)
 
@@ -24,11 +24,6 @@ class doc_send(models.Model):
         'trans_date': lambda *a:datetime.now().strftime('%Y-%m-%d'),
     }
 
-    @api.multi
-    def send_doc(self):
-        self.state='done'
-
-
     @api.onchange('line_ids','name')
     def oc_name(self):
         for rec in self.line_ids:
@@ -39,15 +34,16 @@ class doc_send(models.Model):
         for rec in self.line_ids:
             rec.write({'trans_date': self.trans_date})
 
-    @api.onchange('line_ids','due_date')
-    def oc_due_date(self):
+    @api.onchange('line_ids','trans_due_date')
+    def oc_trans_due_date(self):
         for rec in self.line_ids:
-            rec.write({'due_date': self.due_date})
+            rec.write({'trans_trans_due_date': self.trans_due_date})
 
     @api.onchange('line_ids','need_to_response')
     def oc_need_to_response(self):
         for rec in self.line_ids:
             rec.write({'need_to_response': self.need_to_response})
+
     @api.onchange('line_ids','antam_date')
     def oc_antam_date(self):
         for rec in self.line_ids:

@@ -22,10 +22,6 @@ class doc_rece(models.Model):
         'recv_rece_date': lambda *a:datetime.now().strftime('%Y-%m-%d'),
     }
 
-    @api.multi
-    def send_doc(self):
-        self.state='done'
-
     @api.onchange('line_ids','name')
     def oc_name(self):
         for rec in self.line_ids:

@@ -71,13 +71,14 @@ class master_deliver(models.Model):
     sched_date = fields.Date(string='Schedule Date')
     send_date = fields.Date(string='IDC Sending Date', copy=False)
     rece_date = fields.Date(string='IDC Receiving Date', copy=False)
+    due_date = fields.Date(string='Due Date', copy=False)
     status_comment = fields.Many2one('conf.rec.comment', 'Status Comment')
 
 
     send_id = fields.Many2many('doc.rece', 'master_to_send', 'line_ids', 'send_id', string="Related Sending", copy=False)
     trans_number = fields.Char(string='Outgoing Transmittal Number', copy=False)
     trans_date = fields.Date(string='Transmittal Date', copy=False)
-    due_date = fields.Date(string='Due Date', copy=False)
+    trans_due_date = fields.Date(string='Transmittal Due Date', copy=False)
     need_to_response = fields.Date(string='Need to Response', copy=False);
 
     antam_date = fields.Date(string='Antam Receive Date', copy=False)

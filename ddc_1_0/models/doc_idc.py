@@ -14,6 +14,8 @@ class doc_idc(models.Model):
     sched_date = fields.Date(string='Schedule Date', required=True)
     due_date = fields.Date(string='Due Date',)
 
+    line_count = fields.Integer(string='Line Count',compute='_line_count', store=True)
+
     line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line')
     # line_ids = fields.Many2many('master.deliver', 'master_to_idc', 'idc_id', 'line_ids', string="Related MDR", copy=False)
 
@@ -25,20 +27,22 @@ class doc_idc(models.Model):
     }
 
     @api.multi
-    def send_doc(self):
-        self.state='done'
+    @api.depends('line_ids')
+    def _line_count(self):
+        # import ipdb; ipdb.set_trace()
+        for rec in self:
+            rec.line_count = len(rec.line_ids)
+
+
 
     @api.onchange('line_ids','name')
     def oc_name(self):
-        for rec in self.line_ids:
-            rec.write({'idc_number': self.name})
+        self.line_ids.write({'idc_number': self.name})
 
     @api.onchange('line_ids','sched_date')
     def oc_sched_date(self):
-        for rec in self.line_ids:
-            rec.write({'sched_date': self.sched_date})
+        self.line_ids.write({'sched_date': self.sched_date})
 
-    @api.onchange('line_ids','send_date')
-    def oc_send_date(self):
-        for rec in self.line_ids:
-            rec.write({'send_date': self.send_date})
+    @api.onchange('line_ids','due_date')
+    def oc_sched_date(self):
+        self.line_ids.write({'due_date': self.due_date})

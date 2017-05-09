@@ -6,13 +6,14 @@
         <record id="doc_send_tree" model="ir.ui.view">
             <field name="name">doc.send.tree</field>
             <field name="model">doc.send</field>
+            <field name="priority" eval="10"/>
+
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
                     <field name="recipient"/>
-                    <field name="recipient_rece_date"/>
                 </tree>
             </field>
         </record>
@@ -20,6 +21,8 @@
         <record id="doc_send_form" model="ir.ui.view">
             <field name="name">doc.send.form</field>
             <field name="model">doc.send</field>
+            <field name="priority" eval="10"/>
+
             <field name="arch" type="xml">
                 <form>
                     <header>

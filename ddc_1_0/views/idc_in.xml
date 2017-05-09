@@ -6,6 +6,7 @@
         <record id="doc_idc_in_tree" model="ir.ui.view">
             <field name="name">doc.idc.in.tree</field>
             <field name="model">doc.idc</field>
+            <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>

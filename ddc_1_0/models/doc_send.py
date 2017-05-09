@@ -26,21 +26,17 @@ class doc_send(models.Model):
 
     @api.onchange('line_ids','name')
     def oc_name(self):
-        for rec in self.line_ids:
-            rec.write({'trans_number': self.name})
+        self.line_ids.write({'trans_number': self.name})
 
     @api.onchange('line_ids','trans_date')
     def oc_trans_date(self):
-        for rec in self.line_ids:
-            rec.write({'trans_date': self.trans_date})
+        self.line_ids.write({'trans_date': self.trans_date})
 
     @api.onchange('line_ids','trans_due_date')
     def oc_trans_due_date(self):
-        for rec in self.line_ids:
-            rec.write({'trans_trans_due_date': self.trans_due_date})
+        self.line_ids.write({'trans_trans_due_date': self.trans_due_date})
 
 
     @api.onchange('line_ids','recipient_rece_date')
     def oc_recipient_rece_date(self):
-        for rec in self.line_ids:
-            rec.write({'recipient_rece_date': self.recipient_rece_date})
+        self.line_ids.write({'recipient_rece_date': self.recipient_rece_date})

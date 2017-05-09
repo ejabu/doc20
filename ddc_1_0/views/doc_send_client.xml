@@ -8,10 +8,10 @@
             <field name="model">doc.send</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="recipient"/>
                     <field name="name"/>
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
-                    <field name="recipient"/>
                     <field name="recipient_rece_date"/>
                 </tree>
             </field>
@@ -30,6 +30,7 @@
                                 <field name="name"/>
                                 <field name="trans_date"/>
                                 <field name="trans_due_date"/>
+                                <field name="recipient_rece_date"/>
                             </group>
                             <group></group>
                         </group>
@@ -55,5 +56,21 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+
+        <record model="ir.actions.act_window.view" id="doc_send_client_action_tree">
+			<field eval="3" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="doc_send_client_tree"/>
+            <field name="act_window_id" ref="doc_send_client_action"/>
+        </record>
+
+		<record model="ir.actions.act_window.view" id="doc_send_client_action_form">
+			<field eval="4" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="doc_send_client_form"/>
+            <field name="act_window_id" ref="doc_send_client_action"/>
+		</record>
+
     </data>
 </openerp>

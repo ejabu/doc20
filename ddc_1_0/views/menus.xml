@@ -67,11 +67,11 @@
                 <menuitem id="ddc_doc_send" name="Outgoing"
                     parent="ddc_doc_transmittal" sequence="30" action="doc_send_action"/>
 
-                <menuitem id="ddc_doc_send" name="Recipient Received"
+                <menuitem id="ddc_doc_send_client" name="Recipient Received"
                     parent="ddc_doc_transmittal" sequence="40" action="doc_send_client_action"/>
 
                 <menuitem id="ddc_doc_rece" name="Incoming Transmittal"
-                    parent="ddc_doc_transmittal" sequence="40" action="doc_rece_action"/>
+                    parent="ddc_doc_transmittal" sequence="50" action="doc_rece_action"/>
 
 
 

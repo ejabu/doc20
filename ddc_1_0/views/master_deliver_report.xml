@@ -143,7 +143,7 @@
 
 
         <record model="ir.actions.act_window" id="master_deliver_report_action">
-            <field name="name">Master Deliver Report View</field>
+            <field name="name">MDR Overview Report</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
             <field name="search_view_id" ref="master_deliver_report_search"/>

@@ -27,7 +27,7 @@
     </record>
 
         <record id="dash_pivot_monthly_action" model="ir.actions.act_window">
-            <field name="name">Dash Monthly</field>
+            <field name="name">Monthly Document Creation</field>
             <field name="res_model">dash.pivot.monthly</field>
             <field name="view_type">form</field>
             <field name="view_mode">pivot,graph</field>

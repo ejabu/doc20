@@ -41,25 +41,26 @@
             <menuitem id="ddc_master_deliver" name="MDR"
                 parent="submenu_master_doc" sequence="10" action="master_deliver_action"/>
 
-            <menuitem id="submenu_master_update2" name="Update"
+            <menuitem id="submenu_master_update" name="Update"
                 parent="submenu_master_doc"/>
 
-            <menuitem id="ddc_doc_status_update2" name="Document Revision"
-                parent="submenu_master_update2" sequence="10" action="doc_rev_update_action"/>
+            <menuitem id="ddc_doc_status_update" name="Document Revision"
+                parent="submenu_master_update" sequence="10" action="doc_rev_update_action"/>
+
             <menuitem id="ddc_doc_status_update" name="Document Status"
-                parent="submenu_master_update2" sequence="20" action="doc_status_update_action"/>
+                parent="submenu_master_update" sequence="20" action="doc_status_update_action"/>
 
         <menuitem id="submenu_update" name="Update"
             parent="main_ddc" sequence="30"/>
 
-            <menuitem id="ddc_doc_idc" name="IDC"
-                parent="submenu_update" sequence="20"/>
+            <menuitem id="submenu_idc" name="IDC"
+                parent="submenu_update" sequence="10"/>
 
                 <menuitem id="ddc_doc_idc_out" name="IDC Outgoing"
-                    parent="ddc_doc_idc" sequence="10" action="doc_idc_out_action"/>
+                    parent="submenu_idc" sequence="10" action="doc_idc_out_action"/>
 
                 <menuitem id="ddc_doc_idc_in" name="IDC Incoming"
-                    parent="ddc_doc_idc" sequence="20" action="doc_idc_in_action"/>
+                    parent="submenu_idc" sequence="20" action="doc_idc_in_action"/>
 
             <menuitem id="ddc_doc_transmittal" name="Transmittal"
                 parent="submenu_update" sequence="20"/>

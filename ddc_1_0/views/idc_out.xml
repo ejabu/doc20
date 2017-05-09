@@ -6,6 +6,7 @@
         <record id="doc_idc_out_tree" model="ir.ui.view">
             <field name="name">doc.idc.out.tree</field>
             <field name="model">doc.idc</field>
+            <field name="priority" eval="10"/>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -47,17 +48,12 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="doc_idc_out_action">
+         <record model="ir.actions.act_window" id="doc_idc_out_action">
             <field name="name">IDC Outgoing</field>
             <field name="res_model">doc.idc</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
-
-
-
-
-
 
     </data>
 </openerp>

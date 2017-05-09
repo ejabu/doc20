@@ -155,10 +155,10 @@
 
 
         <record model="ir.actions.act_window.view" id="master_deliver_report_action_tree">
-        			<field eval="3" name="sequence"/>
-        			<field name="view_mode">tree</field>
-        			<field name="view_id" ref="master_deliver_report_tree_2"/>
-                    <field name="act_window_id" ref="master_deliver_report_action"/>
+			<field eval="3" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="master_deliver_report_tree_2"/>
+            <field name="act_window_id" ref="master_deliver_report_action"/>
         </record>
 
 		<record model="ir.actions.act_window.view" id="master_deliver_report_action_form">

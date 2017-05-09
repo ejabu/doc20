@@ -63,14 +63,16 @@ class master_deliver(models.Model):
     notes = fields.Text(string='Notes', copy=True)
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
-    # idc_id = fields.Many2one('doc.idc', 'Related IDC', ondelete='restrict', copy=False)
-    idc_id = fields.Many2many('doc.idc', 'master_to_idc', 'line_ids', 'idc_id', string="Related IDC", copy=False)
+    idc_id = fields.Many2one('doc.idc', 'IDC', ondelete='restrict', copy=False)
+    # idc_id = fields.Many2many('doc.idc', 'master_to_idc', 'line_ids', 'idc_id', string="Related IDC", copy=False)
     idc_number = fields.Char(string='IDC Number', copy=False)
     created_date = fields.Date(string='Created Date', default=lambda self: self._context.get('date', fields.Date.context_today(self)))
     sched_plan = fields.Date(string='Schedule Plan')
     sched_date = fields.Date(string='Schedule Date')
     send_date = fields.Date(string='IDC Sending Date', copy=False)
     rece_date = fields.Date(string='IDC Receiving Date', copy=False)
+    status_comment = fields.Many2one('conf.rec.comment', 'Status Comment')
+
 
     send_id = fields.Many2many('doc.rece', 'master_to_send', 'line_ids', 'send_id', string="Related Sending", copy=False)
     trans_number = fields.Char(string='Outgoing Transmittal Number', copy=False)

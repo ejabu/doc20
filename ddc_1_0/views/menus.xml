@@ -53,7 +53,13 @@
             parent="main_ddc" sequence="30"/>
 
             <menuitem id="ddc_doc_idc" name="IDC"
-                parent="submenu_update" sequence="20" action="doc_idc_action"/>
+                parent="submenu_update" sequence="20"/>
+
+                <menuitem id="ddc_doc_idc_out" name="IDC Outgoing"
+                    parent="ddc_doc_idc" sequence="10" action="doc_idc_out_action"/>
+
+                <menuitem id="ddc_doc_idc_in" name="IDC Incoming"
+                    parent="ddc_doc_idc" sequence="20" action="doc_idc_in_action"/>
 
             <menuitem id="ddc_doc_send" name="Outgoing Transmittal"
                 parent="submenu_update" sequence="30" action="doc_send_action"/>

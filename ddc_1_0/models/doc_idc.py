@@ -11,10 +11,11 @@ class doc_idc(models.Model):
     name = fields.Char(string='IDC Number', required=True)
 
     send_date = fields.Date(string='Sending Date', required=True)
-    sched_date = fields.Date(string='Schedule Date',)
+    sched_date = fields.Date(string='Schedule Date', required=True)
+    due_date = fields.Date(string='Due Date',)
 
-    # line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line')
-    line_ids = fields.Many2many('master.deliver', 'master_to_idc', 'idc_id', 'line_ids', string="Related MDR", copy=False)
+    line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line')
+    # line_ids = fields.Many2many('master.deliver', 'master_to_idc', 'idc_id', 'line_ids', string="Related MDR", copy=False)
 
     state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 

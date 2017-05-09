@@ -11,7 +11,7 @@ class doc_rece(models.Model):
     recepient = fields.Many2one('res.partner', string='Recepient', required=True, copy=False)
     name = fields.Char(string='Incoming Transmittal Number', required=True)
 
-    recv_rece_date = fields.Date(string='Receiving Date', required=True)
+    recv_rece_date = fields.Date(string='Transmittal Date', required=True)
 
 
     # line_ids = fields.One2many('master.deliver', 'rece_id', 'MDR Line')

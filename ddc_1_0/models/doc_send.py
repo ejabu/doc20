@@ -9,13 +9,11 @@ class doc_send(models.Model):
     _name= "doc.send"
 
     name = fields.Char(string='Transmittal Number', required=True)
-    recepient = fields.Many2one('res.partner', string='Recepient', copy=False)
-    recepient_receive_Date = fields.Date(string='Recepient Receive Date')
-    
+    recepient = fields.Many2one('res.partner', string='Recepient', required=True, copy=False)
+    recepient_rece_date = fields.Date(string='Recepient Receive Date')
+
     trans_date = fields.Date(string='Transmittal Date', required=True)
     trans_due_date = fields.Date(string='Due Date',)
-    need_to_response = fields.Date(string='Need to Response',)
-    antam_date = fields.Date(string='Antam Receive Date',)
 
     # line_ids = fields.One2many('master.deliver', 'send_id', 'MDR Line')
     line_ids = fields.Many2many('master.deliver', 'master_to_send', 'send_id', 'line_ids', string="Related MDR", copy=False)
@@ -41,12 +39,8 @@ class doc_send(models.Model):
         for rec in self.line_ids:
             rec.write({'trans_trans_due_date': self.trans_due_date})
 
-    @api.onchange('line_ids','need_to_response')
-    def oc_need_to_response(self):
-        for rec in self.line_ids:
-            rec.write({'need_to_response': self.need_to_response})
 
-    @api.onchange('line_ids','antam_date')
-    def oc_antam_date(self):
+    @api.onchange('line_ids','recepient_rece_date')
+    def oc_recepient_rece_date(self):
         for rec in self.line_ids:
-            rec.write({'antam_date': self.antam_date})
+            rec.write({'recepient_rece_date': self.recepient_rece_date})

@@ -20,7 +20,6 @@ class send_eng_doc(models.Model):
     name = fields.Char(string='Transmittal Number', required=True)
     transmittal_date = fields.Date(string='Transmittal Date', required=True)
     due_date = fields.Date(string='Due Date',)
-    need_to_response = fields.Date(string='Need to Response',)
 
     # message = fields.Char(string='Message')
     message = fields.Many2one('conf.send.message', 'Message', ondelete='restrict')

@@ -12,7 +12,6 @@
                     <field name="to_company"/>
                     <field name="transmittal_date"/>
                     <field name="due_date"/>
-                    <field name="need_to_response"/>
                     <field name="message"/>
                     <field name="sender"/>
                     <field name="state"/>
@@ -47,7 +46,6 @@
                         <group >
                             <field name="transmittal_date"/>
                             <field name="due_date"/>
-                            <field name="need_to_response"/>
                             <field name="message" options="{'no_create':True , 'no_open':True}"/>
                             <field name="sender"/>
                         </group>

@@ -12,8 +12,7 @@
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
                     <field name="recepient"/>
-                    <field name="need_to_response"/>
-                    <field name="antam_date"/>
+                    <field name="recepient_rece_date"/>
                 </tree>
             </field>
         </record>
@@ -33,9 +32,7 @@
                                 <field name="name"/>
                                 <field name="trans_date"/>
                                 <field name="trans_due_date"/>
-                                <field name="need_to_response"/>
-                                <field name="recepient_receive_Date"/>
-                                <field name="antam_date"/>
+
                             </group>
                             <group></group>
                         </group>

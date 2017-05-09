@@ -11,8 +11,8 @@
                     <field name="name"/>
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
-                    <field name="recepient"/>
-                    <field name="recepient_rece_date"/>
+                    <field name="recipient"/>
+                    <field name="recipient_rece_date"/>
                 </tree>
             </field>
         </record>
@@ -28,7 +28,7 @@
                     </header>
                         <group>
                             <group>
-                                <field name="recepient"/>
+                                <field name="recipient"/>
                                 <field name="name"/>
                                 <field name="trans_date"/>
                                 <field name="trans_due_date"/>

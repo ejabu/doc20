@@ -20,6 +20,7 @@
         'views/idc_in.xml',
         'views/idc_out.xml',
         'views/doc_send.xml',
+        'views/doc_send_client.xml',
         'views/doc_rece.xml',
         'views/doc_status_update.xml',
         'views/doc_rev_update.xml',

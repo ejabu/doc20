@@ -104,7 +104,7 @@
                             <field name="trans_number"/>
                             <field name="trans_date"/>
                             <field name="due_date"/>
-                            <field name="recepient_rece_date"/>
+                            <field name="recipient_rece_date"/>
                         </group>
                     </group>
                     <h3>Notes</h3>

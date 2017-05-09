@@ -9,8 +9,8 @@ class doc_send(models.Model):
     _name= "doc.send"
 
     name = fields.Char(string='Transmittal Number', required=True)
-    recepient = fields.Many2one('res.partner', string='Recepient', required=True, copy=False)
-    recepient_rece_date = fields.Date(string='Recepient Receive Date')
+    recipient = fields.Many2one('res.partner', string='Recipient', required=True, copy=False)
+    recipient_rece_date = fields.Date(string='Recipient Receive Date')
 
     trans_date = fields.Date(string='Transmittal Date', required=True)
     trans_due_date = fields.Date(string='Due Date',)
@@ -40,7 +40,7 @@ class doc_send(models.Model):
             rec.write({'trans_trans_due_date': self.trans_due_date})
 
 
-    @api.onchange('line_ids','recepient_rece_date')
-    def oc_recepient_rece_date(self):
+    @api.onchange('line_ids','recipient_rece_date')
+    def oc_recipient_rece_date(self):
         for rec in self.line_ids:
-            rec.write({'recepient_rece_date': self.recepient_rece_date})
+            rec.write({'recipient_rece_date': self.recipient_rece_date})

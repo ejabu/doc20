@@ -84,7 +84,7 @@ class master_deliver(models.Model):
     trans_date = fields.Date(string='Transmittal Date', copy=False)
     due_date = fields.Date(string='Due Date', copy=False)
 
-    recepient_rece_date = fields.Date(string='Recepient Receive Date', copy=False)
+    recipient_rece_date = fields.Date(string='Recipient Receive Date', copy=False)
 
     rece_id = fields.Many2many('doc.rece', 'master_to_rece', 'line_ids', 'rece_id', string="Related Receiving", copy=False)
     recv_trans_number = fields.Char(string='Incoming Transmittal Number', copy=False)

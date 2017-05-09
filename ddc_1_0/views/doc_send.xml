@@ -11,6 +11,7 @@
                     <field name="name"/>
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
+                    <field name="recepient"/>
                     <field name="need_to_response"/>
                     <field name="antam_date"/>
                 </tree>
@@ -28,10 +29,12 @@
                     </header>
                         <group>
                             <group>
+                                <field name="recepient"/>
                                 <field name="name"/>
                                 <field name="trans_date"/>
                                 <field name="trans_due_date"/>
                                 <field name="need_to_response"/>
+                                <field name="recepient_receive_Date"/>
                                 <field name="antam_date"/>
                             </group>
                             <group></group>
@@ -41,11 +44,11 @@
                             <tree editable="bottom">
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>
-                                <field name="discipline" readonly="1"/>
-                                <field name="doc_type" readonly="1"/>
-                                <field name="external_status" string="Status"/>
-                                <field name="rev_num" />
-                                <field name="originator" readonly="1"/>
+                                <field name="discipline" readonly="1" options="{'no_open': True}"/>
+                                <field name="doc_type" readonly="1" options="{'no_open': True}"/>
+                                <field name="external_status"  readonly="1" options="{'no_open': True}" string="Status"/>
+                                <field name="rev_num" readonly="1" options="{'no_open': True}"/>
+                                <field name="originator"  readonly="1" options="{'no_open': True}"/>
 
                             </tree>
                         </field>

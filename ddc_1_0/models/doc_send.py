@@ -9,7 +9,9 @@ class doc_send(models.Model):
     _name= "doc.send"
 
     name = fields.Char(string='Transmittal Number', required=True)
-
+    recepient = fields.Many2one('res.partner', string='Recepient', copy=False)
+    recepient_receive_Date = fields.Date(string='Recepient Receive Date')
+    
     trans_date = fields.Date(string='Transmittal Date', required=True)
     trans_due_date = fields.Date(string='Due Date',)
     need_to_response = fields.Date(string='Need to Response',)

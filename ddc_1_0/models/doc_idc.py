@@ -14,7 +14,7 @@ class doc_idc(models.Model):
     sched_date = fields.Date(string='Schedule Date', required=True)
     due_date = fields.Date(string='Due Date',)
 
-    line_count = fields.Integer(string='Line Count',compute='_line_count', store=True)
+    # line_count = fields.Integer(string='Line Count',compute='_line_count', store=True)
 
     line_ids = fields.One2many('master.deliver', 'idc_id', 'MDR Line')
     # line_ids = fields.Many2many('master.deliver', 'master_to_idc', 'idc_id', 'line_ids', string="Related MDR", copy=False)
@@ -26,12 +26,11 @@ class doc_idc(models.Model):
         'send_date': lambda *a:datetime.now().strftime('%Y-%m-%d'),
     }
 
-    @api.multi
-    @api.depends('line_ids')
-    def _line_count(self):
-        # import ipdb; ipdb.set_trace()
-        for rec in self:
-            rec.line_count = len(rec.line_ids)
+    # @api.multi
+    # @api.depends('line_ids')
+    # def _line_count(self):
+    #     for rec in self:
+    #         rec.line_count = len(rec.line_ids)
 
 
 

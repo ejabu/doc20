@@ -10,7 +10,6 @@
                 <tree>
                     <field name="name"/>
                     <field name="send_date"/>
-                    <field name="line_count"/>
                 </tree>
             </field>
         </record>

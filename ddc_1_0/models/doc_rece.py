@@ -8,6 +8,7 @@ class doc_rece(models.Model):
 
     _name= "doc.rece"
 
+    recepient = fields.Many2one('res.partner', string='Recepient', required=True, copy=False)
     name = fields.Char(string='Incoming Transmittal Number', required=True)
 
     recv_rece_date = fields.Date(string='Receiving Date', required=True)

@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="recepient" string="Receive From"/>
                     <field name="recv_rece_date"/>
                 </tree>
             </field>
@@ -25,6 +26,7 @@
                     </header>
                         <group>
                             <group>
+                                <field name="recepient" string="Receive From"/>
                                 <field name="name"/>
                                 <field name="recv_rece_date"/>
                             </group>
@@ -35,10 +37,10 @@
                             <tree editable="bottom">
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>
-                                <field name="discipline" readonly="1"/>
-                                <field name="doc_type" readonly="1"/>
-                                <field name="external_status" string="Status"/>
-                                <field name="rev_num" />
+                                <field name="discipline" readonly="1" options="{'no_open': True}"/>
+                                <field name="doc_type" readonly="1" options="{'no_open': True}"/>
+                                <field name="external_status" readonly="1" options="{'no_open': True}" string="Status"/>
+                                <field name="rev_num" readonly="1" options="{'no_open': True}"/>
                                 <field name="recv_comment" />
                             </tree>
                         </field>

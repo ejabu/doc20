@@ -14,6 +14,7 @@
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
                     <field name="recipient"/>
+                    <field name="recipient_rece_date"/>
                 </tree>
             </field>
         </record>

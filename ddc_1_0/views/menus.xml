@@ -44,7 +44,7 @@
             <menuitem id="submenu_master_update" name="Update"
                 parent="submenu_master_doc"/>
 
-            <menuitem id="ddc_doc_status_update" name="Document Revision"
+            <menuitem id="ddc_doc_revision_update" name="Document Revision"
                 parent="submenu_master_update" sequence="10" action="doc_rev_update_action"/>
 
             <menuitem id="ddc_doc_status_update" name="Document Status"

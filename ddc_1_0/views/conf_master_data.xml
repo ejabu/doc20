@@ -185,6 +185,7 @@
             <field name="model">conf.rev.num</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="sequence" invisible="1"/>
                     <field name="name"/>
                 </tree>
             </field>

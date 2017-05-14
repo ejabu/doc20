@@ -31,8 +31,15 @@ class conf_doc_status(models.Model):
 
 class conf_rev_num(models.Model):
     _name= "conf.rev.num"
-    name = fields.Char(string='Document Rev Number', required=True)
+    
+    _order = 'sequence'
 
+    name = fields.Char(string='Document Rev Number', required=True)
+    sequence = fields.Integer('Sequence', required=True, help='Use to arrange calculation sequence', select=True)
+
+    _defaults = {
+        'sequence': 10,
+    }
 class conf_internal_status(models.Model):
     _name= "conf.internal.status"
     name = fields.Char(string='Document Internal Status', required=True)

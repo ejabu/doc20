@@ -39,7 +39,7 @@
                         context='{"default_is_history": "True",
                         "default_revision_date": context_today().strftime("%Y-%m-%d")
                         }'
-                        options='{"addLabel":"Add"}'
+                        options='{"addLabel":"Add"}' limit="5"
                         >
                         <tree editable="bottom"  default_order="status_date">
                             <field name="rev_num"/>

@@ -35,11 +35,13 @@
                     </group>
 
 
-                    <field name="history_ids"
-                        context="{'this_doc': active_id, 'default_is_history': 'True',
-                        'default_revision_date': context_today().strftime('%Y-%m-%d')
-                        }">
-                        <tree editable="bottom" default_order="status_date">
+                    <field name="history_ids" mantap="hehe"
+                        context='{"default_is_history": "True",
+                        "default_revision_date": context_today().strftime("%Y-%m-%d")
+                        }'
+                        options='{"addLabel":"Add"}'
+                        >
+                        <tree editable="bottom"  default_order="status_date">
                             <field name="rev_num"/>
                             <field name="revision_date"/>
                             <field name="external_status" readonly="1"/>

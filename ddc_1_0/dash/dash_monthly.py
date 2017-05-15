@@ -22,7 +22,7 @@ class dash_monthly(models.Model):
     year_end =  fields.Selection([(str(num), str(num)) for num in range((datetime.now().year)-5, (datetime.now().year)+5)], 'Year End', required=True)
     date_field_start = fields.Selection(selection=[
                                             ('mdr.create_date', 'Date Creation'),
-                                            ('mdr.sched_date', 'Schedule Date'),
+                                            
                                             ('mdr.recv_rece_date', 'Receiving Date'),
                                             ('mdr.due_date', 'Due Date'),
                                             ('mdr.send_date', 'IDC Sending Date'),

@@ -11,7 +11,7 @@ class doc_idc(models.Model):
     name = fields.Char(string='IDC Number', required=True)
 
     send_date = fields.Date(string='Sending Date', required=True)
-    sched_date = fields.Date(string='Schedule Date', required=True)
+    sched_date = fields.Date(string='Schedule Date')
     due_date = fields.Date(string='Due Date',)
 
     # line_count = fields.Integer(string='Line Count',compute='_line_count', store=True)
@@ -38,9 +38,9 @@ class doc_idc(models.Model):
     def oc_name(self):
         self.line_ids.write({'idc_number': self.name})
 
-    @api.onchange('line_ids','sched_date')
-    def oc_sched_date(self):
-        self.line_ids.write({'sched_date': self.sched_date})
+    # @api.onchange('line_ids','sched_date')
+    # def oc_sched_date(self):
+    #     self.line_ids.write({'sched_date': self.sched_date})
 
     @api.onchange('line_ids','due_date')
     def oc_sched_date(self):

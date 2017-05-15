@@ -4,7 +4,7 @@
 
 
 
-        <record id="master_deliver_report_search" model="ir.ui.view">
+        <!-- <record id="master_deliver_report_search" model="ir.ui.view">
             <field name="name">master.deliver.search</field>
             <field name="model">master.deliver</field>
             <field name="arch" type="xml">
@@ -30,7 +30,7 @@
                     </group>
                 </search>
             </field>
-        </record>
+        </record> -->
 
         <!-- Tree view for the menuitem -->
         <record id="master_deliver_report_tree_2" model="ir.ui.view">
@@ -111,6 +111,7 @@
                         <group string="Transmittal">
                             <field name="recv_trans_number"/>
                             <field name="recv_rece_date"/>
+                            <field name="recipient_rece_date"/>
                             <br/>
                             <br/>
                             <field name="trans_number"/>
@@ -144,7 +145,7 @@
             <field name="name">MDR Overview Report</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
-            <field name="search_view_id" ref="master_deliver_report_search"/>
+            <!-- <field name="search_view_id" ref="master_deliver_report_search"/> -->
             <field name="context">{}</field>
             <field name="domain">[('is_history','=',True)]</field>
             <field name="view_id" eval="False"/>

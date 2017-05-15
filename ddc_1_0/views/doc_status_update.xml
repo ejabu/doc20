@@ -55,6 +55,8 @@
                             <field name="is_history" invisible="1"/>
                         </tree>
                     </field>
+                    <br/>
+                    <br/>
                     <h3>Notes</h3>
                     <field name="notes"/>
                     <br/>
@@ -80,7 +82,6 @@
             <field name="name">Document Status Update</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
-            <field name="search_view_id" ref="master_deliver_search_2"/>
             <field name="context">{"update": "status"}</field>
             <field name="domain">[('is_history','=',False)]</field>
             <field name="view_id" eval="False"/>

@@ -92,7 +92,7 @@
                             }'
                             options='{"addLabel":"Add a Revision"}'
                         >
-                        <tree editable="bottom" default_order="rev_num_seq status_date">
+                        <tree editable="bottom" default_order="rev_num_seq, status_date">
                             <field name="rev_num_seq" invisible="1"/>
                             <field name="rev_num"/>
                             <field name="revision_date"/>

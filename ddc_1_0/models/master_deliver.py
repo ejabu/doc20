@@ -18,7 +18,8 @@ class master_deliver(models.Model):
     def _get_external(self):
         for record in self:
             if record.is_history is False :
-                tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True)
+                #Mengecek Urutan Terakhir berdasarkan status_date, kemudian rev_num_seq
+                tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True).sorted(key=lambda r: r.rev_num_seq, reverse=True)
                 if len(tes) > 0:
                     record.external_status = tes[0].external_status
                     record.status_date = tes[0].status_date

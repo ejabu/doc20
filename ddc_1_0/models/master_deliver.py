@@ -79,7 +79,7 @@ class master_deliver(models.Model):
     #SEND_ID dan RECE_ID selamanya harus selalu dipisah
     #KARENA Amplop dari Pihak Ketiga, selalu rapih dan juga dicatat.
     #BERBEDA dengan IDC yang ketika dokumennya diterima, amplop dari pihak ketiga diabaikan
-    
+
     send_id = fields.Many2many('doc.rece', 'master_to_send', 'line_ids', 'send_id', string="Related Sending", copy=False)
     trans_number = fields.Char(string='Outgoing Transmittal Number', copy=False)
     trans_date = fields.Date(string='Transmittal Date', copy=False)

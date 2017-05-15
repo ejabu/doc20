@@ -9,10 +9,19 @@
             <field name="priority" eval="50"/>
             <field name="arch" type="xml">
                 <search>
-                    <field name="idc_number" string="IDC"/>
                     <field name="name" string="Doc Number"/>
+                    <field name="doc_title" string="Doc Title"/>
+                    <field name="idc_number" string="IDC Outgoing Number"/>
+                    <field name="send_date" string="IDC Send"/>
+                    <field name="rev_num" string="Rev"/>
+                    <field name="doc_status" string="Internal Status"/>
+                    <field name="external_status" string="Status"/>
                     <group expand="0" string="Group By">
-                        <filter name="group_by_idc" string="IDC Number" domain="[]" context="{'group_by':'idc_number'}"/>
+                        <filter name="group_by_idc" string="IDC Number" domain="[]" context="{'group_by':'idc_id'}"/>
+                        <filter name="group_by_rev_num" string="Rev" domain="[]" context="{'group_by':'rev_num'}"/>
+                        <filter name="group_by_status" string="Internal Status" domain="[]" context="{'group_by':'doc_status'}"/>
+                        <filter name="group_by_exstat" string="Status" domain="[]" context="{'group_by':'external_status'}"/>
+                        <filter name="group_by_send_date" string="Send Date" domain="[]" context="{'group_by':'send_date'}"/>
                     </group>
                 </search>
             </field>
@@ -24,10 +33,17 @@
             <field name="model">master.deliver</field>
             <field name="priority" eval="50"/>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="idc_number"/>
+                <tree create="false" delete="false" edit="false">
+                    <field name="idc_id" invisible="1"/>
+                    <field name="idc_number" string="IDC Outgoing Number"/>
                     <field name="name"/>
+                    <field name="doc_title"/>
+                    <field name="doc_type"/>
+                    <field name="rev_num" invisible="0"/>
+                    <field name="doc_status" string="Internal Status" invisible="0"/>
+                    <field name="external_status" string="Status" invisible="0"/>
                     <field name="send_date" string="Sending Date"/>
+                    <field name="rece_date" string="Receiving Date"/>
                 </tree>
             </field>
         </record>
@@ -45,12 +61,17 @@
 
                     <group colspan="4" col="4">
                         <group >
-                            <field name="idc_id"/>
-                            <field name="send_date"/>
+                            <field name="idc_id" string="IDC Outgoing Number"/>
                             <field name="name"/>
+                            <field name="send_date"/>
+                            <field name="rece_date"/>
                         </group>
                         <group >
-
+                            <field name="rev_num" string="Rev" options="{'no_open': True}"/>
+                            <field name="doc_status" string="Internal Status" options="{'no_open': True}"/>
+                            <field name="external_status" string="Status" options="{'no_open': True}"/>
+                            <field name="doc_type" string="Doc Type" options="{'no_open': True}"/>
+                            <field name="doc_type_desc"/>
                         </group>
                     </group>
 
@@ -66,7 +87,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="idc_search_mdr_action">
-            <field name="name">Master Deliverables</field>
+            <field name="name">Find IDC Outgoing by Doc Number</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
             <field name="search_view_id" ref="idc_search_mdr_search"/>

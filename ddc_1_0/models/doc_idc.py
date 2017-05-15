@@ -38,10 +38,10 @@ class doc_idc(models.Model):
     def oc_name(self):
         self.line_ids.write({'idc_number': self.name})
 
-    # @api.onchange('line_ids','sched_date')
-    # def oc_sched_date(self):
-    #     self.line_ids.write({'sched_date': self.sched_date})
+    @api.onchange('line_ids','send_date')
+    def oc_send_date(self):
+        self.line_ids.write({'send_date': self.send_date})
 
-    @api.onchange('line_ids','due_date')
-    def oc_sched_date(self):
-        self.line_ids.write({'due_date': self.due_date})
+    # @api.onchange('line_ids','due_date')
+    # def oc_sched_date(self):
+    #     self.line_ids.write({'due_date': self.due_date})

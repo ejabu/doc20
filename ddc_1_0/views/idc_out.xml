@@ -60,5 +60,20 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+
+        <record model="ir.actions.act_window.view" id="doc_idc_out_action_tree">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="doc_idc_out_tree"/>
+            <field name="act_window_id" ref="doc_idc_out_action"/>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="doc_idc_out_action_form">
+            <field eval="4" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="doc_idc_out_form"/>
+            <field name="act_window_id" ref="doc_idc_out_action"/>
+        </record>
     </data>
 </openerp>

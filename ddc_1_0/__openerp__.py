@@ -1,10 +1,10 @@
 {
     "name": "DDC 1.0",
-    "version": "0.3.0",
+    "version": "3.9",
     "depends": ["web_export_view"],
     'author': 'VISI',
     "category":"Document Management",
-    "description" : """Simple Document Management""",
+    "description" : """Versi 3.9 - Simple Document Management""",
     'data': [
         'static_lib.xml',
         #Reports

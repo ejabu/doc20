@@ -59,8 +59,11 @@
                 <menuitem id="ddc_doc_idc_out" name="IDC Outgoing"
                     parent="submenu_idc" sequence="10" action="doc_idc_out_action"/>
 
-                <menuitem id="ddc_doc_idc_in" name="IDC Incoming"
+                <menuitem id="ddc_doc_idc_in" name="IDC Incoming by IDC Number"
                     parent="submenu_idc" sequence="20" action="doc_idc_in_action"/>
+
+                <menuitem id="ddc_doc_idc_in_by_name" name="IDC Incoming by Doc Name"
+                    parent="submenu_idc" sequence="30" action="idc_search_mdr_action"/>
 
             <menuitem id="ddc_doc_transmittal" name="Transmittal"
                 parent="submenu_update" sequence="20"/>

@@ -6,7 +6,7 @@
         <record id="doc_idc_out_tree" model="ir.ui.view">
             <field name="name">doc.idc.out.tree</field>
             <field name="model">doc.idc</field>
-            <field name="priority" eval="10"/>
+            <field name="priority" eval="30"/>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -18,7 +18,7 @@
         <record id="doc_idc_out_form" model="ir.ui.view">
             <field name="name">doc.idc.out.form</field>
             <field name="model">doc.idc</field>
-            <field name="priority" eval="10"/>
+            <field name="priority" eval="30"/>
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -32,7 +32,12 @@
                             <group></group>
                         </group>
                         <!-- <field name="line_ids" domain="[('idc_id','=',False)]" options="{'not_delete': True}"> -->
-                        <field name="line_ids" domain="[('idc_id','=',False)]" widget="many2many" options="{'not_delete': True}">
+                        <field
+                            name="line_ids"
+                            domain="[('is_history','=',True), ('idc_id','=',False)]"
+                            widget="many2many"
+                            options='{"not_delete": True}'
+                            >
                             <tree editable="bottom">
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>

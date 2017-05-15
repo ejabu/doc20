@@ -30,6 +30,7 @@
             #IDC
                 'views/idc_in.xml',
                 'views/idc_out.xml',
+                'views/idc_search_mdr.xml',
             #Transmittal
                 'views/doc_send.xml',
                 'views/doc_send_client.xml',

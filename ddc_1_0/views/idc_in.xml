@@ -35,7 +35,7 @@
                         <!-- <field name="line_ids" domain="[('idc_id','=',False)]" options="{'not_delete': True}"> -->
                         <field
                             name="line_ids"
-                            domain="[('idc_id','=',False)]"
+                            domain="[('is_history','=',True), ('idc_id','=',False)]"
                             widget="many2many"
                             options='{"not_delete": True}'
                             >

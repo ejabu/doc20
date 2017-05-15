@@ -52,6 +52,7 @@ class master_deliver(models.Model):
 
     doc_status = fields.Many2one('conf.doc.status', 'Status', ondelete='restrict', copy=False)
     rev_num = fields.Many2one('conf.rev.num', 'Revision Number', ondelete='restrict', copy=False)
+    rev_num_seq = fields.Integer(string='Sequence', related='rev_num.sequence', store=False)
 
     #IFA IFI RE-IDC
     external_status = fields.Many2one('conf.external.status', 'External Status', compute='_get_external', inverse='_set_external', store=True)

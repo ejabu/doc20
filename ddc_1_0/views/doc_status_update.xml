@@ -6,7 +6,7 @@
 
 
 
-        
+
         <!-- Form view for the menuitem -->
         <record id="master_deliver_form_2" model="ir.ui.view">
             <field name="name">document.status.update.form</field>
@@ -46,8 +46,9 @@
                             }'
                             options='{"addLabel":"Add a Status"}'
                         >
-                        <tree editable="bottom" default_order="status_date">
-                            <field name="rev_num" readonly="1"/>
+                        <tree editable="bottom" default_order="rev_num_seq status_date">
+                            <field name="rev_num_seq" invisible="1"/>
+                            <field name="rev_num"/>
                             <field name="revision_date" readonly="1"/>
                             <field name="external_status"/>
                             <field name="status_date"/>

@@ -55,6 +55,7 @@
             <field name="res_model">dash.monthly</field>
             <field name="view_type">form</field>
             <!-- <field name="view_mode">tree,form</field> -->
+            <field name="help">Configure Report first to see the Report</field>
             <field name="view_mode">kanban,tree,form</field>
         </record>
 

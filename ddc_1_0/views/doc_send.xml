@@ -40,9 +40,14 @@
                             </group>
                             <group></group>
                         </group>
-                        <field name="line_ids" options="{'not_delete': True}">
-                        <!-- <field name="line_ids" domain="[('send_id','=',False)]" widget="many2many" options="{'not_delete': True}"> -->
+                        <field
+                            name="line_ids"
+                            domain="[('is_history','=',True)]"
+                            options='{"not_delete": True}'
+                            >
                             <tree editable="bottom">
+                                <field name="trans_number"/>
+                                <field name="is_history"/>
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>
                                 <field name="discipline" readonly="1" options="{'no_open': True}"/>

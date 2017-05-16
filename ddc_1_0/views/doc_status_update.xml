@@ -34,6 +34,8 @@
                             <field name="sched_plan" readonly="1"/>
                             <field name="external_status" invisible="1"/>
                             <field name="rev_num" invisible="1"/>
+                            <field name="revision_date" invisible="1"/>
+                            <field name="status_date" invisible="1"/>
                         </group>
 
                     </group>
@@ -41,8 +43,11 @@
 
                     <field  name="history_ids"
                             context='{
+                                "is_updating_status": True,
+                                "update_rev_num": rev_num,
+                                "update_revision_date": revision_date,
                                 "default_is_history": "True",
-                                "default_revision_date": context_today().strftime("%Y-%m-%d")
+                                "default_status_date": context_today().strftime("%Y-%m-%d")
                             }'
                             options='{"addLabel":"Add a Status"}'
                         >

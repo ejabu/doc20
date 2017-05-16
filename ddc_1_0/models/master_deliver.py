@@ -9,6 +9,26 @@ class master_deliver(models.Model):
     _name= "master.deliver"
     _order = "create_date"
 
+
+    def _get_default(self):
+        import ipdb; ipdb.set_trace()
+        return
+
+
+    @api.model
+    def default_get(self, fields):
+        rec = super(master_deliver, self).default_get(fields)
+        if self._context.get('is_updating_rev'):
+            rec.update({
+                'external_status': self._context.get('update_external_status'),
+                'status_date': self._context.get('update_status_date'),
+            })
+        elif self._context.get('is_updating_status'):
+            rec.update({
+                'rev_num': self._context.get('update_rev_num'),
+                'revision_date': self._context.get('update_revision_date'),
+            })
+        return rec
     # @api.one
     def _set_external(self):
         pass

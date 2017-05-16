@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data noupdate="0">
+        <record id="module_categ_ddc" model="ir.module.category">
+            <field name="name">DDC v 1.2.0</field>
+            <field name="description"></field>
+            <field name="sequence">100</field>
+        </record>
+
+        <!-- Basic User Access -->
+        <record id="ddc_doccon" model="res.groups">
+            <field name="name">Document Controller</field>
+            <field name="category_id" ref="module_categ_ddc"/>
+        </record>
+
+        <!-- <record id="vc_teacher" model="res.groups">
+            <field name="name">Teacher</field>
+            <field name="category_id" ref="module_categ_ddc"/>
+            <field name="implied_ids" eval="[(4, ref('vc_student'))]"/>
+        </record> -->
+    </data>
+
+    <data noupdate="1">
+        <!-- Untuk kebutuhan Khusus, seperti seorang santri hanya boleh melihat Tugasnya sendiri -->
+        <!-- <record id="property_rule_student_task" model="ir.rule">
+            <field name="name">Student Task</field>
+            <field name="model_id" ref="model_vocab_task"/>
+            <field name="domain_force">[('student_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('vc_student'))]"/>
+        </record> -->
+    </data>
+</openerp>

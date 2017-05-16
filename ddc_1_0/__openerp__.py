@@ -6,6 +6,9 @@
     "category":"Document Management",
     "description" : """Versi 3.9 - Simple Document Management""",
     'data': [
+        #Security must be Placed on Top
+        'security/basic.xml',
+        'security/ir.model.access.csv',
         'static_lib.xml',
         #Reports
             #Current Status

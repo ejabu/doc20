@@ -9,7 +9,7 @@ class dash_pivot_monthly(osv.osv):
 
     _columns = {
         'discipline' : fields.many2one('conf.discipline', 'Discipline', readonly=True),
-        'sched_date' : fields.datetime(string='Schedule Date', readonly=True),
+        'create_date' : fields.datetime(string='Create Date', readonly=True),
         'count': fields.integer('Amount of Document', readonly=True),
     }
 
@@ -18,7 +18,7 @@ class dash_pivot_monthly(osv.osv):
             SELECT
                 min(mdr.id) as id,
                 mdr.discipline as discipline,
-                mdr.sched_date as sched_date,
+                mdr.create_date as create_date,
                 count(*) as count
         """
         return select_str
@@ -33,7 +33,7 @@ class dash_pivot_monthly(osv.osv):
         group_by_str = """
             GROUP BY
                 mdr.discipline,
-                mdr.sched_date
+                mdr.create_date
         """
         return group_by_str
 

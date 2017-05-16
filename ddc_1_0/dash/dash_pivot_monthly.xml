@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <pivot disable_linking="True">
                     <field name="discipline" type="row"/>
-                    <field name="sched_date" interval="month" type="col"/>
+                    <field name="create_date" interval="month" type="col"/>
 
                     <field name="count" type="measure"/>
                 </pivot>

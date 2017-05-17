@@ -142,6 +142,8 @@ class master_deliver(models.Model):
                     vals['is_history'] = True
             if self._context.get("update") == "status":
                 context_to_pass={
+                    'rev_num': vals['rev_num'],
+                    'revision_date': vals['revision_date'],
                     'external_status': vals['external_status'],
                     'status_date': vals['status_date'],
                     'parent_id': vals['version_id']
@@ -150,6 +152,8 @@ class master_deliver(models.Model):
                 context_to_pass={
                     'rev_num': vals['rev_num'],
                     'revision_date': vals['revision_date'],
+                    'external_status': vals['external_status'],
+                    'status_date': vals['status_date'],
                     'parent_id': vals['version_id']
                 }
             res = super(master_deliver, self.with_context(context_to_pass)).create(vals)

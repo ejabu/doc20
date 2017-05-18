@@ -4,7 +4,7 @@
     "depends": ["web_export_view"],
     'author': 'VISI',
     "category":"Document Management",
-    "description" : """Versi 3.9 - Simple Document Management""",
+    "description" : """Versi 3.9.3 - Simple Document Management""",
     'data': [
         #Security must be Placed on Top
         'security/basic.xml',

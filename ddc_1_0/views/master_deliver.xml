@@ -166,7 +166,7 @@
             <field name="search_view_id" ref="master_deliver_search"/>
             <field name="context">{}</field>
             <field name="domain">[('is_history','=',False)]</field>
-            <!-- <field name="context">{'search_default_active':1}</field> -->
+            <field name="context">{'search_default_active':1}</field>
             <!-- <field name="context">{'search_default_active':1,'search_default_group_by_name':1}</field> -->
             <field name="view_mode">tree,form</field>
         </record>

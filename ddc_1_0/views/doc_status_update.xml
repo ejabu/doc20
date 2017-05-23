@@ -17,65 +17,71 @@
                     <header>
 
                     </header>
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <group >
+                                <field name="discipline" readonly="1"/>
+                                <field name="doc_categ" readonly="1"/>
+                                <field name="doc_sub" readonly="1"/>
+                                <field name="name" readonly="1"/>
+                                <field name="doc_title" readonly="1"/>
+                            </group>
+                            <group >
+                                <field name="doc_pred" readonly="1"/>
+                                <field name="alt_doc" readonly="1"/>
+                                <field name="doc_type" readonly="1"/>
+                                <field name="doc_type_desc" readonly="1"/>
+                                <field name="sched_plan" readonly="1"/>
+                                <field name="external_status" invisible="1"/>
+                                <field name="rev_num" invisible="1"/>
+                                <field name="revision_date" invisible="1"/>
+                                <field name="status_date" invisible="1"/>
+                            </group>
 
-                    <group colspan="4" col="4">
-                        <group >
-                            <field name="discipline" readonly="1"/>
-                            <field name="doc_categ" readonly="1"/>
-                            <field name="doc_sub" readonly="1"/>
-                            <field name="name" readonly="1"/>
-                            <field name="doc_title" readonly="1"/>
                         </group>
-                        <group >
-                            <field name="doc_pred" readonly="1"/>
-                            <field name="alt_doc" readonly="1"/>
-                            <field name="doc_type" readonly="1"/>
-                            <field name="doc_type_desc" readonly="1"/>
-                            <field name="sched_plan" readonly="1"/>
-                            <field name="external_status" invisible="1"/>
-                            <field name="rev_num" invisible="1"/>
-                            <field name="revision_date" invisible="1"/>
-                            <field name="status_date" invisible="1"/>
-                        </group>
-
-                    </group>
 
 
-                    <field  name="history_ids"
-                            context='{
-                                "is_updating_status": True,
-                                "update_rev_num": rev_num,
-                                "update_revision_date": revision_date,
-                                "default_is_history": "True",
-                                "default_status_date": context_today().strftime("%Y-%m-%d")
-                            }'
-                            options='{"addLabel":"Add a Status"}'
-                        >
-                        <tree editable="bottom" default_order="rev_num_seq, status_date">
-                            <field name="rev_num_seq" invisible="1"/>
-                            <field name="rev_num" readonly="1"/>
-                            <field name="revision_date" readonly="1"/>
-                            <field name="external_status"/>
-                            <field name="status_date"/>
-                            <field name="is_history" invisible="1"/>
-                        </tree>
-                    </field>
-                    <br/>
-                    <br/>
-                    <h3>Notes</h3>
-                    <field name="notes"/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                        <field  name="history_ids"
+                                context='{
+                                    "is_updating_status": True,
+                                    "update_rev_num": rev_num,
+                                    "update_revision_date": revision_date,
+                                    "default_is_history": "True",
+                                    "default_status_date": context_today().strftime("%Y-%m-%d")
+                                }'
+                                options='{"addLabel":"Add a Status"}'
+                            >
+                            <tree editable="bottom" default_order="rev_num_seq, status_date">
+                                <field name="rev_num_seq" invisible="1"/>
+                                <field name="rev_num" readonly="1"/>
+                                <field name="revision_date" readonly="1"/>
+                                <field name="external_status"/>
+                                <field name="status_date"/>
+                                <field name="is_history" invisible="1"/>
+                            </tree>
+                        </field>
+                        <br/>
+                        <br/>
+                        <h3>Notes</h3>
+                        <field name="notes"/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
                 </form>
             </field>
         </record>

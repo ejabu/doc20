@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 class doc_idc(models.Model):
 
     _name= "doc.idc"
+    _inherit = ['mail.thread']
 
     name = fields.Char(string='IDC Number', required=True)
 

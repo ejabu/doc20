@@ -7,6 +7,7 @@ from openerp.exceptions import Warning
 class master_deliver(models.Model):
 
     _name= "master.deliver"
+    _inherit = ['mail.thread']
     _order = "create_date"
 
 

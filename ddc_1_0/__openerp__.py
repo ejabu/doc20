@@ -1,7 +1,7 @@
 {
     "name": "DDC 1.0",
     "version": "3.9",
-    "depends": ["web_export_view"],
+    'depends': ['base', 'mail', 'web_export_view'],
     'author': 'VISI',
     "category":"Document Management",
     "description" : """Versi 3.9.3 - Simple Document Management""",

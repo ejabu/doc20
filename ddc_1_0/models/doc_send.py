@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 class doc_send(models.Model):
 
     _name= "doc.send"
+    _inherit = ['mail.thread']
 
     name = fields.Char(string='Transmittal Number', required=True)
     recipient = fields.Many2one('res.partner', string='Recipient', required=True, copy=False)

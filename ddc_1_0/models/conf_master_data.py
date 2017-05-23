@@ -12,6 +12,7 @@ class conf_discipline(models.Model):
 class conf_doc_categ(models.Model):
     _name= "conf.doc.categ"
     name = fields.Char(string='Document Category', required=True)
+    desc = fields.Char(string='Description', required=True)
     discipline = fields.Many2one('conf.discipline', 'Discipline', required=True, ondelete='restrict')
 
 class conf_doc_sub(models.Model):
@@ -31,7 +32,7 @@ class conf_doc_status(models.Model):
 
 class conf_rev_num(models.Model):
     _name= "conf.rev.num"
-    
+
     _order = 'sequence'
 
     name = fields.Char(string='Document Rev Number', required=True)

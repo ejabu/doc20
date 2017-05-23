@@ -83,7 +83,6 @@ class master_deliver(models.Model):
 
 
     notes = fields.Text(string='Notes', copy=True)
-    state = fields.Selection(selection=[('new', 'New'), ('done', 'Done')])
 
     idc_id = fields.Many2one('doc.idc', 'IDC', ondelete='restrict', copy=False)
     # idc_id = fields.Many2many('doc.idc', 'master_to_idc', 'line_ids', 'idc_id', string="Related IDC", copy=False)
@@ -112,9 +111,11 @@ class master_deliver(models.Model):
     recv_rece_date = fields.Date(string='Receiving Date', store=True, copy=False)
     recv_comment = fields.Many2one('conf.rec.comment', 'Status Comment', ondelete='restrict', copy=False)
 
+    state = fields.Selection(selection=[('Active', 'Active'), ('Inactive', 'Inactive')], string='Active')
+
 
     _defaults = {
-        # 'state': 'new',
+        'state': 'Active',
     }
 
     _sql_constraints = [

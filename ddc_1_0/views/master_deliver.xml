@@ -19,9 +19,10 @@
                     <field name="recv_trans_number" string="Incoming Transmittal Number"/>
                     <field name="doc_status" string="Internal Status"/>
                     <field name="originator" string="Originator"/>
+                    <field name="state" string="Active or Inactive"/>
 
-                    <!-- <filter name="active" string="Active" domain="[('state','!=','done')]"/>
-                    <filter name="inactive" string="Inactive" domain="[('state','=','done')]"/> -->
+                    <filter name="active" string="Active" domain="[('state','=','Active')]"/>
+                    <filter name="inactive" string="Inactive" domain="[('state','!=','Active')]"/>
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
                         <filter name="group_by_disc" string="Discipline" domain="[]" context="{'group_by':'discipline'}"/>
@@ -119,7 +120,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-
+                        <field name="state" widget="statusbar" clickable="True"/>
                     </header>
 
                     <group colspan="4" col="4">

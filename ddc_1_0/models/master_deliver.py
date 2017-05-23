@@ -3,6 +3,7 @@ from openerp import models, fields
 from openerp.osv import fields as Fields
 
 from openerp.exceptions import Warning
+from openerp.exceptions import UserError, ValidationError
 
 class master_deliver(models.Model):
 
@@ -12,7 +13,6 @@ class master_deliver(models.Model):
 
 
     def _get_default(self):
-        import ipdb; ipdb.set_trace()
         return
 
 
@@ -124,6 +124,13 @@ class master_deliver(models.Model):
         # ('name', 'unique(name)', "The system record Can't be duplicate value for this field!")
     ]
 
+
+    @api.constrains('name')
+    def _check_name(self):
+        # self.env['res.partner'].search([['is_company', '=', True], ['customer', '=', True]])
+        existing_ids = self.search([['name', '=', self.name], ['is_history', '=', False]])
+        if len(existing_ids) > 1 :
+            raise ValidationError("There is already existing MDR with similiar name Doc Number")
 
     @api.model
     def create(self, vals):

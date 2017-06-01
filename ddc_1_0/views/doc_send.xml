@@ -29,19 +29,24 @@
                     <header>
                         <button name="check_duplicate"
                             icon="gtk-apply"
+                            groups="base.group_no_one"
                                             string="Check Duplicate" type="object"
                                              />
                         <button name="remove_duplicate"
+                        groups="base.group_no_one"
                                             string="Remove Duplicate" type="object"
                                              />
                         <button name="check_child_id"
                             icon="gtk-apply"
+                            groups="base.group_no_one"
                                             string="Check Relasi" type="object"
                                              />
                         <button name="tukar_relasi"
+                        groups="base.group_no_one"
                                             string="Tukar Relasi" type="object"
                                              />
                         <button name="force_oc"
+                        groups="base.group_no_one"
                                             string="Force Onchange" type="object"
                                              />
 
@@ -63,7 +68,6 @@
                             options='{"not_delete": True}'
                             >
                             <tree editable="bottom">
-                                <field name="version_id"/>
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>
                                 <field name="discipline" readonly="1" options="{'no_open': True}"/>

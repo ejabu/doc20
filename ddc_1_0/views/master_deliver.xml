@@ -136,7 +136,7 @@
                             <group >
                                 <field name="doc_pred"/>
                                 <field name="alt_doc"/>
-                                <field name="doc_type" required="1" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="doc_type" required="0" domain="[('discipline', '=', discipline)]" options="{'no_create': True, 'no_open': True}"/>
                                 <field name="doc_type_desc"/>
                                 <field name="sched_plan"/>
                             </group>

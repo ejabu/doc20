@@ -17,7 +17,7 @@ class master_deliver(models.Model):
     file_name = fields.Char(string='File Name')
     alt_doc = fields.Char(string='Alternative Document #')
     sched_date = fields.Date(string='Schedule Date')
-    doc_type = fields.Many2one('conf.doc.type', 'Document Type', required=True)
+    doc_type = fields.Many2one('conf.doc.type', 'Document Type')
     doc_status = fields.Many2one('conf.doc.status', 'Status')
     doc_status_update = fields.Many2one('conf.doc.status', 'Status')
     # rev_num = fields.Many2one('conf.rev.num', 'Revision Number')
@@ -53,31 +53,30 @@ class master_deliver(models.Model):
 
     @api.multi
     def action_view_invoice(self):
-        import ipdb; ipdb.set_trace()
         pass
-        invoice_ids = self.mapped('invoice_ids')
-        imd = self.env['ir.model.data']
-        action = imd.xmlid_to_object('account.action_invoice_tree1')
-        list_view_id = imd.xmlid_to_res_id('account.invoice_tree')
-        form_view_id = imd.xmlid_to_res_id('account.invoice_form')
-
-        result = {
-            'name': action.name,
-            'help': action.help,
-            'type': action.type,
-            'views': [[list_view_id, 'tree'], [form_view_id, 'form'], [False, 'graph'], [False, 'kanban'], [False, 'calendar'], [False, 'pivot']],
-            'target': action.target,
-            'context': action.context,
-            'res_model': action.res_model,
-        }
-        if len(invoice_ids) > 1:
-            result['domain'] = "[('id','in',%s)]" % invoice_ids.ids
-        elif len(invoice_ids) == 1:
-            result['views'] = [(form_view_id, 'form')]
-            result['res_id'] = invoice_ids.ids[0]
-        else:
-            result = {'type': 'ir.actions.act_window_close'}
-        return result
+        # invoice_ids = self.mapped('invoice_ids')
+        # imd = self.env['ir.model.data']
+        # action = imd.xmlid_to_object('account.action_invoice_tree1')
+        # list_view_id = imd.xmlid_to_res_id('account.invoice_tree')
+        # form_view_id = imd.xmlid_to_res_id('account.invoice_form')
+        #
+        # result = {
+        #     'name': action.name,
+        #     'help': action.help,
+        #     'type': action.type,
+        #     'views': [[list_view_id, 'tree'], [form_view_id, 'form'], [False, 'graph'], [False, 'kanban'], [False, 'calendar'], [False, 'pivot']],
+        #     'target': action.target,
+        #     'context': action.context,
+        #     'res_model': action.res_model,
+        # }
+        # if len(invoice_ids) > 1:
+        #     result['domain'] = "[('id','in',%s)]" % invoice_ids.ids
+        # elif len(invoice_ids) == 1:
+        #     result['views'] = [(form_view_id, 'form')]
+        #     result['res_id'] = invoice_ids.ids[0]
+        # else:
+        #     result = {'type': 'ir.actions.act_window_close'}
+        # return result
 
 
     # def change_doc_status(self, cr, uid, ids, context=None):

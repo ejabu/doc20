@@ -9,6 +9,7 @@ class dash_discipline(osv.osv):
 
     _columns = {
         'discipline' : fields.many2one('conf.discipline', 'Discipline', readonly=True),
+        'external_status' : fields.many2one('conf.external.status', 'External Status', readonly=True),
         'count': fields.integer('Amount of Document', readonly=True),
     }
 
@@ -17,6 +18,7 @@ class dash_discipline(osv.osv):
             SELECT
                 min(mdr.id) as id,
                 mdr.discipline as discipline,
+                mdr.external_status as external_status,
                 count(*) as count
         """
         return select_str
@@ -30,7 +32,8 @@ class dash_discipline(osv.osv):
     def _group_by(self):
         group_by_str = """
             GROUP BY
-                mdr.discipline
+                mdr.discipline,
+                mdr.external_status
         """
         return group_by_str
 

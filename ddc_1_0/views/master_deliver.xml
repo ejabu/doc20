@@ -121,6 +121,15 @@
                 <form>
                     <header>
                         <field name="state" widget="statusbar" clickable="True"/>
+                        <button name="active_all"
+                                            string="All Active" type="object"
+                                             />
+                        <button name="change_rev"
+                                            string="Change Rev" type="object"
+                                             />
+                        <button name="change_exstat"
+                                            string="Change Exstat" type="object"
+                                             />
                     </header>
                     <sheet>
 

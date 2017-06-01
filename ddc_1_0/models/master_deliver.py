@@ -30,9 +30,47 @@ class master_deliver(models.Model):
                 'revision_date': self._context.get('update_revision_date'),
             })
         return rec
-    # @api.one
+
     def _set_external(self):
         pass
+
+    @api.one
+    def active_all(self):
+        doc_to_change = self.search([['state', '=', False]])
+        doc_to_change.write({'state': 'Active'})
+        return
+
+    @api.one
+    def _change_rev(self, param):
+        rev_all_ids = self.env['conf.rev.num'].search([['name', '=', param]]).ids
+        doc_to_change = self.search([['rev_num', 'in', rev_all_ids]])
+        jadi_kesini = rev_all_ids.pop(0)
+        doc_to_change.write({'rev_num': jadi_kesini})
+
+        self.env['conf.rev.num'].search([['id', 'in', rev_all_ids]]).unlink()
+        return
+
+    @api.one
+    def change_rev(self):
+        master_deliver._change_rev(self, "0")
+        master_deliver._change_rev(self, "1")
+        master_deliver._change_rev(self, "2")
+        master_deliver._change_rev(self, "3")
+        master_deliver._change_rev(self, "4")
+
+    @api.one
+    def _change_exstat(self, param):
+        rev_all_ids = self.env['conf.external.status'].search([['name', '=', param]]).ids
+        doc_to_change = self.search([['external_status', 'in', rev_all_ids]])
+        jadi_kesini = rev_all_ids.pop(0)
+        doc_to_change.write({'external_status': jadi_kesini})
+
+        self.env['conf.external.status'].search([['id', 'in', rev_all_ids]]).unlink()
+        return
+
+    @api.one
+    def change_exstat(self):
+        master_deliver._change_exstat(self, "IFR")
 
     @api.one
     @api.depends('history_ids')

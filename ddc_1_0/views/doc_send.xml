@@ -27,12 +27,16 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-
+                        <button name="rewrite_relation"
+                                            icon="gtk-apply"
+                                            string="Check Relasi" type="object"
+                                             />
 
                     </header>
                     <sheet>
                         <group>
                             <group>
+                                <field name="id"/>
                                 <field name="recipient"/>
                                 <field name="name"/>
                                 <field name="trans_date"/>
@@ -47,6 +51,7 @@
                             options='{"not_delete": True}'
                             >
                             <tree editable="bottom">
+                                <field name="version_id"/>
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>
                                 <field name="discipline" readonly="1" options="{'no_open': True}"/>
@@ -54,7 +59,7 @@
                                 <field name="external_status"  readonly="1" options="{'no_open': True}" string="Status"/>
                                 <field name="rev_num" readonly="1" options="{'no_open': True}"/>
                                 <field name="originator"  readonly="1" options="{'no_open': True}"/>
-                                <field name="is_history" invisible="1"/>
+                                <field name="is_history" invisible="0"/>
 
                             </tree>
                         </field>

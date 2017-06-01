@@ -3,6 +3,7 @@ from openerp import models, fields
 from openerp.osv import fields as Fields
 from datetime import datetime, timedelta
 
+from openerp.exceptions import UserError
 
 class doc_send(models.Model):
 
@@ -41,3 +42,24 @@ class doc_send(models.Model):
     @api.onchange('line_ids','recipient_rece_date')
     def oc_recipient_rece_date(self):
         self.line_ids.write({'recipient_rece_date': self.recipient_rece_date})
+
+
+    @api.multi
+    def rewrite_relation(self):
+
+        all_counter = 0
+        counter = 0
+        message = "Check berapa banyak MDR yang terhubung, namun sebenarnya belum pernah Update Revisi / Update Status \n \n"
+        for doc in self.search([]):
+            doc_send_name = doc.name
+            for line in doc.line_ids:
+                all_counter += 1
+                if len(line.history_ids) <> 1 :
+                    counter += 1
+                    server_log = "%s : Outgoing Trans : %s - MDR Name : %s \n" % (counter, doc_send_name, line.name)
+                    message += server_log
+
+        message += '\n Total Doc yang ada Relasi : %s \n' % all_counter
+        message += 'Total Doc yang ada Bermasalah : %s \n' % counter
+
+        raise UserError(message)

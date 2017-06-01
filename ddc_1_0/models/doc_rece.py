@@ -3,6 +3,7 @@ from openerp import models, fields
 from openerp.osv import fields as Fields
 from datetime import datetime, timedelta
 
+from openerp.exceptions import UserError
 
 class doc_rece(models.Model):
 

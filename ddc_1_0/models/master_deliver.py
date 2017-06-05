@@ -56,7 +56,7 @@ class master_deliver(models.Model):
         master_deliver._change_rev(self, "1")
         master_deliver._change_rev(self, "2")
         master_deliver._change_rev(self, "3")
-        master_deliver._change_rev(self, "4")
+        # master_deliver._change_rev(self, "4")
 
     @api.one
     def _change_exstat(self, param):

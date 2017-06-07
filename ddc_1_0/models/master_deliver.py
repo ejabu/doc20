@@ -61,15 +61,23 @@ class master_deliver(models.Model):
     @api.one
     def _change_exstat(self, param):
         rev_all_ids = self.env['conf.external.status'].search([['name', '=', param]]).ids
-        doc_to_change = self.search([['external_status', 'in', rev_all_ids]])
-        jadi_kesini = rev_all_ids.pop(0)
-        doc_to_change.write({'external_status': jadi_kesini})
+        if len(rev_all_ids)>0:
+            doc_to_change = self.search([['external_status', 'in', rev_all_ids]])
+            jadi_kesini = rev_all_ids.pop(0)
+            doc_to_change.write({'external_status': jadi_kesini})
 
-        self.env['conf.external.status'].search([['id', 'in', rev_all_ids]]).unlink()
+            self.env['conf.external.status'].search([['id', 'in', rev_all_ids]]).unlink()
+
         return
 
     @api.one
     def change_exstat(self):
+        master_deliver._change_exstat(self, "AFC")
+        master_deliver._change_exstat(self, "APC")
+        master_deliver._change_exstat(self, "IFR")
+        master_deliver._change_exstat(self, "RE-AFC")
+        master_deliver._change_exstat(self, "IFC")
+        master_deliver._change_exstat(self, "IFR")
         master_deliver._change_exstat(self, "IFR")
 
     @api.one

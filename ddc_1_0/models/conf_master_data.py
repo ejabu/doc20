@@ -44,7 +44,18 @@ class conf_rev_num(models.Model):
 class conf_internal_status(models.Model):
     _name= "conf.internal.status"
     name = fields.Char(string='Document Internal Status', required=True)
+    _order = 'sequence'
+    sequence = fields.Integer('Sequence', required=True, help='Use to arrange calculation sequence', select=True)
 
+    _defaults = {
+        'sequence': 10,
+    }
 class conf_external_status(models.Model):
     _name= "conf.external.status"
+    _order = 'sequence'
     name = fields.Char(string='Document External Status', required=True)
+    sequence = fields.Integer('Sequence', required=True, help='Use to arrange calculation sequence', select=True)
+
+    _defaults = {
+        'sequence': 10,
+    }

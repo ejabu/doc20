@@ -26,6 +26,7 @@
                     <!-- <filter name="inactive" string="Inactive" domain="[('is_active','=',False)]"/> -->
                     <group expand="0" string="Group By">
                         <filter name="group_by_disc" string="Discipline" domain="[]" context="{'group_by':'discipline'}"/>
+                        <filter name="group_by_exstat" string="External Status" domain="[]" context="{'group_by':'external_status'}"/>
                         <filter name="group_by_categ" string="Category" domain="[]" context="{'group_by':'doc_categ'}"/>
                         <filter name="group_by_sub" string="Subsystem" domain="[]" context="{'group_by':'doc_sub'}"/>
                         <filter name="group_by_idc" string="IDC Number" domain="[]" context="{'group_by':'idc_number'}"/>

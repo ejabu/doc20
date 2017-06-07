@@ -76,6 +76,7 @@ class master_deliver(models.Model):
         master_deliver._change_exstat(self, "APC")
         master_deliver._change_exstat(self, "IFR")
         master_deliver._change_exstat(self, "RE-AFC")
+        master_deliver._change_exstat(self, "RE-IFA")
         master_deliver._change_exstat(self, "IFC")
         master_deliver._change_exstat(self, "IFR")
         master_deliver._change_exstat(self, "IFR")

@@ -24,6 +24,8 @@ class dash_exstat(osv.osv):
     def _from(self):
         from_str = """
             master_deliver mdr
+            
+            WHERE is_history is False
         """
         return from_str
 

@@ -26,6 +26,8 @@ class dash_discipline(osv.osv):
     def _from(self):
         from_str = """
             master_deliver mdr
+
+            WHERE is_history is False
         """
         return from_str
 
@@ -34,6 +36,7 @@ class dash_discipline(osv.osv):
             GROUP BY
                 mdr.discipline,
                 mdr.external_status
+
         """
         return group_by_str
 

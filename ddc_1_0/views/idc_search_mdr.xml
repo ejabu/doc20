@@ -16,6 +16,7 @@
                     <field name="rev_num" string="Rev"/>
                     <field name="doc_status" string="Internal Status"/>
                     <field name="external_status" string="Status"/>
+                    <filter name="active" string="Active" domain="[('idc_id','&lt;&gt;',False)]"/>
                     <group expand="0" string="Group By">
                         <filter name="group_by_idc" string="IDC Number" domain="[]" context="{'group_by':'idc_id'}"/>
                         <filter name="group_by_rev_num" string="Rev" domain="[]" context="{'group_by':'rev_num'}"/>
@@ -35,7 +36,7 @@
             <field name="arch" type="xml">
                 <tree create="false" delete="false" edit="false">
                     <field name="idc_id" invisible="1"/>
-                    <field name="idc_number" string="IDC Outgoing Number"/>
+                    <field name="idc_number" string="IDC Incoming Number"/>
                     <field name="name"/>
                     <field name="doc_title"/>
                     <field name="doc_type"/>
@@ -61,7 +62,7 @@
                     <sheet>
                         <group colspan="4" col="4">
                             <group >
-                                <field name="idc_id" string="IDC Outgoing Number"/>
+                                <field name="idc_id" string="IDC Incoming Number"/>
                                 <field name="name"/>
                                 <field name="send_date"/>
                                 <field name="rece_date"/>
@@ -92,7 +93,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="idc_search_mdr_action">
-            <field name="name">Find IDC Outgoing by Doc Number</field>
+            <field name="name">Find IDC Incoming by Doc Number</field>
             <field name="res_model">master.deliver</field>
             <field name="view_type">form</field>
             <field name="search_view_id" ref="idc_search_mdr_search"/>

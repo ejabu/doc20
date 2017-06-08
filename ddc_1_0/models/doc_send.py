@@ -12,6 +12,7 @@ class doc_send(models.Model):
 
     name = fields.Char(string='Transmittal Number', required=True)
     recipient = fields.Many2one('res.partner', string='Recipient', required=True, copy=False)
+    recipient_ids = fields.Many2many('res.partner', 'send_rel_partner', 'send_ids', 'recipient_ids', string='Recipient', required=True, copy=False)
     recipient_rece_date = fields.Date(string='Recipient Receive Date')
 
     trans_date = fields.Date(string='Transmittal Date', required=True)

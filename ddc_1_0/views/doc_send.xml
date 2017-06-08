@@ -14,6 +14,7 @@
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
                     <field name="recipient"/>
+                    <field name="recipient_ids" widget="many2many_tags"/>
                     <field name="recipient_rece_date"/>
                 </tree>
             </field>
@@ -55,6 +56,7 @@
                         <group>
                             <group>
                                 <field name="recipient"/>
+                                <field name="recipient_ids" widget="many2many_tags"/>
                                 <field name="name"/>
                                 <field name="trans_date"/>
                                 <field name="trans_due_date"/>

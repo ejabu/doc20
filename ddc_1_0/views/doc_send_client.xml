@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="recipient"/>
+                    <field name="recipient_ids" widget="many2many_tags"/>
                     <field name="name"/>
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
@@ -28,6 +29,7 @@
                         <group>
                             <group>
                                 <field name="recipient"/>
+                                <field name="recipient_ids" widget="many2many_tags"/>
                                 <field name="name"/>
                                 <field name="trans_date"/>
                                 <field name="trans_due_date"/>

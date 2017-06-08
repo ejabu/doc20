@@ -184,3 +184,18 @@ class doc_send(models.Model):
     def force_oc(self):
         for amplop in self.search([]):
             amplop._force_oc()
+
+
+    @api.multi
+    def pass_partner(self):
+        for amplop in self.search([]):
+            if amplop.recipient:
+                if amplop.recipient.id in amplop.recipient_ids.ids:
+                    print 'already a recipient'
+                else:
+                    amplop.write({
+                        'recipient_ids' : [(4, amplop.recipient.id)]
+                    })
+                    print 'add'
+            else:
+                print 'no recipient'

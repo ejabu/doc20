@@ -13,7 +13,7 @@
                     <field name="name"/>
                     <field name="trans_date"/>
                     <field name="trans_due_date"/>
-                    <field name="recipient"/>
+                    <field name="recipient" invisible="1"/>
                     <field name="recipient_ids" widget="many2many_tags"/>
                     <field name="recipient_rece_date"/>
                 </tree>
@@ -50,12 +50,16 @@
                         groups="base.group_no_one"
                                             string="Force Onchange" type="object"
                                              />
+                        <button name="pass_partner"
+                        groups="base.group_no_one"
+                                            string="Pass Partner" type="object"
+                                             />
 
                     </header>
                     <sheet>
                         <group>
                             <group>
-                                <field name="recipient"/>
+                                <field name="recipient" invisible="1"/>
                                 <field name="recipient_ids" widget="many2many_tags"/>
                                 <field name="name"/>
                                 <field name="trans_date"/>

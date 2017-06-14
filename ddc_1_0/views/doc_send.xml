@@ -54,6 +54,10 @@
                         groups="base.group_no_one"
                                             string="Pass Partner" type="object"
                                              />
+                        <button name="write_parent_date"
+                        groups="base.group_no_one"
+                                            string="Write Parent Date" type="object"
+                                             />
 
                     </header>
                     <sheet>

@@ -34,6 +34,20 @@ class master_deliver(models.Model):
     def _set_external(self):
         pass
 
+    @api.multi
+    def renotes(self):
+        #ini gunanya untuk DASHBOARD IFI, IFR, IFA, IFC yang sudah tersubmite berapa
+        #data transmit date pada setiap anak harus di tulis ulang.
+        #setiap dokumen yang anaknya pernah dikirim. pasti punya trans_date
+        last_history = self.history_ids.filtered(lambda r: r.send_id <> False).sorted(key=lambda r: r.status_date, reverse=True).sorted(key=lambda r: r.rev_num_seq, reverse=True)
+        if len(last_history) > 0:
+            self.write({
+                'trans_date': last_history[0].trans_date,
+                'recv_rece_date': last_history[0].recv_rece_date
+            })
+
+        return
+
     @api.one
     def active_all(self):
         doc_to_change = self.search([['state', '=', False]])

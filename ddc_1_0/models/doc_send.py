@@ -34,6 +34,17 @@ class doc_send(models.Model):
     @api.onchange('line_ids','trans_date')
     def oc_trans_date(self):
         self.line_ids.write({'trans_date': self.trans_date})
+        # ketika ada anak yang mau di masukkin ke amplop. parentnya akan di renotes kembali.
+        # untuk memastikan, bahwa tanggal transmit date update sesuai anak terakhir
+        for line in self.line_ids:
+            line.version_id.renotes()
+
+    @api.onchange('line_ids')
+    def oc_parent_date(self):
+        # ketika ada anak yang mau di masukkin ke amplop. parentnya akan di renotes kembali.
+        # untuk memastikan, bahwa tanggal transmit date update sesuai anak terakhir
+        for line in self.line_ids:
+            line.version_id.renotes()
 
     @api.onchange('line_ids','trans_due_date')
     def oc_trans_due_date(self):
@@ -199,3 +210,10 @@ class doc_send(models.Model):
                     print 'add'
             else:
                 print 'no recipient'
+
+    @api.multi
+    def write_parent_date(self):
+        hist_ids = self.env['master.deliver'].search([['is_history', '=', False]])
+        for hist in hist_ids:
+            hist.renotes()
+        return

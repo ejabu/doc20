@@ -56,6 +56,8 @@
                                 <field name="rev_num" invisible="1"/>
                                 <field name="revision_date" invisible="1"/>
                                 <field name="status_date" invisible="1"/>
+                                <field name="trans_date" invisible="1"/>
+                                <field name="recv_rece_date" invisible="1"/>
                             </group>
 
                         </group>

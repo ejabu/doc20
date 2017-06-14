@@ -22,10 +22,18 @@ class dash_exstat(osv.osv):
         return select_str
 
     def _from(self):
+
+        # master_deliver mdr
+        #
+        # WHERE is_history is False           : Cari yang Parent. bukan anak2nya. karena kalo sejuta tektok nanti Dokumennya makin banyak
+        # AND external_status is not NULL     : Cari yang udah punya anak minimal satu sehingga tidak ada yang UNDEFINED
+        # AND trans_date is not NULL          : Cari yang udah pernah dikirim via outgoing Transmittal
         from_str = """
             master_deliver mdr
-            
+
             WHERE is_history is False
+            AND external_status is not NULL
+            AND trans_date is not NULL
         """
         return from_str
 

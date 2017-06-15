@@ -8,7 +8,9 @@
             <field name="arch" type="xml">
                 <pivot disable_linking="True">
                     <field name="discipline" type="row"/>
-                    <field name="count" type="measure"/>
+                    <field name="actual_count" type="measure"/>
+                    <field name="planned_count" type="measure"/>
+                    <field name="percentage" type="measure"/>
                 </pivot>
             </field>
         </record>
@@ -19,13 +21,14 @@
             <field name="arch" type="xml">
                 <graph>
                     <field name="discipline" type="row"/>
-                    <field name="count" type="measure"/>
+                    <field name="actual_count" type="measure"/>
+                    <field name="planned_count" type="measure"/>
                 </graph>
             </field>
         </record>
 
         <record id="dash_discipline_action" model="ir.actions.act_window">
-            <field name="name">Analysis by Discipline</field>
+            <field name="name">Actual vs Planned</field>
             <field name="res_model">dash.discipline</field>
             <field name="view_type">form</field>
             <field name="view_mode">pivot,graph</field>

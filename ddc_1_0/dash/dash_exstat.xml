@@ -25,7 +25,7 @@
     </record>
 
         <record id="dash_exstat_action" model="ir.actions.act_window">
-            <field name="name">Analysis by Status</field>
+            <field name="name">Document Status Summary</field>
             <field name="res_model">dash.exstat</field>
             <field name="view_type">form</field>
             <field name="view_mode">pivot,graph</field>

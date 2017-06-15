@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name" string="Doc Number"/>
+                    <field name="doc_title" string="Doc Title"/>
                     <field name="discipline" string="Discipline"/>
                     <field name="rev_num" string="Rev"/>
                     <field name="external_status" string="Status"/>

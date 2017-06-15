@@ -19,7 +19,7 @@
             <field name="name">doc.rece.form</field>
             <field name="model">doc.rece</field>
             <field name="arch" type="xml">
-                <form>
+                <form class="black">
                     <header>
 
                                              <button name="check_child_id"
@@ -48,13 +48,16 @@
                         <field
                             name="line_ids"
                             domain="[('is_history','=',True)]"
-                            options='{"not_delete": True}'
+                            options='{"not_delete": True, "reload_on_button": true}'
                             context='{
                                 "doc_rece": True,
                                 "parent_id": active_id
                             }'
                             >
-                            <tree editable="bottom">
+                            <tree
+                                editable="bottom"
+                                delete="false"
+                            >
                                 <field name="name" readonly="1"/>
                                 <field name="doc_title" readonly="1"/>
                                 <field name="discipline" readonly="1" options="{'no_open': True}"/>
@@ -63,6 +66,11 @@
                                 <field name="rev_num" readonly="1" options="{'no_open': True}"/>
                                 <field name="recv_comment" />
                                 <field name="is_history" invisible="1"/>
+                                <button
+                                    name="unlink_doc_rece"
+                                    type="object"
+                                    icon="fa-trash-o"
+                                    />
                             </tree>
                         </field>
                     </sheet>

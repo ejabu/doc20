@@ -22,12 +22,9 @@ class dash_monthly(models.Model):
     year_end =  fields.Selection([(str(num), str(num)) for num in range((datetime.now().year)-5, (datetime.now().year)+5)], 'Year End', required=True)
     date_field_start = fields.Selection(selection=[
                                             ('mdr.create_date', 'Date Creation'),
-                                            
-                                            ('mdr.recv_rece_date', 'Receiving Date'),
-                                            ('mdr.due_date', 'Due Date'),
-                                            ('mdr.send_date', 'IDC Sending Date'),
-                                            ('mdr.rece_date', 'IDC Receiving Date'),
-                                            ('now()', 'Now'),
+                                            ('mdr.trans_date', 'Transmittal Outgoing Date'),
+                                            ('mdr.recipient_rece_date', 'Client Receiving Date'),
+                                            ('mdr.recv_rece_date', 'Transmittal Receiving Date'),
                                             ])
 
     def _get_months(self):
@@ -61,6 +58,7 @@ class dash_monthly(models.Model):
                     SELECT date_trunc('month', %s)::date AS label, count(mdr.*) as value
                          FROM master_deliver mdr
                          WHERE %s is not null
+                         AND is_history is True
                      GROUP BY label
                     ORDER BY label
 

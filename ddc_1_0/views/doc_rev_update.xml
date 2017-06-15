@@ -61,7 +61,17 @@
                             </group>
 
                         </group>
-
+                        <group  groups="base.group_system">
+                            <div colspan="4">
+                                <i>this section is for admin only</i>
+                            </div>
+                            <field name="external_status" />
+                            <field name="rev_num" />
+                            <field name="revision_date" />
+                            <field name="status_date" />
+                            <field name="trans_date" />
+                            <field name="recv_rece_date" />
+                        </group>
 
                         <field  name="history_ids"
                                 context='{
@@ -79,7 +89,9 @@
                                 <field name="revision_date"/>
                                 <field name="external_status" readonly="1"/>
                                 <field name="status_date" readonly="1"/>
-                                <field name="is_history" invisible="1"/>
+                                <field name="is_history" groups="base.group_system"/>
+                                <field name="trans_date" groups="base.group_system"/>
+                                <field name="recv_rece_date" groups="base.group_system"/>
                             </tree>
                         </field>
                         <br/>

@@ -13,17 +13,17 @@
         <menuitem id="menu_current_status" name="Current Status"
             parent="menu_reports" sequence="10"/>
 
-            <menuitem id="menu_dash_discipline" name="Discipline"
+            <menuitem id="menu_dash_discipline" name="Actual vs Planned"
                 parent="menu_current_status" sequence="10" action="dash_discipline_action" />
 
-            <menuitem id="menu_dash_exstat" name="Status"
+            <menuitem id="menu_dash_exstat" name="Status Summary"
                 parent="menu_current_status" sequence="10" action="dash_exstat_action" />
 
-            <menuitem id="menu_dash_sent" name="Incoming Transmittal Delays"
+            <menuitem id="menu_dash_sent" name="Not Received Yet"
                 parent="menu_current_status" sequence="20" action="dash_sent_action" />
 
-            <menuitem id="menu_dash_pivot_monthly" name="Monthly Creation Analysis"
-                parent="menu_current_status" sequence="30" action="dash_pivot_monthly_action" />
+            <!-- <menuitem id="menu_dash_pivot_monthly" name="Monthly Creation Analysis"
+                parent="menu_current_status" sequence="30" action="dash_pivot_monthly_action" /> -->
 
         <menuitem id="menu_performance" name="Performance"
             parent="menu_reports" sequence="10"/>
@@ -35,8 +35,11 @@
                 parent="menu_performance" sequence="10" action="dash_monthly_conf_action" />
 
 
-        <menuitem id="ddc_mdr_report" name="MDR Overview"
-            parent="menu_reports" sequence="70" action="master_deliver_report_action"/>
+        <menuitem id="ddc_mdr_history" name="MDR History"
+            parent="menu_reports" sequence="70" action="master_deliver_history_action"/>
+
+        <menuitem id="ddc_mdr_overview" name="MDR Current Status"
+            parent="menu_reports" sequence="80" action="master_deliver_report_action"/>
 
         <menuitem id="submenu_master_doc" name="Master Document"
             parent="main_ddc" sequence="30"/>

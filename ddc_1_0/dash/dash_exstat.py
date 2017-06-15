@@ -32,8 +32,7 @@ class dash_exstat(osv.osv):
             master_deliver mdr
 
             WHERE is_history is False
-            AND external_status is not NULL
-            AND trans_date is not NULL
+            AND rev_num > 0
         """
         return from_str
 

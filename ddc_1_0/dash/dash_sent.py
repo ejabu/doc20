@@ -9,9 +9,10 @@ class dash_sent(osv.osv):
 
     _columns = {
         'external_status' : fields.many2one('conf.external.status', 'External Status', readonly=True),
+        'discipline' : fields.many2one('conf.discipline', 'Discipline', readonly=True),
         'name': fields.char('Name', readonly=True),
         'trans_date': fields.datetime('Outgoing Date', readonly=True),
-        'date_diff': fields.integer('Day Diff', readonly=True),
+        'date_diff': fields.integer('Delta Day', readonly=True),
         'count': fields.integer('Amount of Document', readonly=True),
     }
 
@@ -20,6 +21,7 @@ class dash_sent(osv.osv):
             SELECT
                 min(mdr.id) as id,
                 mdr.external_status as external_status,
+                mdr.discipline as discipline,
                 mdr.name as name,
                 mdr.trans_date as trans_date,
                 now()::date - mdr.trans_date as date_diff,
@@ -42,6 +44,7 @@ class dash_sent(osv.osv):
         group_by_str = """
             GROUP BY
                 mdr.external_status,
+                mdr.discipline,
                 mdr.name,
                 mdr.trans_date
         """

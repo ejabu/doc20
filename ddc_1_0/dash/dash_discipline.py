@@ -9,8 +9,10 @@ class dash_discipline(osv.osv):
 
     _columns = {
         'discipline' : fields.many2one('conf.discipline', 'Discipline', readonly=True),
-        'external_status' : fields.many2one('conf.external.status', 'External Status', readonly=True),
-        'count': fields.integer('Amount of Document', readonly=True),
+        # 'external_status' : fields.many2one('conf.external.status', 'External Status', readonly=True),
+        'planned_count': fields.integer('Planned', readonly=True),
+        'actual_count': fields.integer('Actual', readonly=True),
+        'percentage': fields.float('Percentage', readonly=True , group_operator = 'avg'),
     }
 
     def _select(self):
@@ -18,8 +20,10 @@ class dash_discipline(osv.osv):
             SELECT
                 min(mdr.id) as id,
                 mdr.discipline as discipline,
-                mdr.external_status as external_status,
-                count(*) as count
+                count(*) as planned_count,
+                count(rev_num > 0) as actual_count,
+                round((count(rev_num > 0)::decimal * 100.0 / count(*)::decimal ),2) as percentage
+
         """
         return select_str
 
@@ -34,8 +38,7 @@ class dash_discipline(osv.osv):
     def _group_by(self):
         group_by_str = """
             GROUP BY
-                mdr.discipline,
-                mdr.external_status
+                mdr.discipline
 
         """
         return group_by_str

@@ -22,6 +22,7 @@
                 'dash/dash_delay_approve_conf.xml',
                 'dash/dash_pivot_monthly.xml',
             #MDR Overview
+                'views/master_deliver_history.xml',
                 'views/master_deliver_report.xml',
         #Master Document
             #MDR

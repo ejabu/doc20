@@ -80,7 +80,6 @@ class master_deliver(models.Model):
 
 
     # def change_doc_status(self, cr, uid, ids, context=None):
-    #     import ipdb; ipdb.set_trace()
     #     dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'ddc', 'popup_quiz_form')
     #     return {
     #         'name':"Quiz",

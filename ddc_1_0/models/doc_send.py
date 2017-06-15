@@ -148,7 +148,6 @@ class doc_send(models.Model):
                 if len(line.history_ids) == 1 :
                     child_ids_to_link.append((4, line.history_ids[0].id))
                     parent_ids_to_unlink.append((3, line.id))
-            # import ipdb; ipdb.set_trace()
             # amplop.write({
             #     'line_ids':[
             #     (   6,
@@ -205,18 +204,17 @@ class doc_send(models.Model):
         return
 
     @api.multi
+    def write(self, vals):
+        res = super(doc_send, self).write(vals)
+        self.remap_exstat()
+        return res
+
+    @api.multi
     def remap_exstat(self):
         eja = self.line_ids.mapped('version_id')
         for ej in eja:
             ej.renotes()
         return
-
-    @api.multi
-    def write(self, vals):
-        # import ipdb; ipdb.set_trace()
-        res = super(doc_send, self).write(vals)
-        self.remap_exstat()
-        return res
 
     # @api.model
     # def create(self, vals):

@@ -4,6 +4,7 @@
         <template id="assets_backend" name="ddc assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <link rel="stylesheet" href="/ddc_1_0/static/src/less/dashboard_kanban.less"/>
+                <link rel="stylesheet" href="/ddc_1_0/static/src/css/form.css"/>
 
                 <script type="text/javascript" src="/ddc_1_0/static/src/js/dashboard_kanban.js"></script>
                 <script type="text/javascript" src="/ddc_1_0/static/src/js/o2m_add.js"></script>

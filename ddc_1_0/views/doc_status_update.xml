@@ -32,12 +32,21 @@
                                 <field name="doc_type" readonly="1"/>
                                 <field name="doc_type_desc" readonly="1"/>
                                 <field name="sched_plan" readonly="1"/>
-                                <field name="external_status" invisible="1"/>
-                                <field name="rev_num" invisible="1"/>
-                                <field name="revision_date" invisible="1"/>
-                                <field name="status_date" invisible="1"/>
+
                             </group>
 
+
+                        </group>
+                        <group  groups="base.group_system">
+                            <div colspan="4">
+                                <i>this section is for admin only</i>
+                            </div>
+                            <field name="external_status" />
+                            <field name="rev_num" />
+                            <field name="revision_date" />
+                            <field name="status_date" />
+                            <field name="trans_date" />
+                            <field name="recv_rece_date" />
                         </group>
 
 

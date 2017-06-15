@@ -1,0 +1,34 @@
+.openerp .oe_form_editable .oe_list_editable .oe_list_content td.oe_readonly {
+  /*background-color: red;*/
+}
+/*.openerp .oe_form_editable  {
+  background-color: black;
+}*/
+
+/*.openerp .oe_form_editable .oe_list_editable .oe_list_content button {
+  background-color: red;
+  border: 1px solid red;
+  display: none;
+}*/
+/*.openerp .oe_form_editable .black .oe_list_editable .oe_list_content button.black {
+  background-color: red;
+  border: 1px solid red;
+  display: none;
+}*/
+/*.openerp .oe_form_editable .oe_list_editable .oe_list_content button.black {
+  background-color: red;
+  border: 1px solid red;
+  display: none;
+}*/
+
+/*oe_list_field_cell oe_list_field_object  oe-button*/
+
+
+/*---- yang bener*/
+
+.openerp .oe_form .black .oe_list_editable .oe_list_content  button{
+  display: none;
+}
+.openerp .oe_form_editable .black .oe_list_editable .oe_list_content  button{
+  display: block;
+}

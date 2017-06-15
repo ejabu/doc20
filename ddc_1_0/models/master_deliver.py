@@ -39,12 +39,20 @@ class master_deliver(models.Model):
         #ini gunanya untuk DASHBOARD IFI, IFR, IFA, IFC yang sudah tersubmite berapa
         #data transmit date pada setiap anak harus di tulis ulang.
         #setiap dokumen yang anaknya pernah dikirim. pasti punya trans_date
-        last_history = self.history_ids.filtered(lambda r: r.send_id <> False).sorted(key=lambda r: r.status_date, reverse=True).sorted(key=lambda r: r.rev_num_seq, reverse=True)
+        # import ipdb; ipdb.set_trace()
+        self._get_external()
+        last_history = self.history_ids.filtered(lambda r: r.trans_date <> False).sorted(key=lambda r: r.status_date, reverse=True).sorted(key=lambda r: r.rev_num_seq, reverse=True)
         if len(last_history) > 0:
             self.write({
                 'trans_date': last_history[0].trans_date,
-                'recv_rece_date': last_history[0].recv_rece_date
+                'recv_rece_date': last_history[0].recv_rece_date,
+                # 'external_status': last_history[0].external_status,
+                # 'status_date': last_history[0].status_date,
+                # 'rev_num': last_history[0].rev_num,
+                # 'revision_date': last_history[0].revision_date,
             })
+
+
 
         return
 
@@ -101,7 +109,8 @@ class master_deliver(models.Model):
         for record in self:
             if record.is_history is False :
                 #Mengecek Urutan Terakhir berdasarkan status_date, kemudian rev_num_seq
-                tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True).sorted(key=lambda r: r.rev_num_seq, reverse=True)
+                tes = record.history_ids.filtered(lambda r: r.trans_date <> False).sorted(key=lambda r: r.status_date, reverse=True).sorted(key=lambda r: r.rev_num_seq, reverse=True)
+                # tes = record.history_ids.sorted(key=lambda r: r.status_date, reverse=True).sorted(key=lambda r: r.rev_num_seq, reverse=True)
                 if len(tes) > 0:
                     record.external_status = tes[0].external_status
                     record.status_date = tes[0].status_date
@@ -234,6 +243,7 @@ class master_deliver(models.Model):
 
     @api.one
     def unlink(self):
+        eja = self._context.get('doc_send')
         text = "Please unlink this document from IDC / Sending / Incoming Transmittal"
         if self.idc_id.id != False:
             raise Warning(text)
@@ -246,3 +256,16 @@ class master_deliver(models.Model):
             return
         else:
             return super(master_deliver, self).unlink()
+
+
+    @api.multi
+    def unlink_doc_send(self):
+        parent_doc = self.env['doc.send'].browse(self._context['parent_id'])
+        parent_doc.write({
+            'line_ids' : [(3, self.id)]
+        })
+        self.write({
+            'trans_date' : False
+        })
+        self.version_id.renotes()
+        return

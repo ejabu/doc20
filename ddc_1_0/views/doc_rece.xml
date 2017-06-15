@@ -24,15 +24,15 @@
 
                                              <button name="check_child_id"
                                                  icon="gtk-apply"
-                                                 groups="base.group_no_one"
+                                                 groups="base.group_system"
                                                                  string="Check Relasi" type="object"
                                                                   />
                                              <button name="tukar_relasi"
-                                             groups="base.group_no_one"
+                                             groups="base.group_system"
                                                                  string="Tukar Relasi" type="object"
                                                                   />
                                              <button name="force_oc"
-                                             groups="base.group_no_one"
+                                             groups="base.group_system"
                                                                  string="Force Onchange" type="object"
                                                                   />
                     </header>
@@ -49,6 +49,10 @@
                             name="line_ids"
                             domain="[('is_history','=',True)]"
                             options='{"not_delete": True}'
+                            context='{
+                                "doc_rece": True,
+                                "parent_id": active_id
+                            }'
                             >
                             <tree editable="bottom">
                                 <field name="name" readonly="1"/>

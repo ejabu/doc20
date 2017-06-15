@@ -34,17 +34,6 @@ class doc_send(models.Model):
     @api.onchange('line_ids','trans_date')
     def oc_trans_date(self):
         self.line_ids.write({'trans_date': self.trans_date})
-        # ketika ada anak yang mau di masukkin ke amplop. parentnya akan di renotes kembali.
-        # untuk memastikan, bahwa tanggal transmit date update sesuai anak terakhir
-        for line in self.line_ids:
-            line.version_id.renotes()
-
-    @api.onchange('line_ids')
-    def oc_parent_date(self):
-        # ketika ada anak yang mau di masukkin ke amplop. parentnya akan di renotes kembali.
-        # untuk memastikan, bahwa tanggal transmit date update sesuai anak terakhir
-        for line in self.line_ids:
-            line.version_id.renotes()
 
     @api.onchange('line_ids','trans_due_date')
     def oc_trans_due_date(self):
@@ -133,9 +122,6 @@ class doc_send(models.Model):
 
         return parent_ids, child_ids, all_counter
 
-
-
-
     @api.multi
     def check_child_id(self):
         parent_ids, child_ids, all_counter = doc_send._check_child_id(self)
@@ -217,3 +203,23 @@ class doc_send(models.Model):
         for hist in hist_ids:
             hist.renotes()
         return
+
+    @api.multi
+    def remap_exstat(self):
+        eja = self.line_ids.mapped('version_id')
+        for ej in eja:
+            ej.renotes()
+        return
+
+    @api.multi
+    def write(self, vals):
+        # import ipdb; ipdb.set_trace()
+        res = super(doc_send, self).write(vals)
+        self.remap_exstat()
+        return res
+
+    # @api.model
+    # def create(self, vals):
+    #     res = super(master_deliver, self).create(vals)
+    #     return res
+    #

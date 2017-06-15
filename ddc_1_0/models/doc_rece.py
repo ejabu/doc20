@@ -113,3 +113,18 @@ class doc_rece(models.Model):
     def force_oc(self):
         for amplop in self.search([]):
             amplop._force_oc()
+
+
+    @api.multi
+    def remap_exstat(self):
+        eja = self.line_ids.mapped('version_id')
+        for ej in eja:
+            ej.renotes()
+        return
+
+    @api.multi
+    def write(self, vals):
+        # import ipdb; ipdb.set_trace()
+        res = super(doc_rece, self).write(vals)
+        self.remap_exstat()
+        return res

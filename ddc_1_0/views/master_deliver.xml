@@ -123,15 +123,15 @@
                     <header>
                         <field name="state" widget="statusbar" clickable="True"/>
                         <button name="active_all"
-                        groups="base.group_no_one"
+                        groups="base.group_system"
                                             string="All Active" type="object"
                                              />
                         <button name="change_rev"
-                        groups="base.group_no_one"
+                        groups="base.group_system"
                                             string="Change Rev" type="object"
                                              />
                         <button name="change_exstat"
-                        groups="base.group_no_one"
+                        groups="base.group_system"
                                             string="Change Exstat" type="object"
                                              />
                     </header>

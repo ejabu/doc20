@@ -14,6 +14,7 @@
             #Current Status
                 'dash/dash_discipline.xml',
                 'dash/dash_exstat.xml',
+                'dash/dash_sent.xml',
                 'dash/dash_monthly.xml',
                 'dash/dash_monthly_conf.xml',
             #Performance

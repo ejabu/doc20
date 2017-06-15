@@ -1,1 +1,13 @@
 sum(cast(to_char(date_trunc('day',mdr.due_date) - date_trunc('day',mdr.rece_date),'DD') as int)) as delay_validation,
+
+
+
+SELECT external_status, name, trans_date ,  recv_rece_date
+FROM master_deliver
+WHERE is_history is False
+       AND trans_date is not NULL
+            AND recv_rece_date is NULL
+            AND external_status is not NULL
+
+
+GROUP BY external_status, name, trans_date ,  recv_rece_date

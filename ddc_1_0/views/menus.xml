@@ -19,8 +19,11 @@
             <menuitem id="menu_dash_exstat" name="Status"
                 parent="menu_current_status" sequence="10" action="dash_exstat_action" />
 
+            <menuitem id="menu_dash_sent" name="Incoming Transmittal Delays"
+                parent="menu_current_status" sequence="20" action="dash_sent_action" />
+
             <menuitem id="menu_dash_pivot_monthly" name="Monthly Creation Analysis"
-                parent="menu_current_status" sequence="10" action="dash_pivot_monthly_action" />
+                parent="menu_current_status" sequence="30" action="dash_pivot_monthly_action" />
 
         <menuitem id="menu_performance" name="Performance"
             parent="menu_reports" sequence="10"/>

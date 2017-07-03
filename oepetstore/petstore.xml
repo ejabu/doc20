@@ -48,7 +48,7 @@
                 <field name="name">pet Home</field>
                 <field name="res_model">project.task</field>
                 <field name="context">{}</field>
-                <field name="view_mode">kanban,tree,form,calendar,gantt,timeline,ejaview,graph</field>
+                <field name="view_mode">ejaview</field>
             </record>
 
 

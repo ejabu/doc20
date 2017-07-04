@@ -1,7 +1,0 @@
-<template>
-  <t t-name="EjaView">
-    <div class="hehe">
-ehah
-    </div>
-  </t>
-</template>

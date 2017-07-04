@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <record id="stat_real_view" model="ir.ui.view">
-                <field name="model">master.deliver</field>
+                <field name="model">stat.real</field>
                 <field name="type">statReal</field>
                 <field name="arch" type="xml">
                     <statReal >
@@ -13,7 +13,7 @@
 
             <record id="stat_real_action" model="ir.actions.act_window">
                 <field name="name">pet Home</field>
-                <field name="res_model">master.deliver</field>
+                <field name="res_model">stat.real</field>
                 <field name="context">{}</field>
                 <field name="view_mode">statReal</field>
             </record>

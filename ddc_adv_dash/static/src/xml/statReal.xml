@@ -1,7 +1,16 @@
 <template>
   <t t-name="statReal">
-    <div class="hehe">
-tes2zzzzs
+    <div class="ejao-field-selection">
+tes2zzzzs hahaha
     </div>
   </t>
+
+
+
+
+<t t-name="ejacoy">
+    hahaha
+</t>
+
+
 </template>

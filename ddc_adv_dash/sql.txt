@@ -1,0 +1,52 @@
+1 SQL UNTUK MENGCOUNT JUMLAH MDR PER WEEK
+
+
+SELECT
+
+date_trunc('week', revision_date::date) as weekly,
+COUNT(*)
+
+FROM master_deliver mdr
+
+GROUP BY weekly
+ORDER BY weekly
+
+
+
+SELECT * FROM master_deliver
+
+
+
+
+
+2 SQL per week per External Status
+SELECT
+
+external_status,
+date_trunc('week', revision_date::date) as weekly,
+COUNT(*)
+
+FROM master_deliver mdr
+WHERE is_history is TRUE
+
+-- nanti tambahin WHERE External status ID in [4,5,6,7]
+
+GROUP BY external_status, weekly
+ORDER BY weekly
+
+
+
+-- REV 2.0
+
+SELECT
+min(mdr.id) as id,
+mdr.external_status,
+date_trunc('week', mdr.revision_date::date) as weekly,
+COUNT(*) as count
+
+FROM master_deliver mdr
+WHERE is_history is TRUE
+AND revision_date >  CURRENT_DATE - INTERVAL '3 months'
+
+GROUP BY mdr.external_status, weekly
+ORDER BY weekly

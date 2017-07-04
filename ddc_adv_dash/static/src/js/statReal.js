@@ -24,12 +24,14 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         icon: 'fa-clock-o',
 
         init: function(parent, dataset, view_id, options) {
-            this._super(parent);
+            this._super(parent, dataset, view_id, options);
             this.view_id = view_id;
             this.view_type = 'statReal';
             this.model = new Model(dataset.model, {group_by_no_leaf: true});
             // this.model = dataset.model;
             this.dataset = dataset;
+            this.data_loaded = $.Deferred();
+
             this.fields_view = {};
             this.view_id = view_id;
             this.measures = {};
@@ -37,7 +39,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             console.log('EJA3');
             console.log(this);
         },
-
+        // willStart: function () {
+        //         console.log('willStart');
+        //     },
         start: function() {
             this.$table_container = this.$('.o-pivot-table');
 
@@ -48,6 +52,30 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             console.log(this);
             return $.when(this._super(), load_fields).then(this.render_field_selection.bind(this));
         },
+
+        do_search: function (domain, context, group_by) {
+            //KEPANGGIL SETELAH RENTETAN start
+            var self = this;
+            var fields = ['external_status','weekly', 'count'];
+            var groupbys = ['external_status', 'weekly'];
+
+            console.log('do_search');
+            return $.when.apply(null, groupbys.map(function (groupby) {
+                console.log('load_data', fields, groupby, self.domain, self.context);
+                return self.model.query(fields)
+                    .filter(self.domain)
+                    .context(self.context)
+                    .lazy(false)
+                    // .order_by(['probable_revenue'])
+                    .group_by(groupby);
+            })).then(function () {
+                var data = Array.prototype.slice.call(arguments);
+                console.log('data');
+                console.log(data);
+                // self.prepare_data(data, should_update);
+            });
+        },
+
 
         render_field_selection: function () {
             var self = this;

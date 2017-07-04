@@ -8,27 +8,33 @@ class stat_real(osv.osv):
     _auto = False
 
     _columns = {
-        'planned_count': fields.integer('Planned', readonly=True, store=True),
+        'external_status': fields.integer('External Status', readonly=True),
+        'weekly': fields.datetime('Weekly', readonly=True),
+        'count': fields.integer('Count', readonly=True),
     }
 
     def _select(self):
         select_str = """
             SELECT
                 min(mdr.id) as id,
-                mdr.discipline as planned_count
+                mdr.external_status as external_status,
+                date_trunc('week', mdr.revision_date::date) as weekly,
+                COUNT(*) as count
         """
         return select_str
 
     def _from(self):
         from_str = """
             master_deliver mdr
+            WHERE is_history is TRUE
+            AND revision_date >  CURRENT_DATE - INTERVAL '3 months'
         """
         return from_str
 
     def _group_by(self):
         group_by_str = """
-            GROUP BY
-                mdr.discipline
+            GROUP BY external_status, weekly
+            ORDER BY weekly
 
         """
         return group_by_str

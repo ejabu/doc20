@@ -7,6 +7,8 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
     var time = require('web.time');
     var View = require('web.View');
     var widgets = require('web_calendar.widgets');
+    var session = require('web.session');
+
     var _ = require('_');
     var $ = require('$');
 
@@ -60,20 +62,37 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             var groupbys = ['external_status', 'weekly'];
 
             console.log('do_search');
-            return $.when.apply(null, groupbys.map(function (groupby) {
-                console.log('load_data', fields, groupby, self.domain, self.context);
-                return self.model.query(fields)
-                    .filter(self.domain)
-                    .context(self.context)
-                    .lazy(false)
-                    // .order_by(['probable_revenue'])
-                    .group_by(groupby);
-            })).then(function () {
-                var data = Array.prototype.slice.call(arguments);
-                console.log('data');
-                console.log(data);
-                // self.prepare_data(data, should_update);
-            });
+
+
+
+            return session.rpc('/web/dataset/search_read', {
+                model: 'stat.real',
+                fields: ['external_status','weekly','count'],
+                sort: 'weekly, external_status',
+
+            }, {}).then(function (results) {
+                console.log('resultsbaru');
+                console.log(results);
+                var tesresult = JSON.stringify(results['records']);
+                console.log(tesresult);
+                // return results.records;
+            }, null);
+
+
+            // return $.when.apply(null, groupbys.map(function (groupby) {
+            //     console.log('load_data', fields, groupby, self.domain, self.context);
+            //     return self.model.query(fields)
+            //         .filter(self.domain)
+            //         .context(self.context)
+            //         .lazy(false)
+            //         // .order_by(['probable_revenue'])
+            //         .group_by(['id']);
+            // })).then(function () {
+            //     var data = Array.prototype.slice.call(arguments);
+            //     console.log('data');
+            //     console.log(data);
+            //     self.prepare_data(data);
+            // });
         },
 
 

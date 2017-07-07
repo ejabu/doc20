@@ -1,26 +1,26 @@
+# -*- coding: utf-8 -*-
 
-from openerp import tools
-from openerp.osv import fields, osv
+# from openerp import tools
+# from openerp.osv import fields, osv
+from openerp import fields, models, tools
 
-class stat_real(osv.osv):
+class stat_real(models.Model):
     _name = "stat.real"
     _description = "Dashboard Status Realisasi"
     _auto = False
 
-    _columns = {
-        'external_status': fields.char('External Status', readonly=True),
-        'weekly': fields.datetime('Weekly', readonly=True),
-        'count': fields.integer('Count', readonly=True),
-    }
+    external_status = fields.Char('External Status', readonly=True)
+    weekly = fields.Char('Weekly', readonly=True)
+    count = fields.Integer('Count', readonly=True)
 
     def init(self, cr):
-            tools.drop_view_if_exists(cr, self._table)
+            tools.drop_view_if_exists(cr, 'stat_real')
+            # import ipdb; ipdb.set_trace()
             cr.execute("""CREATE or REPLACE VIEW %s as (
 
 
 SELECT
-(random()*200)::int AS id,
-
+row_number() OVER () AS id,
 a.external_status as external_status,
 b.weekz as weekly,
 a.count as count
@@ -68,6 +68,7 @@ generate_series(
 ) b
 
 ON a.weekly = b.weekz
+
 
 
 

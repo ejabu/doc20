@@ -68,7 +68,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             return session.rpc('/web/dataset/search_read', {
                 model: 'stat.real',
                 fields: ['external_status','weekly','count'],
-                sort: 'weekly, external_status',
+                sort: 'id',
 
             }, {}).then(function (results) {
                 console.log('resultsbaru');

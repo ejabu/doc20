@@ -1,0 +1,539 @@
+CREATE TABLE coba as ( SELECT revision_date, discipline FROM master_deliver LIMIT 6)
+
+
+SELECT current_date as this_week,
+       sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+       sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+       sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+       sum(case when exs.name  = 'IFC' then 1 else 0 end) as IFC
+  from master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+GROUP BY exs.name
+
+
+-----------------
+
+
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+SELECT current_date as this_week,
+       sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+       sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+       sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+       sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+  from master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+) a
+
+
+--------------
+
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+SELECT current_date as revision_date,
+       sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+       sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+       sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+       sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+  from master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+) a
+
+
+------------
+
+insert into coba (revision_date, discipline) values ('2017-01-01' , 6);
+
+
+-------------
+
+----BIKIN UNTUK PERTAMA KALI
+
+CREATE TABLE coba4 as (
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+)
+
+
+
+--------------------------------
+
+
+----BIKIN UNTUK PERTAMA KALI
+
+CREATE TABLE IF NOT EXISTS coba4 as (
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+
+---- FINAL --------
+
+
+----BIKIN UNTUK PERTAMA KALI
+
+CREATE TABLE IF NOT EXISTS coba6 as (
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+);
+
+
+ALTER TABLE coba6 DROP CONSTRAINT IF EXISTS unique_rev ;
+ALTER TABLE coba6 ADD CONSTRAINT unique_rev UNIQUE (revision_date);
+
+
+INSERT INTO coba6 as hehe
+
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) b
+
+
+
+on conflict (revision_date)
+do update set (IFA) = (384)
+
+where hehe.revision_date= hehe.revision_date;
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------- FINALE
+
+----BIKIN UNTUK PERTAMA KALI
+
+CREATE TABLE IF NOT EXISTS coba6 as (
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+);
+
+
+ALTER TABLE coba6 DROP CONSTRAINT IF EXISTS unique_rev ;
+ALTER TABLE coba6 ADD CONSTRAINT unique_rev UNIQUE (revision_date);
+
+--DROP CONSTRAINT [ IF EXISTS ]  constraint_name [ RESTRICT | CASCADE ]
+
+INSERT INTO coba6 as hehe
+
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) b
+
+
+
+on conflict (revision_date)
+do UPDATE
+
+SET (IFI, IFR,IFA, AFC, defIFR, defIFA, defAFC) =
+(
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+--current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+
+
+)
+
+where hehe.revision_date= hehe.revision_date;
+
+
+
+
+--------------- TRIAL
+
+----BIKIN UNTUK PERTAMA KALI
+
+CREATE TABLE IF NOT EXISTS coba6 as (
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+);
+
+
+ALTER TABLE coba6 DROP CONSTRAINT IF EXISTS unique_rev ;
+ALTER TABLE coba6 ADD CONSTRAINT unique_rev UNIQUE (revision_date);
+
+--DROP CONSTRAINT [ IF EXISTS ]  constraint_name [ RESTRICT | CASCADE ]
+
+INSERT INTO coba6 as hehe
+
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) b
+
+
+
+on conflict (revision_date)
+do UPDATE
+
+SET (IFI, IFR,IFA, AFC, defIFR, defIFA, defAFC) =
+(
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+--current_date as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+
+
+)
+
+where hehe.revision_date= hehe.revision_date;
+
+
+
+
+
+
+--- ALL FINALE
+
+
+----BIKIN UNTUK PERTAMA KALI
+
+CREATE TABLE IF NOT EXISTS coba6 as (
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+(CURRENT_DATE + cast(abs(extract(dow from current_date) - 7)+ 1 as int)) as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+);
+
+
+ALTER TABLE coba6 DROP CONSTRAINT IF EXISTS unique_rev ;
+ALTER TABLE coba6 ADD CONSTRAINT unique_rev UNIQUE (revision_date);
+
+--DROP CONSTRAINT [ IF EXISTS ]  constraint_name [ RESTRICT | CASCADE ]
+
+INSERT INTO coba6 as hehe
+
+SELECT * ,
+to_char(revision_date ,'DD-Mon-YY') as week_name,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+(CURRENT_DATE + cast(abs(extract(dow from current_date) - 7)+ 1 as int)) as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) b
+
+
+
+on conflict (revision_date)
+do UPDATE
+
+SET (week_name, IFI, IFR,IFA, AFC, defIFR, defIFA, defAFC) =
+(
+--30
+SELECT
+week_name as week_name,
+IFI as IFI,
+IFR as IFR,
+IFA as IFA,
+AFC as AFC,
+
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+
+
+)
+
+where hehe.revision_date= hehe.revision_date;
+
+SELECT * FROM coba6;

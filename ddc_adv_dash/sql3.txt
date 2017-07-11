@@ -1,0 +1,105 @@
+--- ALL FINALE
+
+
+----BIKIN UNTUK PERTAMA KALI
+
+CREATE TABLE IF NOT EXISTS coba8 as (
+--30
+SELECT * ,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+(CURRENT_DATE + cast(abs(extract(dow from current_date) - 7)+ 1 as int)) as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+);
+
+
+ALTER TABLE coba8 ADD CONSTRAINT unique_rev UNIQUE (revision_date);
+--DROP CONSTRAINT [ IF EXISTS ]  constraint_name [ RESTRICT | CASCADE ]
+
+INSERT INTO coba8 as hehe
+
+SELECT * ,
+to_char(revision_date ,'DD-Mon-YY') as week_name,
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+(CURRENT_DATE + cast(abs(extract(dow from current_date) - 7)+ 1 as int)) as revision_date,
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) b
+
+
+
+on conflict (revision_date)
+do UPDATE
+
+SET (week_name, IFI, IFR,IFA, AFC, defIFR, defIFA, defAFC) =
+(
+--30
+SELECT
+week_name as week_name,
+IFI as IFI,
+IFR as IFR,
+IFA as IFA,
+AFC as AFC,
+
+IFR - IFI as defIFR,
+IFA - IFR as defIFA,
+AFC - IFA as defAFC
+
+FROM (
+
+--20
+SELECT
+
+sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
+sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
+sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
+
+FROM master_deliver mdr JOIN conf_external_status exs ON mdr.external_status = exs.id
+
+WHERE is_history is FALSE
+--20
+) a
+
+--30
+
+
+)
+
+where hehe.revision_date= hehe.revision_date;
+
+ALTER TABLE coba8 DROP CONSTRAINT unique_rev ;
+SELECT * FROM coba8;

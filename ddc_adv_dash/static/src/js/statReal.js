@@ -38,6 +38,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             this.view_id = view_id;
             this.measures = {};
             this.groupable_fields = {};
+
+
+            this.domain;
             console.log('EJA3');
             console.log(this);
         },
@@ -46,22 +49,37 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         //     },
         start: function() {
             this.$table_container = this.$('.o-pivot-table');
-
-            var load_fields = this.model.call('fields_get', [], {context: this.dataset.get_context()})
-                                .then(this.prepare_fields.bind(this));
+            // var babang = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
+            var load_fields = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
+                                .then(this.start2.bind(this));
             console.log('load_fields');
             console.log(load_fields);
             console.log(this);
             return $.when(this._super(), load_fields).then(this.render_field_selection.bind(this));
         },
+        start2: function() {
+            this.$table_container = this.$('.o-pivot-table');
+            var load_fields = this.model.call('fields_get', [], {context: this.dataset.get_context()})
+                                .then(this.prepare_fields.bind(this));
+            console.log('load_fields');
+            console.log(load_fields);
+            console.log(this);
+            // return $.when(this._super(), load_fields).then(this.render_field_selection.bind(this));
+        },
 
         do_search: function (domain, context, group_by) {
             //KEPANGGIL SETELAH RENTETAN start
             var self = this;
+            console.log('self awal');
+            console.log(this);
+            this.domain = domain;
+            console.log('self a22');
+            console.log(this);
             var fields = ['external_status','weekly', 'count'];
             var groupbys = ['external_status', 'weekly'];
 
             console.log('do_search');
+            console.log(domain, context, group_by);
 
 
 
@@ -73,6 +91,12 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             }, {}).then(function (results) {
                 console.log('resultsbaru');
                 console.log(results);
+                console.log('domain, context, group_by');
+                console.log(domain, context, group_by);
+                console.log('this');
+                console.log(this);
+                console.log('self');
+                console.log(self);
                 var tesresult = JSON.stringify(results['records']);
                 console.log(tesresult);
                 // return results.records;

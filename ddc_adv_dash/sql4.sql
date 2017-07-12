@@ -76,3 +76,4 @@ SET (IFI, IFR,IFA, AFC, defIFR, defIFA, defAFC) =
 where hehe.revision_date= hehe.revision_date;
 
 SELECT * FROM coba11;
+z

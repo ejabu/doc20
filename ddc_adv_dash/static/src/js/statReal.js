@@ -75,7 +75,21 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             this.domain = domain;
             console.log('self a22');
             console.log(this);
-            var fields = ['external_status','weekly', 'count'];
+            var fields = [
+                        'week_name',
+                        'week_date',
+                        'ifi',
+                        'ifr',
+                        'ifa',
+                        'afc',
+                        'def_ifr',
+                        'def_ifa',
+                        'def_afc',
+                        'diff_ifi',
+                        'diff_ifr',
+                        'diff_ifa',
+                        'diff_afc'
+            ];
             var groupbys = ['external_status', 'weekly'];
 
             console.log('do_search');
@@ -85,8 +99,8 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
 
             return session.rpc('/web/dataset/search_read', {
                 model: 'stat.real',
-                fields: ['external_status','weekly','count'],
-                sort: 'id',
+                fields: fields,
+                sort: 'week_date',
 
             }, {}).then(function (results) {
                 console.log('resultsbaru');

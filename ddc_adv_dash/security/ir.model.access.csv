@@ -1,2 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_stat_real,stat.real,model_stat_real,ddc_1_0.ddc_doccon,1,1,1,1

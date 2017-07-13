@@ -10,7 +10,7 @@
     "description" : """Versi 0.1 - Advance Document Management Dashboard""",
     'data': [
         #Security must be Placed on Top
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
 
         #Static Lib
         'static_lib.xml',

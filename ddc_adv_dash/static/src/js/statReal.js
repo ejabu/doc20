@@ -8,7 +8,6 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
     var View = require('web.View');
     var widgets = require('web_calendar.widgets');
     var session = require('web.session');
-
     var _ = require('_');
     var $ = require('$');
 
@@ -41,40 +40,35 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
 
 
             this.domain;
-            console.log('EJA3');
-            console.log(this);
         },
         // willStart: function () {
         //         console.log('willStart');
         //     },
         start: function() {
+            //START HANYA DIEKSEKUSI SEKALI SETELAH MENU ITEM DI KLIK
             this.$table_container = this.$('.o-pivot-table');
             // var babang = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
             var load_fields = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
-                                .then(this.start2.bind(this));
-            console.log('load_fields');
-            console.log(load_fields);
-            console.log(this);
+                                .then(this.after_start.bind(this));
             return $.when(this._super(), load_fields).then(this.render_field_selection.bind(this));
         },
-        start2: function() {
+        after_start: function() {
+            //START2 HANYA DIEKSEKUSI SEKALI SETELAH MENU ITEM DI KLIK
+
             this.$table_container = this.$('.o-pivot-table');
             var load_fields = this.model.call('fields_get', [], {context: this.dataset.get_context()})
                                 .then(this.prepare_fields.bind(this));
-            console.log('load_fields');
-            console.log(load_fields);
-            console.log(this);
+            // tidak perlu declare return $.when lagi
+            // hal ini dikarenakan sudah didefinisikan di start.
             // return $.when(this._super(), load_fields).then(this.render_field_selection.bind(this));
         },
 
         do_search: function (domain, context, group_by) {
-            //KEPANGGIL SETELAH RENTETAN start
+            //Terpanggil secara otomastis setelah Rentetat Start
+            //Sepertinya karena model.call('fields_get')
+            console.log('Do Search');
             var self = this;
-            console.log('self awal');
-            console.log(this);
             this.domain = domain;
-            console.log('self a22');
-            console.log(this);
             var fields = [
                         'week_name',
                         'week_date',
@@ -90,12 +84,6 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                         'diff_ifa',
                         'diff_afc'
             ];
-            var groupbys = ['external_status', 'weekly'];
-
-            console.log('do_search');
-            console.log(domain, context, group_by);
-
-
 
             return session.rpc('/web/dataset/search_read', {
                 model: 'stat.real',
@@ -103,16 +91,10 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                 sort: 'week_date',
 
             }, {}).then(function (results) {
-                console.log('resultsbaru');
-                console.log(results);
-                console.log('domain, context, group_by');
                 console.log(domain, context, group_by);
-                console.log('this');
-                console.log(this);
-                console.log('self');
-                console.log(self);
-                var tesresult = JSON.stringify(results['records']);
-                console.log(tesresult);
+                // var string_res = JSON.stringify(results['records']);
+                var filter_result = filter_by_js(results['records'], domain)
+                // console.log(filtered_array);
                 // return results.records;
             }, null);
 
@@ -153,8 +135,8 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                 groupable_types = ['many2one', 'char', 'boolean',
                                    'selection', 'date', 'datetime'];
            this.fields = fields;
-           console.log('PREPAREFIELDS');
-           console.log(this);
+        //    console.log('PREPAREFIELDS');
+        //    console.log(this);
             _.each(fields, function (field, name) {
                 if ((name !== 'id') && (field.store === true)) {
                     if (field.type === 'integer' || field.type === 'float' || field.type === 'monetary') {

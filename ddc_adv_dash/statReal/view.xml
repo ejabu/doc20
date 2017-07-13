@@ -34,7 +34,8 @@
             <record id="stat_real_action" model="ir.actions.act_window">
                 <field name="name">Status Realisasi Document Engineering</field>
                 <field name="res_model">stat.real</field>
-                <field name="context">{}</field>
+                <field name="context">{'search_default_last4':1}</field>
+
                 <field name="view_mode">statReal</field>
             </record>
 

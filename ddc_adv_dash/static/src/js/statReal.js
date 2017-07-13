@@ -102,10 +102,65 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                 .addClass('str-main-box')
                 .appendTo($fragment);
 
+            this.draw_side_table($mainbox);
             this.draw_table($mainbox);
             this.$table_container.empty().append($fragment);
         },
 
+        draw_side_table: function($mainbox){
+            var $row, $cell, $table, $thead, $tbody;
+            var self = this
+            $table = $('<table>')
+                .addClass('table table-hover table-condensed')
+                .addClass('str-table')
+                .appendTo($mainbox);
+            $thead = $('<thead>').appendTo($table);
+            $tbody = $('<tbody>').appendTo($table);
+            //Baris Pertama
+            $row = $('<tr>');
+            $cell = $('<th>')
+                .text("blank")
+                .addClass('trans-cell')
+                .attr('colspan', 2)
+            $row.append($cell);
+            $thead.append($row);
+            //Baris Kedua
+            $row = $('<tr>');
+            $cell = $('<td>')
+                .text("blank")
+                .addClass('trans-cell')
+                .attr('colspan', 2);
+            $row.append($cell);
+
+            $tbody.append($row);
+            //Baris Ke3
+            $row = $('<tr>');
+            $cell = $('<td nowrap>')
+                .text("Jumlah Dokumen")
+                .addClass('table-side-cell bold')
+                .attr('colspan', 2);
+            $row.append($cell);
+
+            $tbody.append($row);
+            //Baris Ke4
+            $row = $('<tr>');
+            $cell = $('<td nowrap>')
+                .text("A")
+                .addClass('table-side-cell bold')
+                .attr('colspan', 2);
+            $row.append($cell);
+
+            $tbody.append($row);
+            //Baris Ke5
+            $row = $('<tr>');
+            $cell = $('<td nowrap>')
+                .text("B")
+                .addClass('table-side-cell bold')
+                .attr('colspan', 2);
+            $row.append($cell);
+
+            $tbody.append($row);
+        },
         draw_table: function($mainbox){
             var $row, $cell, $table, $thead, $tbody;
             var self = this
@@ -133,7 +188,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                 ["IFI", "IFR", "IFA", "AFC"].map(function (value) {
                     $cell = $('<td>')
                         .text(value)
-                        .addClass('str-sub-header str-body-cell')
+                        .addClass('str-sub-header str-body-cell bold')
                         .attr('colspan', 1);
                     $row.append($cell);
                 })
@@ -146,6 +201,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                         .text(value)
                         .addClass('str-body-cell')
                         .attr('colspan', 1);
+                    if (value < 1 ) {
+                        $cell.addClass('str-body-cell-neg');
+                    }
                     $row.append($cell);
                 })
 
@@ -158,6 +216,10 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                         .text(value)
                         .addClass('str-body-cell')
                         .attr('colspan', 1);
+                    if (value < 1  && value !== "") {
+                        $cell.addClass('str-body-cell-neg');
+                    }
+
                     $row.append($cell);
                 })
 
@@ -169,6 +231,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                         .text(value)
                         .addClass('str-body-cell')
                         .attr('colspan', 1);
+                    if (value < 1) {
+                        $cell.addClass('str-body-cell-neg');
+                    }
                     $row.append($cell);
                 })
 

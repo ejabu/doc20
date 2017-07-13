@@ -17,7 +17,21 @@ function filter_by_js (results, domain){
 
             //Change to dom[2]
             if (dom[0] == "week_date") {
-                condition= '"'+ dom[2] + '"'
+                //Change LAST7
+                switch (dom[2]) {
+                    case "last4":
+                        week = 4;
+                        target_date = $.datepicker.formatDate('yy-mm-dd', new Date(new Date().getTime() - (week*60*60*24*7*1000)));
+                        condition= '"'+ target_date + '"'
+                        break;
+                    case "last8":
+                        week = 8;
+                        target_date = $.datepicker.formatDate('yy-mm-dd', new Date(new Date().getTime() - (week*60*60*24*7*1000)));
+                        condition= '"'+ target_date + '"'
+                        break;
+                    default:
+                        condition= '"'+ dom[2] + '"'
+                }
             }
             else {
                 condition = dom[2]
@@ -43,6 +57,7 @@ function filter_by_js (results, domain){
         );
         `
         to_eval = to_eval.replace('$DOMAIN', domain_string);
+        // console.log(to_eval);
         eval(to_eval);
     }
 

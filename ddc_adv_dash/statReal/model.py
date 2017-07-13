@@ -30,7 +30,7 @@ class stat_real(models.Model):
     diff_ifa = fields.Integer('diff_IFA', readonly=True, store=True)
     diff_afc = fields.Integer('diff_AFC', readonly=True, store=True)
 
-    def ejaboy(self, cr, user, allfields=None, context=None, write_access=True, attributes=None):
+    def fetch_report_stat_real(self, cr, user, allfields=None, context=None, write_access=True, attributes=None):
         # import ipdb; ipdb.set_trace()
         cr.execute(periodic_script)
 

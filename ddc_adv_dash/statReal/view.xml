@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
+
+
+        <record id="stat_real_search" model="ir.ui.view">
+            <field name="name">stat.real.search</field>
+            <field name="model">stat.real</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <search>
+
+                    <!-- <filter name="active" string="Active" domain="[('idc_id','&lt;&gt;',False)]"/> -->
+                    <filter name="last4" string="Last 4 Week" domain="[('week_date', '&gt;', 'last4')]" help="Last four weeks"/>
+                    <filter name="last8" string="Last 8 Week" domain="[('week_date', '&gt;', 'last8')]" help="Last eight weeks"/>
+                    <!-- <filter name="late" string="Overdue" domain="[('week_date', '&lt;', (DateTime.today() - relativedelta(week=1)).strftime('%Y-%m-%d'))]" help="Overdue invoices, maturity date passed"/> -->
+                    <!-- <filter name="late" string="Overdue" domain="['&amp;', ('date_due', '&lt;', time.strftime('%%Y-%%m-%%d')), ('state', '=', 'open')]" help="Overdue invoices, maturity date passed"/> -->
+
+                </search>
+            </field>
+        </record>
+
         <record id="stat_real_view" model="ir.ui.view">
+                <field name="name">stat.real.dashboard</field>
                 <field name="model">stat.real</field>
                 <field name="type">statReal</field>
                 <field name="arch" type="xml">
                     <statReal >
-                        hehehaha
+                        default_view
                     </statReal>
                 </field>
             </record>

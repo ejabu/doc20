@@ -1,0 +1,21 @@
+.str-main-box {
+    transition: font 0.3s ease;
+    padding: 40px;
+}
+.str-main-box:hover {
+    font-size: 40px;
+}
+.str-header{
+    text-align: center;
+    color: blue;
+}
+.str-body-side{
+    text-align: center;
+    color: blue;
+}
+
+
+.str-cell-blank {
+   border: none;
+   background: transparent;
+}

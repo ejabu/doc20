@@ -98,10 +98,13 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             var context = {}
             // this.$field_selection.html(QWeb.render('ejacoy', context));
             var $fragment = $(document.createDocumentFragment());
+            var $mainbox = $('<div>')
+                .addClass('str-main-box')
+                .appendTo($fragment);
             var $table = $('<table>')
                 .addClass('table')
                 // .addClass('table table-hover table-condensed')
-                .appendTo($fragment);
+                .appendTo($mainbox);
             var $thead = $('<thead>').appendTo($table);
             var $tbody = $('<tbody>').appendTo($table);
             this.draw_headers($thead);
@@ -112,9 +115,15 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             var $row, $cell;
             var self = this
             $row = $('<tr>');
+            $cell = $('<th>')
+                .text("")
+                .addClass('str-cell-blank')
+                .attr('colspan', 2);
+            $row.append($cell);
             self.filtered_result.map(function (rec) {
                 $cell = $('<th>')
                     .text(rec.week_name)
+                    .addClass('str-header')
                     .attr('colspan', 4);
                 $row.append($cell);
 
@@ -127,6 +136,11 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             var self = this
             //Kolom Pertama
             $row = $('<tr>');
+            $cell = $('<td>')
+                .text("")
+                .addClass('str-cell-blank')
+                .attr('colspan', 2);
+            $row.append($cell);
             self.filtered_result.map(function (rec) {
                 ["IFI", "IFR", "IFA", "AFC"].map(function (value) {
                     $cell = $('<td>')
@@ -138,6 +152,11 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             $tbody.append($row);
             //Kolom Kedua
             $row = $('<tr>');
+            $cell = $('<td>')
+                .text("Jumlah Dokumen")
+                .addClass('str-body-side')
+                .attr('colspan', 2);
+            $row.append($cell);
             self.filtered_result.map(function (rec) {
                 [rec.ifi, rec.ifr, rec.ifa, rec.afc].map(function (value) {
                     $cell = $('<td>')
@@ -149,6 +168,11 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             $tbody.append($row);
             //Kolom Ketiga
             $row = $('<tr>');
+            $cell = $('<td>')
+                .text("A")
+                .addClass('str-body-side')
+                .attr('colspan', 2);
+            $row.append($cell);
             self.filtered_result.map(function (rec) {
                 ["", rec.def_ifr, rec.def_ifa, rec.def_afc].map(function (value) {
                     $cell = $('<td>')
@@ -160,6 +184,11 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             $tbody.append($row);
             //Kolom Keempat
             $row = $('<tr>');
+            $cell = $('<td>')
+                .text("B")
+                .addClass('str-body-side')
+                .attr('colspan', 2);
+            $row.append($cell);
             self.filtered_result.map(function (rec) {
                 [rec.diff_ifi, rec.diff_ifr, rec.diff_ifa, rec.diff_afc].map(function (value) {
                     $cell = $('<td>')

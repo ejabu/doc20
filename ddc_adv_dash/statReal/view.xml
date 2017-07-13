@@ -32,7 +32,7 @@
             </record>
 
             <record id="stat_real_action" model="ir.actions.act_window">
-                <field name="name">pet Home</field>
+                <field name="name">Status Realisasi Document Engineering</field>
                 <field name="res_model">stat.real</field>
                 <field name="context">{}</field>
                 <field name="view_mode">statReal</field>

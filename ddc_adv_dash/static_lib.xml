@@ -3,7 +3,7 @@
     <data>
         <template id="assets_backend" name="ddc assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <!-- <link rel="stylesheet" href="/ddc_adv_dash/static/src/css/form.css"/> -->
+                <link rel="stylesheet" href="/ddc_adv_dash/static/src/css/stat_real.css"/>
 
                 <script type="text/javascript" src="/ddc_adv_dash/static/src/js/data_process.js"></script>
                 <script type="text/javascript" src="/ddc_adv_dash/static/src/js/statReal.js"></script>

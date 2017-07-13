@@ -1,16 +1,17 @@
-<template>
-  <t t-name="statReal">
-    <div class="ejao-field-selection">
-tes2zzzzs hahaha
-    </div>
-  </t>
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
 
 
 
+    <t t-name="statRealTemplate">
+        <div class="stat-real-mainbox">
+            stat-real-mainbox
+        </div>
+    </t>
 
-<t t-name="ejacoy">
-    hahaha
-</t>
+    <t t-name="ejacoy">
+        ejacoy
+    </t>
 
 
-</template>
+</templates>

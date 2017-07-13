@@ -46,9 +46,7 @@ function filter_by_js (results, domain){
         eval(to_eval);
     }
 
-    console.log('results after eval');
-    console.log(results);
-    console.log(new_results);
+    return new_results
 
 }
 

@@ -20,7 +20,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
     }
 
     var statReal = View.extend({
-        template: "statReal",
+        template: "statRealTemplate",
         display_name: _lt('statReal'),
         icon: 'fa-clock-o',
 
@@ -38,6 +38,8 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             this.measures = {};
             this.groupable_fields = {};
 
+            this.filtered_result;
+
 
             this.domain;
         },
@@ -46,7 +48,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         //     },
         start: function() {
             //START HANYA DIEKSEKUSI SEKALI SETELAH MENU ITEM DI KLIK
-            this.$table_container = this.$('.o-pivot-table');
+            this.$table_container = this.$('.stat-real-mainbox');
             // var babang = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
             var load_fields = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
                                 .then(this.after_start.bind(this));
@@ -55,7 +57,6 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         after_start: function() {
             //START2 HANYA DIEKSEKUSI SEKALI SETELAH MENU ITEM DI KLIK
 
-            this.$table_container = this.$('.o-pivot-table');
             var load_fields = this.model.call('fields_get', [], {context: this.dataset.get_context()})
                                 .then(this.prepare_fields.bind(this));
             // tidak perlu declare return $.when lagi
@@ -64,8 +65,10 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         },
 
         do_search: function (domain, context, group_by) {
-            //Terpanggil secara otomastis setelah Rentetat Start
+            //Terpanggil secara otomastis setelah Rentetan Start
             //Sepertinya karena model.call('fields_get')
+
+            this.data_loaded = this.load_data(true);
             console.log('Do Search');
             var self = this;
             this.domain = domain;
@@ -93,8 +96,11 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             }, {}).then(function (results) {
                 console.log(domain, context, group_by);
                 // var string_res = JSON.stringify(results['records']);
-                var filter_result = filter_by_js(results['records'], domain)
+                var filtered_result = filter_by_js(results['records'], domain)
                 // console.log(filtered_array);
+                self.filtered_result = filtered_result;
+                self.do_show()
+
                 // return results.records;
             }, null);
 
@@ -116,6 +122,35 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         },
 
 
+        do_show: function () {
+            var self = this;
+            console.log('do_show');
+
+            // var context = {fields: _.chain(this.groupable_fields).pairs().sortBy(function(f){return f[1].string;}).value()};
+            var context = {}
+            console.log(this.$table_container);
+            // this.$field_selection.html(QWeb.render('ejacoy', context));
+            var $fragment = $(document.createDocumentFragment());
+            // var $table = $('<table>')
+            //     .addClass('table table-hover table-condensed')
+            //     .appendTo($fragment);
+            // console.log($table);
+            // var $tbody = $('<tbody>').appendTo($table);
+            // var $thead = $('<thead>').appendTo($table);
+            // console.log($table);
+            console.log('$fragment');
+            console.log($fragment);
+
+            var $cell = $('<div>')
+                    .text('ejaaaaaaaaaaaaa')
+            $fragment.append($cell);
+
+            this.$table_container.empty().append($fragment);
+
+            // core.bus.on('click', self, function () {
+            //     self.$field_selection.find('ul').first().hide();
+            // });
+        },
         render_field_selection: function () {
             var self = this;
             console.log('render_field_selection');
@@ -131,9 +166,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         },
 
         prepare_fields: function (fields) {
-            var self = this,
-                groupable_types = ['many2one', 'char', 'boolean',
-                                   'selection', 'date', 'datetime'];
+            var self = this;
+            // var groupable_types = ['many2one', 'char', 'boolean',
+            //                        'selection', 'date', 'datetime'];
            this.fields = fields;
         //    console.log('PREPAREFIELDS');
         //    console.log(this);
@@ -142,9 +177,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                     if (field.type === 'integer' || field.type === 'float' || field.type === 'monetary') {
                         self.measures[name] = field;
                     }
-                    if (_.contains(groupable_types, field.type)) {
-                        self.groupable_fields[name] = field;
-                    }
+                    // if (_.contains(groupable_types, field.type)) {
+                    //     self.groupable_fields[name] = field;
+                    // }
                 }
             });
             this.measures.__count__ = {string: _t("Count"), type: "integer"};

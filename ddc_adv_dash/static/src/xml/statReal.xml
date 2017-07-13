@@ -3,11 +3,9 @@
 
 
 
-    <t t-name="statRealTemplate">
-        <div class="stat-real-mainbox">
-            stat-real-mainbox
-        </div>
-    </t>
+    <div t-name="statRealTemplate" class="oe_pivot">
+        <div class="o-pivot-table"/>
+    </div>
 
     <t t-name="ejacoy">
         ejacoy

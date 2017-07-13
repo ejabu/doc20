@@ -48,7 +48,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         //     },
         start: function() {
             //START HANYA DIEKSEKUSI SEKALI SETELAH MENU ITEM DI KLIK
-            this.$table_container = this.$('.stat-real-mainbox');
+            this.$table_container = this.$('.o-pivot-table');
             // var babang = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
             var load_fields = this.model.call('ejaboy', [], {context: this.dataset.get_context()})
                                 .then(this.after_start.bind(this));
@@ -63,15 +63,13 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             // hal ini dikarenakan sudah didefinisikan di start.
             // return $.when(this._super(), load_fields).then(this.render_field_selection.bind(this));
         },
-
-        do_search: function (domain, context, group_by) {
-            //Terpanggil secara otomastis setelah Rentetan Start
-            //Sepertinya karena model.call('fields_get')
-
-            this.data_loaded = this.load_data(true);
+        load_data: function (update) {
             console.log('Do Search');
             var self = this;
-            this.domain = domain;
+            console.log(this);
+            console.log(this.domain);
+            self.domain = this.domain;
+
             var fields = [
                         'week_name',
                         'week_date',
@@ -94,15 +92,24 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                 sort: 'week_date',
 
             }, {}).then(function (results) {
-                console.log(domain, context, group_by);
+                console.log('domain, context, group_by eeee');
                 // var string_res = JSON.stringify(results['records']);
-                var filtered_result = filter_by_js(results['records'], domain)
+                var filtered_result = filter_by_js(results['records'], self.domain)
                 // console.log(filtered_array);
                 self.filtered_result = filtered_result;
-                self.do_show()
+                // self.do_show()
 
                 // return results.records;
             }, null);
+
+        },
+        do_search: function (domain, context, group_by) {
+            //Terpanggil secara otomastis setelah Rentetan Start
+            //Sepertinya karena model.call('fields_get')
+
+            this.data_loaded = this.load_data(true);
+            this.domain = domain;
+
 
 
             // return $.when.apply(null, groupbys.map(function (groupby) {
@@ -122,34 +129,55 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         },
 
 
-        do_show: function () {
-            var self = this;
-            console.log('do_show');
-
-            // var context = {fields: _.chain(this.groupable_fields).pairs().sortBy(function(f){return f[1].string;}).value()};
+        display_table: function () {
             var context = {}
+            console.log("display_table");
+            console.log(this.filtered_result);
             console.log(this.$table_container);
             // this.$field_selection.html(QWeb.render('ejacoy', context));
             var $fragment = $(document.createDocumentFragment());
-            // var $table = $('<table>')
-            //     .addClass('table table-hover table-condensed')
-            //     .appendTo($fragment);
-            // console.log($table);
-            // var $tbody = $('<tbody>').appendTo($table);
-            // var $thead = $('<thead>').appendTo($table);
-            // console.log($table);
-            console.log('$fragment');
+            var $table = $('<table>')
+                .addClass('table table-hover table-condensed')
+                .appendTo($fragment);
+            var $thead = $('<thead>').appendTo($table);
+            var $tbody = $('<tbody>').appendTo($table);
+            this.draw_headers($thead);
+
             console.log($fragment);
 
-            var $cell = $('<div>')
-                    .text('ejaaaaaaaaaaaaa')
-            $fragment.append($cell);
-
+            // var $cell = $('<div>')
+            //         .text('333333333333')
+            // $fragment.append($cell);
+            console.log('EJA CEK');
+            console.log(this.$table_container);
+            console.log($fragment);
             this.$table_container.empty().append($fragment);
+        },
+        draw_headers: function($thead){
+            var $row, $cell;
+            var self = this
+            console.log(this.filtered_result);
+            console.log(this.filtered_result);
+            //
+            $row = $('<tr>');
+            self.filtered_result.map(function (rec) {
+                console.log(rec);
+                $cell = $('<th>')
+                    .text(rec.week_name)
+                    .attr('colspan', 4);
+                $row.append($cell);
 
-            // core.bus.on('click', self, function () {
-            //     self.$field_selection.find('ul').first().hide();
-            // });
+            })
+            $thead.append($row);
+            
+        },
+        do_show: function () {
+            var self = this;
+            this.data_loaded.done(function () {
+                self.display_table();
+
+            });
+            return this._super();
         },
         render_field_selection: function () {
             var self = this;

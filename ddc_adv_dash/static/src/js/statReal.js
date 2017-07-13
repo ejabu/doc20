@@ -101,105 +101,83 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             var $mainbox = $('<div>')
                 .addClass('str-main-box')
                 .appendTo($fragment);
-            var $table = $('<table>')
-                .addClass('table')
-                // .addClass('table table-hover table-condensed')
-                .appendTo($mainbox);
-            var $thead = $('<thead>').appendTo($table);
-            var $tbody = $('<tbody>').appendTo($table);
-            this.draw_headers($thead);
-            this.draw_content($tbody);
+
+            this.draw_table($mainbox);
             this.$table_container.empty().append($fragment);
         },
-        draw_headers: function($thead){
-            var $row, $cell;
+
+        draw_table: function($mainbox){
+            var $row, $cell, $table, $thead, $tbody;
             var self = this
-            $row = $('<tr>');
-            $cell = $('<th>')
-                .text("")
-                .addClass('str-cell-blank')
-                .attr('colspan', 2);
-            $row.append($cell);
+
+
+
             self.filtered_result.map(function (rec) {
+                $table = $('<table>')
+                    .addClass('table table-hover table-condensed')
+                    .addClass('str-table')
+                    .appendTo($mainbox);
+                $thead = $('<thead>').appendTo($table);
+                $tbody = $('<tbody>').appendTo($table);
+                //Baris Pertama
+                $row = $('<tr>');
                 $cell = $('<th>')
                     .text(rec.week_name)
-                    .addClass('str-header')
-                    .attr('colspan', 4);
+                    .attr('colspan', 4)
+                    .addClass('str-header');
                 $row.append($cell);
 
-            })
-            $thead.append($row);
-
-        },
-        draw_content: function($tbody){
-            var $row, $cell;
-            var self = this
-            //Kolom Pertama
-            $row = $('<tr>');
-            $cell = $('<td>')
-                .text("")
-                .addClass('str-cell-blank')
-                .attr('colspan', 2);
-            $row.append($cell);
-            self.filtered_result.map(function (rec) {
+                $thead.append($row);
+                //Baris Kedua
+                $row = $('<tr>');
                 ["IFI", "IFR", "IFA", "AFC"].map(function (value) {
                     $cell = $('<td>')
                         .text(value)
+                        .addClass('str-sub-header str-body-cell')
                         .attr('colspan', 1);
                     $row.append($cell);
                 })
-            })
-            $tbody.append($row);
-            //Kolom Kedua
-            $row = $('<tr>');
-            $cell = $('<td>')
-                .text("Jumlah Dokumen")
-                .addClass('str-body-side')
-                .attr('colspan', 2);
-            $row.append($cell);
-            self.filtered_result.map(function (rec) {
+
+                $tbody.append($row);
+                //Baris Ketiga
+                $row = $('<tr>');
                 [rec.ifi, rec.ifr, rec.ifa, rec.afc].map(function (value) {
                     $cell = $('<td>')
                         .text(value)
+                        .addClass('str-body-cell')
                         .attr('colspan', 1);
                     $row.append($cell);
                 })
-            })
-            $tbody.append($row);
-            //Kolom Ketiga
-            $row = $('<tr>');
-            $cell = $('<td>')
-                .text("A")
-                .addClass('str-body-side')
-                .attr('colspan', 2);
-            $row.append($cell);
-            self.filtered_result.map(function (rec) {
+
+                $tbody.append($row);
+                //Baris Keempat
+                $row = $('<tr>');
+
                 ["", rec.def_ifr, rec.def_ifa, rec.def_afc].map(function (value) {
                     $cell = $('<td>')
                         .text(value)
+                        .addClass('str-body-cell')
                         .attr('colspan', 1);
                     $row.append($cell);
                 })
-            })
-            $tbody.append($row);
-            //Kolom Keempat
-            $row = $('<tr>');
-            $cell = $('<td>')
-                .text("B")
-                .addClass('str-body-side')
-                .attr('colspan', 2);
-            $row.append($cell);
-            self.filtered_result.map(function (rec) {
+
+                $tbody.append($row);
+                //Baris Kelima
+                $row = $('<tr>');
                 [rec.diff_ifi, rec.diff_ifr, rec.diff_ifa, rec.diff_afc].map(function (value) {
                     $cell = $('<td>')
                         .text(value)
+                        .addClass('str-body-cell')
                         .attr('colspan', 1);
                     $row.append($cell);
                 })
-            })
-            $tbody.append($row);
 
+                $tbody.append($row);
+
+            })
         },
+
+
         do_show: function () {
             var self = this;
             this.data_loaded.done(function () {

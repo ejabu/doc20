@@ -1,13 +1,45 @@
 .str-main-box {
-    transition: font 0.3s ease;
-    padding: 40px;
+    padding: 30px;
+    font-size: 14px;
+    color: #4c4c4c;
+    display: flex;
+    /*width: 2000px;*/
+
 }
-.str-main-box:hover {
-    font-size: 40px;
+
+.str-table{
+    /*float: left;*/
+    display: inline-block;
+    margin-right: 1px;
 }
-.str-header{
+
+.str-table:hover{
+    transition: color 0.3s ease;
+    color: black;
+
+
+}
+
+
+
+.str-header {
     text-align: center;
-    color: blue;
+}
+
+.str-sub-header:hover {
+    background-color: #e6e6e6;
+}
+.str-table:hover .str-header{
+    background-color: #dedede;
+    transition: background 0.3s ease;
+    color: #3c3c3c;
+}
+.str-body-cell{
+    text-align: right;
+    padding: 13px;
+}
+.str-table:hover .str-body-cell{
+    border: 1px solid #4d4d4d;
 }
 .str-body-side{
     text-align: center;

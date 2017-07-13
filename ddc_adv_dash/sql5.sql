@@ -97,3 +97,38 @@ INSERT INTO report_stat_real (id,week_name, week_date, ifi, ifr, ifa, afc, def_i
 ;
 
 COMMIT;
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+
+
+
+---Dummy
+
+
+
+INSERT INTO report_stat_real as hehe (id, week_name, week_date, ifi, ifr, ifa, afc, def_ifr, def_ifa, def_afc, diff_IFI, diff_IFR, diff_IFA, diff_AFC)
+
+        SELECT
+
+        nextval('report_stat_real_id_seq') as id,
+        '26-Jun-17' as week_name,
+        '2017-06-26' as week_date,
+        30 as ifi,
+        40 as ifr,
+        30 as ifa,
+        0 as afc,
+        3 as def_ifr,
+        4 as def_ifa,
+        4 as def_afc,
+        3 as diff_IFI,
+        4 as diff_IFR,
+        4 as diff_IFA,
+        4 as diff_AFC

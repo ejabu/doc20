@@ -21,12 +21,12 @@ function filter_by_js (results, domain){
                     //Change LAST7
                     switch (dom[2]) {
                         case "last4":
-                            week = 4;
+                            week = 3;
                             target_date = $.datepicker.formatDate('yy-mm-dd', new Date(new Date().getTime() - (week*60*60*24*7*1000)));
                             condition= '"'+ target_date + '"'
                             break;
                         case "last8":
-                            week = 8;
+                            week = 7;
                             target_date = $.datepicker.formatDate('yy-mm-dd', new Date(new Date().getTime() - (week*60*60*24*7*1000)));
                             condition= '"'+ target_date + '"'
                             break;

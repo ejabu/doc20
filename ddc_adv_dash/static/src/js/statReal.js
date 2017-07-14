@@ -6,8 +6,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
     var Model = require('web.DataModel');
     var time = require('web.time');
     var View = require('web.View');
-    var widgets = require('web_calendar.widgets');
     var session = require('web.session');
+    var Sidebar = require('web.Sidebar');
+
     var _ = require('_');
     var $ = require('$');
 
@@ -251,6 +252,30 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             });
             return this._super();
         },
+
+        willStart: function () {
+            var self = this;
+            return session.rpc('/web/pivot/check_xlwt').then(function(result) {
+                self.xlwt_installed = result;
+            });
+        },
+        render_sidebar: function($node) {
+            console.log("render_sidebar");
+            console.log($node, this);
+            if (this.xlwt_installed && $node && this.options.sidebar) {
+                this.sidebar = new Sidebar(this, {editable: this.is_action_enabled('edit')});
+                this.sidebar.add_items('other', [{
+                    label: _t("Download xls"),
+                    callback: this.download_table.bind(this),
+                }]);
+
+                this.sidebar.appendTo($node);
+            }
+        },
+        download_table: function () {
+            console.log('download_table');
+            console.log('download_table');
+        }
 
 
     });

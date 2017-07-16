@@ -8,11 +8,13 @@ from collections import deque
 
 from datetime import datetime
 
-
 try:
     import xlsxwriter
 except ImportError:
     xlsxwriter = None
+
+import openerp.addons.web.controllers.main as hehe
+
 
 class TableExporter(http.Controller):
 
@@ -21,7 +23,7 @@ class TableExporter(http.Controller):
         return xlwt is not None
 
 
-    @http.route('/web/adv/stat_real', type='http', auth="user")
+    @http.route('/web/adv/stat_real_old', type='http', auth="user")
     def export_xls(self, data, token):
 
 
@@ -45,5 +47,39 @@ class TableExporter(http.Controller):
                     ('Content-Disposition', 'attachment; filename=table.xls;')],
             cookies={'fileToken': token})
         wb.save(response.stream)
+
+        return response
+
+    @http.route('/web/adv/stat_real', type='http', auth="user")
+    def export_xlsx(self, data, token):
+        fp = StringIO()
+        workbook = xlsxwriter.Workbook(fp)
+        worksheet = workbook.add_worksheet()
+
+        worksheet1 = workbook.add_worksheet()
+        worksheet2 = workbook.add_worksheet()
+
+        worksheet1.write('A1', 123)
+
+
+        merge_format = workbook.add_format({
+            'bold':     True,
+            'border':   6,
+            'align':    'center',
+            'valign':   'vcenter',
+            'fg_color': '#D7E4BC',
+        })
+
+        worksheet1.merge_range('B3:D4', 'Merged Cells', merge_format)
+        workbook.close()
+        fp.seek(0)
+        data = fp.read()
+
+        response = request.make_response(data,
+            headers=[('Content-Type', 'application/vnd.ms-excel'),
+                    ('Content-Disposition', 'attachment; filename=table.xlsx;')],
+        cookies={'fileToken': token})
+
+
 
         return response

@@ -1,8 +1,10 @@
+import edit_default_odoo
+
 import model
 import controller
 
 
-# 
+#
 # Fungsi model
 # - mendefinisikan object apa yang perlu ditampilkan Odoo, setelah menu item tertentu di KLIK
 #
@@ -12,3 +14,7 @@ import controller
 # Fungsi controller
 # - Dashboard harus bisa di print dalam bentuk XLSX yang di-trigger dari Javasript
 # - Sehingga, Dashboard harus memiliki Routing sendiri untuk me-return sebuah File XLSX
+
+
+
+#Edit Odoo Default

@@ -9,6 +9,11 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
     var session = require('web.session');
     var Sidebar = require('web.Sidebar');
 
+
+    var crash_manager = require('web.crash_manager');
+    var framework = require('web.framework');
+
+
     var _ = require('_');
     var $ = require('$');
 
@@ -273,8 +278,18 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             }
         },
         download_table: function () {
+            framework.blockUI();
+
             console.log('download_table');
             console.log('download_table');
+
+
+            session.get_file({
+                url: '/web/adv/stat_real',
+                data: {data: JSON.stringify({})},
+                complete: framework.unblockUI,
+                error: crash_manager.rpc_error.bind(crash_manager)
+            });
         }
 
 

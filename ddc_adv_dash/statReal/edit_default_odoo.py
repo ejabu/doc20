@@ -2,7 +2,6 @@ import openerp.addons.web.controllers.main as hehe
 
 hehe.Reports.TYPES_MAPPING['xlsx']= 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 
-import ipdb; ipdb.set_trace()
 
 
 def x_formats(self):

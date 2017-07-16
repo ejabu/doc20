@@ -31,7 +31,6 @@ class stat_real(models.Model):
     diff_afc = fields.Integer('diff_AFC', readonly=True, store=True)
 
     def fetch_report_stat_real(self, cr, user, allfields=None, context=None, write_access=True, attributes=None):
-        # import ipdb; ipdb.set_trace()
         cr.execute(periodic_script)
 
 
@@ -39,7 +38,6 @@ class stat_real(models.Model):
         tools.drop_view_if_exists(cr, 'stat_real')
         self.create_report_stat_real(cr)
         self.create_stat_real(cr) #harus diakhirkan karena memerukan real table, report_stat_real
-        # import ipdb; ipdb.set_trace()
 
 
 

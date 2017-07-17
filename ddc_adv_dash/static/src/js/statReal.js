@@ -222,7 +222,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                         .text(value)
                         .addClass('str-body-cell')
                         .attr('colspan', 1);
-                    if (value < 1  && value !== "") {
+                    if (value < 0  && value !== "") {
                         $cell.addClass('str-body-cell-neg');
                     }
 

@@ -45,13 +45,12 @@ function filter_by_js (results, domain){
 
         })
         domain_string = domain_string.slice(0, -4);
-        var to_eval =
-        `
-        new_results = _.filter(results, function (el){
-            return $DOMAIN;
-            }
-        );
-        `
+        var to_eval = `
+                    new_results = _.filter(results, function (el){
+                    return $DOMAIN;
+                        }
+                    );
+                    `;
         to_eval = to_eval.replace('$DOMAIN', domain_string);
         // console.log(to_eval);
         eval(to_eval);

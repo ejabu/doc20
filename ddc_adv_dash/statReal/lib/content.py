@@ -64,8 +64,8 @@ def run(wb, ws, data):
     end_row = c_row + 4
 
     #Edit Column Width
-    ws.set_column(6, end_col-1, 4.91)
-    ws.set_column(end_col, end_col, 6.71)
+    ws.set_column(3, end_col-1, 4.91) #Semua Count Vlaue
+    ws.set_column(end_col, end_col, 6.71) #Row untuk percentage
 
     #Make Conditional Formatting
     conditional_format = {

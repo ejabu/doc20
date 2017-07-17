@@ -282,11 +282,11 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
 
             console.log('download_table');
             console.log('download_table');
-
+            console.log(JSON.stringify(this.filtered_result));
 
             session.get_file({
                 url: '/web/adv/stat_real',
-                data: {data: JSON.stringify({})},
+                data: {data: JSON.stringify(this.filtered_result)},
                 complete: framework.unblockUI,
                 error: crash_manager.rpc_error.bind(crash_manager)
             });

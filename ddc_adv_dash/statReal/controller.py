@@ -6,7 +6,9 @@ from openerp.tools.misc import xlwt
 from cStringIO import StringIO
 from collections import deque
 
+import json
 from datetime import datetime
+
 
 try:
     import xlsxwriter
@@ -22,62 +24,42 @@ class TableExporter(http.Controller):
     def check_xlwt(self):
         return xlwt is not None
 
-
-    @http.route('/web/adv/stat_real_old', type='http', auth="user")
-    def export_xls(self, data, token):
-
-
-        style0 = xlwt.easyxf('font: name Times New Roman, color-index red, bold on',
-            num_format_str='#,##0.00')
-        style1 = xlwt.easyxf(num_format_str='D-MMM-YY')
-
-        wb = xlwt.Workbook()
-        ws = wb.add_sheet('A Test Sheet')
-
-        ws.write(0, 0, 1234.56, style0)
-        ws.write(1, 0, datetime.now(), style1)
-        ws.write(2, 0, 1)
-        ws.write(2, 1, 1)
-        ws.write(2, 2, xlwt.Formula("A3+B3"))
-
-        wb.save('example.xls')
-
-        response = request.make_response(None,
-            headers=[('Content-Type', 'application/vnd.ms-excel'),
-                    ('Content-Disposition', 'attachment; filename=table.xls;')],
-            cookies={'fileToken': token})
-        wb.save(response.stream)
-
-        return response
-
     @http.route('/web/adv/stat_real', type='http', auth="user")
     def export_xlsx(self, data, token):
         fp = StringIO()
+        import ipdb; ipdb.set_trace()
+        data = json.loads(data)
+
         workbook = xlsxwriter.Workbook(fp)
-        worksheet = workbook.add_worksheet()
+        worksheet = workbook.add_worksheet("Status Realisasi")
 
-        worksheet1 = workbook.add_worksheet()
-        worksheet2 = workbook.add_worksheet()
+        format = workbook.add_format()
 
-        worksheet1.write('A1', 123)
+        format.set_font_color('red')
 
+        worksheet.write(10, 10, 'wheelbarrow', format)
+
+        worksheet.set_column('C:W', 4.9)
+
+        worksheet.write('A1', 123)
 
         merge_format = workbook.add_format({
-            'bold':     True,
-            'border':   6,
+            'font_size': 24,
             'align':    'center',
             'valign':   'vcenter',
-            'fg_color': '#D7E4BC',
+            # 'bold':     True,
+            # 'border':   6,
+            # 'fg_color': '#D7E4BC',
         })
 
-        worksheet1.merge_range('B3:D4', 'Merged Cells', merge_format)
+        worksheet.merge_range('C2:S4', 'STATUS REALISASI DOKUMEN ENGINEERING', merge_format)
         workbook.close()
         fp.seek(0)
         data = fp.read()
 
         response = request.make_response(data,
             headers=[('Content-Type', 'application/vnd.ms-excel'),
-                    ('Content-Disposition', 'attachment; filename=table.xlsx;')],
+                    ('Content-Disposition', 'attachment; filename=Status Realisasi.xlsx;')],
         cookies={'fileToken': token})
 
 

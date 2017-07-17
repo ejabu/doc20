@@ -2,7 +2,7 @@ import edit_default_odoo
 
 import model
 import controller
-
+import lib
 
 #
 # Fungsi model

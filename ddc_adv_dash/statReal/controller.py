@@ -27,39 +27,35 @@ class TableExporter(http.Controller):
     @http.route('/web/adv/stat_real', type='http', auth="user")
     def export_xlsx(self, data, token):
         fp = StringIO()
-        import ipdb; ipdb.set_trace()
+
+        import xlsxwriter
+        from lib import title
+        from lib import side_column
+        from lib import content
+        from lib import set_width
+        from datetime import datetime
+
         data = json.loads(data)
 
-        workbook = xlsxwriter.Workbook(fp)
-        worksheet = workbook.add_worksheet("Status Realisasi")
+        wb = xlsxwriter.Workbook(fp)
+        ws = wb.add_worksheet("Status Realisasi")
+        now =  datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 
-        format = workbook.add_format()
+        filename = 'output/Status Realisasi ' + now + '.xlsx'
+        att_string = 'attachment; filename=Status Realisasi ' + now + '.xlsx;'
 
-        format.set_font_color('red')
+        title.run(wb, ws)
+        side_column.run(wb, ws)
+        content.run(wb, ws, data)
+        set_width.run(wb, ws)
 
-        worksheet.write(10, 10, 'wheelbarrow', format)
-
-        worksheet.set_column('C:W', 4.9)
-
-        worksheet.write('A1', 123)
-
-        merge_format = workbook.add_format({
-            'font_size': 24,
-            'align':    'center',
-            'valign':   'vcenter',
-            # 'bold':     True,
-            # 'border':   6,
-            # 'fg_color': '#D7E4BC',
-        })
-
-        worksheet.merge_range('C2:S4', 'STATUS REALISASI DOKUMEN ENGINEERING', merge_format)
-        workbook.close()
+        wb.close()
         fp.seek(0)
         data = fp.read()
 
         response = request.make_response(data,
             headers=[('Content-Type', 'application/vnd.ms-excel'),
-                    ('Content-Disposition', 'attachment; filename=Status Realisasi.xlsx;')],
+                    ('Content-Disposition', att_string)],
         cookies={'fileToken': token})
 
 

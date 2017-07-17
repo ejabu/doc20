@@ -265,8 +265,6 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             });
         },
         render_sidebar: function($node) {
-            console.log("render_sidebar");
-            console.log($node, this);
             if (this.xlwt_installed && $node && this.options.sidebar) {
                 this.sidebar = new Sidebar(this, {editable: this.is_action_enabled('edit')});
                 this.sidebar.add_items('other', [{
@@ -280,9 +278,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
         download_table: function () {
             framework.blockUI();
 
-            console.log('download_table');
-            console.log('download_table');
-            console.log(JSON.stringify(this.filtered_result));
+            // console.log(JSON.stringify(this.filtered_result));
 
             session.get_file({
                 url: '/web/adv/stat_real',

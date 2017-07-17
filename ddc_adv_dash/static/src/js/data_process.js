@@ -53,7 +53,7 @@ function filter_by_js (results, domain){
         );
         `
         to_eval = to_eval.replace('$DOMAIN', domain_string);
-        console.log(to_eval);
+        // console.log(to_eval);
         eval(to_eval);
     }
 

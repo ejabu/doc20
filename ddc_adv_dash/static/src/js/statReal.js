@@ -72,7 +72,8 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
                         'diff_ifi',
                         'diff_ifr',
                         'diff_ifa',
-                        'diff_afc'
+                        'diff_afc',
+                        'total_doc_planner'
             ];
 
             return session.rpc('/web/dataset/search_read', {
@@ -115,7 +116,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
 
         draw_side_table: function($mainbox){
             var $row, $cell, $table, $thead, $tbody;
+            console.log(total_doc_planner);
             var self = this
+            var total_doc_planner = self.filtered_result[self.filtered_result.length - 1]['total_doc_planner']
             $table = $('<table>')
                 .addClass('table table-hover table-condensed')
                 .addClass('str-table')
@@ -132,9 +135,9 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             $thead.append($row);
             //Baris Kedua
             $row = $('<tr>');
-            $cell = $('<td>')
-                .text("blank")
-                .addClass('trans-cell')
+            $cell = $('<td nowrap>')
+                .text("Jumlah Dokumen")
+                .addClass('table-side-cell bold')
                 .attr('colspan', 2);
             $row.append($cell);
 
@@ -142,7 +145,7 @@ odoo.define('ddc_adv_dash.statReal', function(require) {
             //Baris Ke3
             $row = $('<tr>');
             $cell = $('<td nowrap>')
-                .text("Jumlah Dokumen")
+                .text(total_doc_planner)
                 .addClass('table-side-cell bold')
                 .attr('colspan', 2);
             $row.append($cell);

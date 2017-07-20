@@ -29,6 +29,7 @@ class stat_real(models.Model):
     diff_ifr = fields.Integer('diff_IFR', readonly=True, store=True)
     diff_ifa = fields.Integer('diff_IFA', readonly=True, store=True)
     diff_afc = fields.Integer('diff_AFC', readonly=True, store=True)
+    total_doc_planner = fields.Integer('Total Doc Planner', readonly=True, store=True)
 
     def fetch_report_stat_real(self, cr, user, allfields=None, context=None, write_access=True, attributes=None):
         cr.execute(periodic_script)
@@ -69,8 +70,22 @@ class stat_real(models.Model):
                 diff_IFI                integer,
                 diff_IFR                integer,
                 diff_IFA                integer,
-                diff_AFC                integer
+                diff_AFC                integer,
+                total_doc_planner       integer --NEW REVISION v1
             )
 
+        """)
+        cr.commit()
+        #NEW REVISION v1 total_doc_planner
+        cr.execute("""
+            DO $$
+                BEGIN
+                    BEGIN
+                        ALTER TABLE report_stat_real ADD COLUMN total_doc_planner integer;
+                    EXCEPTION
+                        WHEN duplicate_column THEN RAISE NOTICE 'column total_doc_planner already exists in report_stat_real.';
+                    END;
+                END;
+            $$
         """)
         cr.commit()

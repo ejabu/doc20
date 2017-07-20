@@ -8,6 +8,7 @@ def run(wb, ws, data):
     start_col = 6
     start_row = 6
 
+    last_total_doc_planner=0
     index=0
     color=["#BFBFBF", "#92D050", "#BDD7EE", "#FCE4D6", "#FFF2CC"]
     len_color = len(color)
@@ -62,10 +63,10 @@ def run(wb, ws, data):
 
     end_col = c_col
     end_row = c_row + 4
-
+    last_total_doc_planner = rec['total_doc_planner']
     #Edit Column Width
     ws.set_column(3, end_col-1, 4.91) #Semua Count Vlaue
-    ws.set_column(end_col, end_col, 6.71) #Row untuk percentage
+    ws.set_column(end_col, end_col, 8.36) #Row untuk percentage
 
     #Make Conditional Formatting
     conditional_format = {
@@ -77,12 +78,11 @@ def run(wb, ws, data):
     ws.conditional_format(start_row+2, start_col, end_row, end_col, conditional_format)
 
 
-    #FIX
     cell_format = wb.add_format({
                         'align':  'center',
                         'border': 1,
                     })
-    ws.write('C9' ,'20', cell_format)
+    ws.write('C9' ,last_total_doc_planner, cell_format)
 
     #Make Row
     perc_format = wb.add_format({
@@ -100,7 +100,7 @@ def run(wb, ws, data):
     perc_format = wb.add_format({
                                     'align':    'center',
                                     'border':   1,
-                                    'num_format': '0.0%'
+                                    'num_format': '0.00%'
                                     })
     ws.write_formula(start_row+2, end_col, perc_formula, perc_format)
     ws.write_formula(start_row+3, end_col, "", cell_format)

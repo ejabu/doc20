@@ -1,7 +1,7 @@
 periodic_script = """
 BEGIN;
 
-INSERT INTO report_stat_real as hehe (id, week_name, week_date, ifi, ifr, ifa, afc, def_ifr, def_ifa, def_afc, diff_IFI, diff_IFR, diff_IFA, diff_AFC)
+INSERT INTO report_stat_real as hehe (id, week_name, week_date, ifi, ifr, ifa, afc, def_ifr, def_ifa, def_afc, diff_IFI, diff_IFR, diff_IFA, diff_AFC, total_doc_planner)
 
         SELECT
         -- random ini diperlukan ketika mau TEST dengan paginate_result tercentant pada phppgadmin
@@ -21,8 +21,8 @@ INSERT INTO report_stat_real as hehe (id, week_name, week_date, ifi, ifr, ifa, a
         this_week.IFI - COALESCE( NULLIF(last_week.IFI, null) , '0' ) as diff_IFI,
         this_week.IFR - COALESCE( NULLIF(last_week.IFR, null) , '0' ) as diff_IFR,
         this_week.IFA - COALESCE( NULLIF(last_week.IFA, null) , '0' ) as diff_IFA,
-        this_week.AFC - COALESCE( NULLIF(last_week.AFC, null) , '0' ) as diff_AFC
-
+        this_week.AFC - COALESCE( NULLIF(last_week.AFC, null) , '0' ) as diff_AFC,
+        statistic.total_doc_planner as total_doc_planner
 
         FROM (
             SELECT
@@ -35,7 +35,7 @@ INSERT INTO report_stat_real as hehe (id, week_name, week_date, ifi, ifr, ifa, a
             WHERE is_history is FALSE
         ) this_week
 ,
-        (
+        ( --ini untuk mencari kolom week sebelumnya
             SELECT
                 --max gunanya, ketika no rows found, nilai kolom tetap ada yaitu NULL
                 max(IFI) IFI,
@@ -50,6 +50,15 @@ INSERT INTO report_stat_real as hehe (id, week_name, week_date, ifi, ifr, ifa, a
             )
 
         ) last_week
+,
+        ( --ini untuk mencari jumlah MDR yang di desain seluruhnya
+            SELECT count (*) as total_doc_planner
+            FROM master_deliver
+
+            WHERE is_history = False
+
+
+        ) statistic
 
 
 ---------------ON CONFLICT --- START
@@ -57,7 +66,7 @@ INSERT INTO report_stat_real as hehe (id, week_name, week_date, ifi, ifr, ifa, a
 on conflict (week_name)
 do UPDATE
 
-SET (ifi, ifr, ifa, afc, def_ifr, def_ifa, def_afc, diff_IFI, diff_IFR, diff_IFA, diff_AFC) =
+SET (ifi, ifr, ifa, afc, def_ifr, def_ifa, def_afc, diff_IFI, diff_IFR, diff_IFA, diff_AFC, total_doc_planner) =
 (
 
         SELECT
@@ -78,13 +87,16 @@ SET (ifi, ifr, ifa, afc, def_ifr, def_ifa, def_afc, diff_IFI, diff_IFR, diff_IFA
         this_week.IFI - COALESCE( NULLIF(last_week.IFI, null) , '0' ) as diff_IFI,
         this_week.IFR - COALESCE( NULLIF(last_week.IFR, null) , '0' ) as diff_IFR,
         this_week.IFA - COALESCE( NULLIF(last_week.IFA, null) , '0' ) as diff_IFA,
-        this_week.AFC - COALESCE( NULLIF(last_week.AFC, null) , '0' ) as diff_AFC
+        this_week.AFC - COALESCE( NULLIF(last_week.AFC, null) , '0' ) as diff_AFC,
+        statistic.total_doc_planner as total_doc_planner
 
 
         FROM (
             SELECT
             (CURRENT_DATE + cast(abs(extract(dow from current_date) - 7 )+ 1 as int)) as next_week_date,
+
             sum(case when exs.name  = 'IFI' then 1 else 0 end) as IFI,
+
             sum(case when exs.name  = 'IFR' then 1 else 0 end) as IFR,
             sum(case when exs.name  = 'IFA' then 1 else 0 end) as IFA,
             sum(case when exs.name  = 'AFC' then 1 else 0 end) as AFC
@@ -107,7 +119,15 @@ SET (ifi, ifr, ifa, afc, def_ifr, def_ifa, def_afc, diff_IFI, diff_IFR, diff_IFA
             )
 
         ) last_week
+,
+        ( --ini untuk mencari jumlah MDR yang di desain seluruhnya
+            SELECT count (*) as total_doc_planner
+            FROM master_deliver
 
+            WHERE is_history = False
+
+
+        ) statistic
 )
 
 where hehe.week_name= hehe.week_name;
